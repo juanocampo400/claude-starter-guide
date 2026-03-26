@@ -1,0 +1,9 @@
+ai is really good at composing parts, so we need to build bricks, really good bricks
+
+you can't accept whatever ai gave you as the end, it's just the beginning, always start with ai slop. then you refine it, poke at it with prompts, and it gets better.
+
+it's all the same thing. when you look at all apps you use and everything around you, we're all built by same parts that are very simple. when you merge, combine, recombine, they give rise to complexity. it's all information stored in database
+
+it's all code, and when you learn how to manipulate that you can do anything
+
+in this new world of building with AI how do teams work? won't be too close to what we have before: many layers of management and leaner processes. We have to answer how we make sure people are aligned on the general direction, but each person has agency to build what they want (to a certain extent). And how do these people talk to each other and share their ideas, files, tools.

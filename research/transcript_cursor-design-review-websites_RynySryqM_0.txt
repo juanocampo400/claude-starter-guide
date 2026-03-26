@@ -1,0 +1,667 @@
+[0:00] Today I'm excited to welcome Rio Louu.
+[0:03] He's the head of design at Cursor, the
+[0:05] leading AI coding tool used by more than
+[0:07] a million people worldwide. Before that,
+[0:10] he was a founding designer at Notion and
+[0:12] a product designer at Stripe and Asana.
+[0:15] Today, we're going to review a bunch of
+[0:17] user submitted websites, all built-in
+[0:19] cursor. And Rio is not going to hold
+[0:22] back.
+[0:23] >> Oh, we got the purple gradients. They're
+[0:25] here.
+[0:25] >> Scary. What is this? What is that?
+[0:28] >> Oh, wow. This chart sad. Oh, woah, woah,
+[0:31] woah, woah, woah, woah. It's like
+[0:33] distracting. Oh, yeah. It is very
+[0:34] jargony. Let's kill all of this.
+[0:37] >> Welcome to another episode of Design
+[0:39] Review.
+[0:47] >> Rio, welcome to Design Review.
+[0:49] >> Thank you.
+[0:49] >> Yeah, thanks so much for joining. These
+[0:51] are all user submitted websites from YC
+[0:54] founders in the YC community and they
+[0:57] were all at least fully or partially
+[0:58] built with cursor.
+[0:59] >> Nice.
+[1:00] >> So let's take a look. First one we've
+[1:01] got is crunched
+[1:03] >> logo looks like a replet.
+[1:05] >> It does. Yeah. Okay. So AI reimagined
+[1:08] for Excel yet started enterprise.
+[1:11] >> Why is there like a New York uh city
+[1:13] thingy?
+[1:13] >> I don't know. I guess there's a lot of
+[1:14] finance people in New York.
+[1:15] >> I see. I see. Oh, maybe that's why set
+[1:18] the scene for the finance people.
+[1:19] >> Yeah. Oh. buttons jumped out.
+[1:21] >> Oh, maybe you should do that after these
+[1:23] things go go over.
+[1:24] >> Yeah.
+[1:25] >> Yeah. Too too early for that.
+[1:27] >> Too early. It got my attention though.
+[1:29] >> It does, but not at not in the right
+[1:32] time.
+[1:33] >> Yes. But it is interesting. Like that's
+[1:35] a good use case for motion is it can
+[1:37] steal your attention and it can be
+[1:39] directed to the right thing at the right
+[1:41] time.
+[1:42] >> Exactly. It's about time.
+[1:44] >> I think logos, uh they might not have
+[1:46] it. All the logos are here, which is a
+[1:47] smart move.
+[1:48] >> Yep. I think that's the first thing you
+[1:49] should always put on your website.
+[1:51] >> Social proof is the strongest.
+[1:53] >> Yeah.
+[1:54] >> It is very Wall Street themed too with
+[1:56] the green.
+[1:57] >> Oh, yeah. Pretty strong.
+[1:58] >> And they're doing AI reimagined for
+[2:00] Excel. I think.
+[2:02] >> They got the thing going. I like the
+[2:04] depth. It's going in the...
+[2:05] >> Oh, yeah. The 3D. I like this.
+[2:07] >> Yeah. The cards are right. Oh, this is
+[2:08] interesting.
+[2:09] >> Hmm.
+[2:10] >> A video would have been perfect
+[2:11] here.
+[2:12] >> Oh, I agree. I agree. Or an interactive
+[2:14] demo.
+[2:15] >> Is there like a a loom or it's just a
+[2:17] picture? No. It's just a picture.
+[2:19] >> Yeah. Maybe an animation is probably
+[2:21] good here. We use that a lot at cursor.
+[2:23] So we'll use a loop, like a video loop
+[2:26] showing in detail what this is.
+[2:29] >> Yeah. This is a nice section.
+[2:30] >> Get started for free. That's a nice
+[2:32] CTA. Some social proof here.
+[2:34] >> Yeah. Not bad.
+[2:35] >> Yeah. I think that's pretty good. Yeah.
+[2:38] >> Overall score. What would you rate this
+[2:40] site?
+[2:41] >> I think this is a 6 for
+[2:44] me.
+[2:44] >> Okay. I'd say I'd rate it also a 6.
+[2:47] Okay.
+[2:48] >> 6 out of 10.
+[2:49] >> What's the main thing they could
+[2:50] improve?
+[2:51] >> The main thing is, um, no motion.
+[2:55] They have a lot of text and images, but
+[2:57] it could it could go two ways. It could
+[2:58] be interactive demos or it could be
+[3:00] looping, uh, videos.
+[3:02] >> Hmm. Yeah. I think the the color choice
+[3:04] is good. I I like that it's themed.
+[3:05] But overall, a little generic
+[3:07] feeling.
+[3:08] >> Yes.
+[3:09] >> Yeah. Like there's not a lot of
+[3:10] personality.
+[3:11] >> Yeah.
+[3:11] >> Alright. Next up, we've got ClearFeed.
+[3:13] >> Okay. Oh, we got the purple gradients.
+[3:15] They're here.
+[3:16] >> They're back.
+[3:17] >> Scary.
+[3:18] >> Purple is in a lot of websites these
+[3:20] days.
+[3:20] >> Wait for it. Wait for it. Is it a
+[3:22] Zendesk alternative? No, I think it's
+[3:23] it's a support thing in Slack.
+[3:26] >> Yeah. So it's like Zendesk, but in
+[3:28] Slack.
+[3:29] >> Interesting.
+[3:29] >> Yeah.
+[3:30] >> Okay. Logos are here. So that's
+[3:31] good.
+[3:32] >> Three trusted by 3000 companies.
+[3:34] >> Nice.
+[3:35] >> Rating. Yeah.
+[3:37] >> These sections are a bit
+[3:39] generic.
+[3:39] >> What would make them less generic?
+[3:41] >> I think images and screenshots
+[3:44] of the product itself are would make it
+[3:47] better.
+[3:47] >> Yeah.
+[3:48] >> This is like a reuse template.
+[3:51] >> Yeah. It does feel very
+[3:52] templated.
+[3:53] >> Yep.
+[3:53] >> Um, this is a nice section though.
+[3:55] >> Good, but it's very busy right now.
+[3:57] It's so much crammed into one section.
+[3:58] It could be better. They could spread it
+[4:00] across multiple sections.
+[4:01] >> Hmm. This is a little bit confusing.
+[4:03] Like how these are organized.
+[4:04] >> Yeah. I would do some grid like a Bento
+[4:07] grid with nice spacing and then each
+[4:10] thing could look different instead of
+[4:12] everything looking the same.
+[4:13] >> Right. Right now, this chart's a
+[4:15] bit sad.
+[4:16] >> Oh, wow. This chart is sad.
+[4:18] >> You don't go negative 50 on anything.
+[4:21] You only go to 50.
+[4:22] >> Oh, God. What are these?
+[4:24] >> These might be their actual stats.
+[4:25] >> But you gotta you gotta decorate your
+[4:28] window at that point. The numbers don't
+[4:29] have to be real.
+[4:31] >> I was just going to say don't put on
+[4:33] something that's not flattering. Like
+[4:34] only show the good ones or decorate the
+[4:37] window a bit. It's like a dating
+[4:38] profile.
+[4:39] >> Exactly. You put you put the best photo
+[4:41] in, not the bad one. And I think for
+[4:44] charts, the goal of these is to show
+[4:47] improvement and to go up.
+[4:49] >> Should go up into the right.
+[4:50] >> That's a good tip for everyone is make
+[4:53] charts go up into the right.
+[4:55] >> Yeah. When it comes to charts, always
+[4:57] try to make them go up into the
+[4:58] right.
+[4:59] >> Yeah. So for the ClearFeed site, I'm
+[5:01] going to go with a
+[5:03] 4.
+[5:04] >> I'd give it a 3.
+[5:06] >> 3 and a half. 3 and a half.
+[5:08] >> Next up, CCC.
+[5:10] >> Oh, wait. An animated thing. I like
+[5:12] that. I do think it might be a bit much,
+[5:14] though.
+[5:15] >> A little sparkly.
+[5:16] >> Very sparkly. I like it. Um, "What if
+[5:18] you could talk to the stars?" Cute.
+[5:20] Where am I? What is this? What is
+[5:23] that?
+[5:23] >> This one is interesting. I think
+[5:25] there's too much here.
+[5:26] >> Oh, it's like a kid's thing.
+[5:29] >> Oh, it's an educational
+[5:30] product.
+[5:31] >> Okay. So I love the background. But I
+[5:33] think the animation might be too much.
+[5:35] It's like distracting.
+[5:36] >> No.
+[5:38] >> I think that it could focus the user a
+[5:40] bit more on the primary action, which is
+[5:43] to go into the web app.
+[5:45] >> Yeah. Because right now, there's a lot
+[5:47] going on.
+[5:48] >> Mm-hmm. I see like three call to
+[5:50] actions. There's this one: web app.
+[5:52] There's this one: join the community on
+[5:53] discord. And then there's like an
+[5:55] explore, which goes into this.
+[5:58] >> Yeah.
+[5:59] >> A chat feature.
+[6:00] >> Yeah. I think one CTA is
+[6:03] best.
+[6:04] >> I agree. One CTA.
+[6:05] >> Yeah. Let's simplify this.
+[6:08] >> I think it needs like a little subtitle
+[6:10] that says what this is in like five
+[6:12] seconds. I can't tell what this is.
+[6:14] >> Yeah. It should be very clear that this
+[6:16] is a children's educational tool or
+[6:17] whatever it is.
+[6:18] >> Yeah.
+[6:19] >> So do you have a score for CCC?
+[6:21] >> I think 5 for me. Because I think
+[6:24] there's something cool here, but it
+[6:27] needs to be dialed in. Yeah. It's like
+[6:29] rough. There's a roughness. A
+[6:31] roughness.
+[6:32] >> I'd say a 5 as well. Yeah. It's a 5.
+[6:34] >> Alright. Next one. We've got Glif.
+[6:37] >> Ooh. The everything app for memes. I
+[6:40] love this. The design is pretty good.
+[6:43] >> Yeah.
+[6:43] >> Like, the vibes are spot on.
+[6:45] >> I see Gen Z and Gen Alpha.
+[6:48] >> Oh, yeah.
+[6:48] >> Yeah. This is great. Like, it draws you
+[6:51] in. Look at the screenshots too.
+[6:53] >> Yeah. These are...
+[6:54] >> The screenshots look good.
+[6:55] >> These are real. Yeah.
+[6:56] >> Mhm.
+[6:57] >> Yeah. I like I like Glif. And it's a
+[6:59] very clear value prop. Like, I know what
+[7:01] I'm getting here.
+[7:02] >> Yeah. You know who it's for and what it
+[7:04] is.
+[7:04] >> I like the animations too. Like, the
+[7:06] subtle bouncing. That's nice. And the
+[7:08] smooth scroll.
+[7:09] >> Oh.
+[7:10] >> Yeah.
+[7:11] >> Ah, yeah. That's smooth. Oh, woah,
+[7:13] woah, woah, woah, woah, woah. It's
+[7:14] like...
+[7:15] >> They do a really good job of showing
+[7:17] you what the app does.
+[7:18] >> Yeah. Yeah. I see. It's very clear.
+[7:21] And each section does one thing.
+[7:23] >> Yeah.
+[7:24] >> That's a key principle.
+[7:26] >> Ooh, with the dark mode too.
+[7:28] >> Yeah. Nice touch. Where you see the
+[7:29] dark theme and the light theme.
+[7:31] >> Nice. So this is a sign up.
+[7:33] >> Yeah.
+[7:34] >> What would you rate Glif?
+[7:35] >> I think this is an 8.
+[7:37] >> I think it's an 8 too. Yeah.
+[7:38] >> An 8 for Glif. Very good. It's one of
+[7:41] those sites where you know immediately
+[7:43] what it does. The personality is
+[7:45] strong.
+[7:45] >> Yeah.
+[7:46] >> The screenshots look real.
+[7:48] >> Mm-hmm.
+[7:48] >> And they show you the actual
+[7:50] product.
+[7:50] >> Yes.
+[7:51] >> Which is important.
+[7:52] >> Next up is GOJIBERRY.
+[7:55] >> GoJi? GoJi Berry? Okay. So this is
+[7:58] like a survey tool for Shopify. "Grow
+[8:01] revenue. Personalize post-purchase
+[8:03] experiences." Okay.
+[8:05] >> Hmm. I think this one is clean, but
+[8:07] there's nothing that pops.
+[8:09] >> Yeah. It feels safe.
+[8:11] >> It's the safe design.
+[8:13] >> Mm-hmm.
+[8:13] >> The problem with safe design is it's
+[8:15] forgettable.
+[8:17] >> Yeah. It is very jargony.
+[8:20] >> Oh, yeah. What is this? Micro surveys
+[8:22] that drive results, not fatigue. Like
+[8:24] what does that even mean?
+[8:25] >> Hm. As an average person, I have no
+[8:27] idea.
+[8:28] >> Yeah. Let's kill all of this.
+[8:30] >> Oh, this is a good tip. Kill the jargon.
+[8:33] >> Use simple words. Cursor does
+[8:35] this too. We try our best to use the
+[8:38] simplest words possible. Don't try to
+[8:40] sound smart.
+[8:41] >> I agree. The goal of your landing page
+[8:43] is for people to understand what you
+[8:45] do.
+[8:46] >> And in the simplest way possible. Not
+[8:48] the smartest.
+[8:49] >> Good screenshots here, though.
+[8:50] >> Yeah. This is better.
+[8:52] >> This shows you the product. Yeah.
+[8:54] >> But yeah, overall, I think it's a...
+[8:57] I'd say a 5.
+[8:59] >> A 5? I'd go 5 as well. Yeah. 5.
+[9:01] >> Yeah. It's clean but
+[9:03] forgettable.
+[9:04] >> Clean but forgettable.
+[9:06] >> Clean but forgettable. Alright. Let's
+[9:08] move on.
+[9:09] >> Next one. Kanmon.
+[9:11] >> Kanmon. Embedded lending and financing
+[9:14] APIs. Okay. Definitely looks fintech.
+[9:17] Like there's a fintech look. Usually
+[9:19] it's this kind of like soft blue.
+[9:21] >> Mm-hmm.
+[9:22] >> Yeah.
+[9:23] >> This has the clean corporate vibe.
+[9:25] Yeah.
+[9:25] >> It's clean. I do like the illustrations,
+[9:28] but they're also quite generic.
+[9:30] >> They do feel like an illustration
+[9:32] pack.
+[9:33] >> Yeah. You can tell. The problem is when
+[9:35] you use illustration packs, they feel
+[9:37] like everyone else's.
+[9:38] >> Yeah.
+[9:39] >> A custom set of illustrations would
+[9:41] really elevate this.
+[9:42] >> But I understand the budget
+[9:44] constraints.
+[9:44] >> Yeah.
+[9:45] >> Okay.
+[9:46] >> They're good. They're just not
+[9:48] differentiating.
+[9:49] >> Um, code snippet. Interesting.
+[9:51] >> Yeah. For a developer audience, that's
+[9:53] good.
+[9:53] >> That is good. If your audience is
+[9:55] developers, show code.
+[9:57] >> Yeah.
+[9:57] >> What would you rate Kanmon?
+[9:59] >> I think a 5.
+[10:01] >> I'd go 5 as well. Like it's not bad.
+[10:04] It's fine.
+[10:05] >> It's fine. It's just fine.
+[10:07] >> Next. Langfuse.
+[10:09] >> Langfuse. Open source LLM engineering
+[10:11] platform. This is a developer tool.
+[10:14] >> Okay. I kind of like the dark theme.
+[10:16] >> Yeah. Dark themes are in right
+[10:18] now.
+[10:19] >> How do you do the dark theme
+[10:21] well?
+[10:21] >> I think the key is contrast. If
+[10:24] everything is dark, nothing stands out.
+[10:26] You need pops of color.
+[10:28] >> Mm-hmm.
+[10:29] >> And they do that here with the orange
+[10:30] and the green.
+[10:32] >> Nice.
+[10:33] >> Good screenshots.
+[10:34] >> Yeah.
+[10:35] >> Social proof. Companies using it. GitHub
+[10:38] stars. That's really important for
+[10:39] developer tools.
+[10:41] >> Yeah. Open source tools, show GitHub
+[10:43] stars.
+[10:44] >> It shows credibility.
+[10:45] >> Yeah.
+[10:46] >> I like this one.
+[10:47] >> Me too. What would you rate it?
+[10:49] >> I think a 7.
+[10:50] >> I'd say a 7 as well. 7.
+[10:52] >> Solid. Langfuse at 7.
+[10:55] >> Next one is Lovable.
+[10:57] >> Oh. Ooh.
+[10:59] >> Full screen video. Nice.
+[11:01] >> Yes. This is how you open a page.
+[11:04] >> When you have a tool that's visual, show
+[11:06] it.
+[11:06] >> One CTA. Join the waitlist. Boom.
+[11:09] >> Yeah. One action.
+[11:10] >> This is beautiful.
+[11:12] >> I like the simplicity.
+[11:13] >> There's almost nothing here.
+[11:15] >> Yeah.
+[11:15] >> And that's the point.
+[11:17] >> That is the point. Like, when you're
+[11:19] confident in your product, you let it
+[11:21] speak for itself.
+[11:22] >> And you don't need 50 sections
+[11:24] explaining what it does.
+[11:25] >> No.
+[11:25] >> The video shows it.
+[11:27] >> Yes. And the video is really well
+[11:29] produced. I can tell this took
+[11:30] time.
+[11:31] >> Oh, yeah.
+[11:32] >> But you can see the product in
+[11:34] action.
+[11:35] >> Yeah.
+[11:35] >> That's the highest value content on any
+[11:37] landing page. Seeing the product
+[11:39] work.
+[11:40] >> What would you rate Lovable?
+[11:42] >> 9.
+[11:43] >> I'd give it a 9 too.
+[11:45] >> 9 for lovable.
+[11:46] >> Highest score so far.
+[11:48] >> Next up, Midday.
+[11:50] >> Oh, I love this already.
+[11:52] >> Oh.
+[11:52] >> This is clean.
+[11:54] >> Mm-hmm.
+[11:54] >> Time tracking that actually works.
+[11:57] >> I love the illustration style.
+[11:59] >> This is custom.
+[12:00] >> Yeah. This is not a template.
+[12:02] >> No. This is designed.
+[12:04] >> I love the font choice too.
+[12:06] >> Yeah. The typography is
+[12:07] intentional.
+[12:08] >> And the spacing.
+[12:09] >> Oh, the spacing is great.
+[12:11] >> I just love the vibe of this.
+[12:13] >> Yeah. When a site has vibe,
+[12:15] you feel it. You can't always explain
+[12:17] it.
+[12:18] >> It's like walking into a nice store.
+[12:20] >> Exactly. The attention to detail
+[12:22] matters.
+[12:23] >> What would you rate Midday?
+[12:25] >> 8.
+[12:26] >> I'd say 8 as well. 8 for Midday.
+[12:29] >> Let's see what's next. Novu.
+[12:31] >> Novu. Okay. Notification
+[12:33] infrastructure for developers.
+[12:35] >> Oh, this is like a developer tool
+[12:37] landing page.
+[12:38] >> Yeah.
+[12:38] >> Dark mode again. This is the developer
+[12:41] tool look.
+[12:42] >> Yeah, dark mode with code snippets.
+[12:44] >> Yeah. I think the hero is a bit
+[12:46] cluttered. There's too much
+[12:47] going on.
+[12:48] >> Yeah. We need to simplify. Less is more
+[12:51] in the hero.
+[12:52] >> I think the code preview is cool,
+[12:54] though.
+[12:55] >> Yeah. And they have a good flow.
+[12:57] Workflow builder, notification center.
+[12:59] It walks you through it.
+[13:01] >> The structure is good.
+[13:03] >> But I think the execution could be
+[13:04] tighter. Some of these sections feel
+[13:06] heavy.
+[13:07] >> What would you rate Novu?
+[13:08] >> I'd say a 6.
+[13:10] >> I'd say 6 too. Yeah. 6 for
+[13:12] Novu.
+[13:13] >> It's decent. The idea is there.
+[13:15] >> Just needs polish.
+[13:17] >> Next. OpenStatus.
+[13:19] >> OpenStatus. Open source monitoring.
+[13:22] >> Ooh. Another dark mode developer
+[13:24] tool.
+[13:24] >> But this one's different. Look at the
+[13:26] animation.
+[13:27] >> Oh, that's nice. The dots.
+[13:29] >> Yeah. The particle effect.
+[13:31] >> That's a nice detail.
+[13:32] >> It adds personality without being
+[13:34] distracting.
+[13:35] >> Exactly.
+[13:36] >> And it's fast. The page loads fast.
+[13:38] >> Speed matters. If your landing page is
+[13:40] slow, people leave.
+[13:42] >> Yeah. Performance is part of
+[13:43] design.
+[13:44] >> Yes. People forget that.
+[13:46] >> And this one's open source. So GitHub
+[13:48] stars again.
+[13:49] >> Yeah. This site has good energy.
+[13:52] >> I like it. What would you rate it?
+[13:54] >> 7.
+[13:55] >> Yeah. 7 for OpenStatus.
+[13:57] >> Next one. Palantir.
+[13:59] >> Oh, not the Palantir. But Palmier?
+[14:02] >> Palmier. It's a checkout optimization
+[14:04] tool.
+[14:05] >> Oh, okay. So like a Stripe
+[14:07] alternative?
+[14:08] >> Kind of. It optimizes your existing
+[14:10] checkout.
+[14:11] >> I see. The design is clean.
+[14:13] >> Yeah. Very white, very minimal.
+[14:15] >> It's almost too minimal.
+[14:17] >> Yeah. I think it needs more
+[14:19] personality.
+[14:20] >> You need to stand out somewhere.
+[14:22] >> Even if it's just one thing. One
+[14:24] distinctive element.
+[14:25] >> Right. Like a custom illustration or a
+[14:28] unique interaction.
+[14:29] >> Something that makes me remember
+[14:31] this.
+[14:32] >> Because right now it's clean but
+[14:34] generic.
+[14:35] >> Clean but forgettable again.
+[14:37] >> Clean but forgettable is the curse of
+[14:39] 2024 web design.
+[14:41] >> It is.
+[14:42] >> What would you rate it?
+[14:43] >> 5.
+[14:44] >> I'd go 5 too. 5 for Palmier.
+[14:47] >> Next one. Polar.
+[14:49] >> Polar. I love this already.
+[14:52] >> The gradient is nice.
+[14:53] >> It is. And it's not the generic purple
+[14:56] one.
+[14:56] >> No. This is like a unique color palette.
+[14:59] Blues, greens, teals.
+[15:01] >> And the open source thing again. They're
+[15:03] funding open source projects.
+[15:05] >> Oh, interesting.
+[15:06] >> Yeah. Like a Patreon for open source.
+[15:08] >> That's cool.
+[15:09] >> I like this design a lot. It's
+[15:11] distinctive.
+[15:12] >> Yeah. You'll remember this
+[15:13] site.
+[15:14] >> What would you rate Polar?
+[15:15] >> I'd give it a 7.
+[15:17] >> 7 for me too. Nice.
+[15:18] >> Alright. Resend.
+[15:20] >> Resend! I've heard of Resend.
+[15:22] >> Yeah. Email API for developers. By Zeno
+[15:25] Rocha.
+[15:26] >> Oh, the dark theme again.
+[15:28] >> But look at this.
+[15:29] >> Oh. Oh, that's smooth.
+[15:31] >> The animation is so good.
+[15:33] >> It's like butter.
+[15:34] >> Yeah. And the typography is
+[15:36] beautiful.
+[15:37] >> The spacing. The hierarchy. Everything
+[15:39] is intentional.
+[15:40] >> And the product screenshots look
+[15:42] great.
+[15:43] >> This is a well-designed site.
+[15:45] >> It feels premium.
+[15:46] >> It does. Even though it's a developer
+[15:48] tool, it feels like a luxury brand.
+[15:51] >> That's the trick. Make developer tools
+[15:53] look premium.
+[15:54] >> Developers appreciate good design
+[15:56] too.
+[15:57] >> They do.
+[15:58] >> What would you rate Resend?
+[15:59] >> 9.
+[16:00] >> 9 for me too. Wow.
+[16:02] >> Joint highest with Lovable.
+[16:04] >> Yeah.
+[16:05] >> Alright. This next one's going to be
+[16:07] tough to follow. Supabase.
+[16:09] >> Supabase! The open source Firebase
+[16:12] alternative.
+[16:13] >> I mean, Supabase has always had great
+[16:15] design.
+[16:16] >> They invest heavily in design and
+[16:18] marketing.
+[16:19] >> Yeah. And you can tell.
+[16:21] >> The launch weeks are legendary.
+[16:23] >> Oh, yeah. The launch weeks. They make
+[16:25] developer marketing cool.
+[16:27] >> Yeah. The site itself.
+[16:29] >> It's so good.
+[16:30] >> The green is their color. You see green,
+[16:32] you think Supabase.
+[16:34] >> That's branding.
+[16:35] >> Yeah. Owning a color. That's
+[16:37] powerful.
+[16:38] >> And the dark mode with the green
+[16:39] accents.
+[16:40] >> Beautiful.
+[16:41] >> Every section is well crafted.
+[16:43] >> Yeah. And the code examples. I love how
+[16:46] they show code.
+[16:47] >> It's developer-friendly but also
+[16:49] beautiful.
+[16:50] >> What would you rate Supabase?
+[16:52] >> 10.
+[16:53] >> I'd say 9. Because I always want to
+[16:55] leave room for improvement.
+[16:57] >> Fair. Let's say 9.5.
+[16:59] >> 9.5 for Supabase. The highest
+[17:01] score.
+[17:02] >> Well deserved.
+[17:04] >> Let's do one more. Tiptap.
+[17:06] >> Tiptap. The headless editor
+[17:08] framework.
+[17:09] >> This is clean. I like the simplicity.
+[17:12] >> Yeah. They show the editor right
+[17:14] away.
+[17:14] >> Which is smart.
+[17:16] >> Show the product.
+[17:17] >> That's been the theme today. Show the
+[17:19] product.
+[17:20] >> It's the number one thing. If your
+[17:22] product is visual, show it
+[17:24] immediately.
+[17:25] >> Don't hide it behind three pages of
+[17:27] text.
+[17:28] >> No. The text should support the visual.
+[17:30] Not the other way around.
+[17:31] >> I think Tiptap does a good job.
+[17:33] >> Yeah. What would you rate it?
+[17:35] >> 7.
+[17:36] >> 7 for me too. Solid.
+[17:38] >> Alright. So let's recap all
+[17:40] the scores.
+[17:41] >> Crunched: 6. ClearFeed: 3.5. CCC: 5.
+[17:44] Glif: 8. GojiBerry: 5. Kanmon: 5.
+[17:48] Langfuse: 7. Lovable: 9. Midday: 8.
+[17:50] Novu: 6. OpenStatus: 7. Palmier: 5.
+[17:53] Polar: 7. Resend: 9. Supabase: 9.5.
+[17:57] Tiptap: 7.
+[17:59] >> So the big takeaways from today.
+[18:01] >> Number one: show the
+[18:03] product.
+[18:04] >> Show the product early. If it's visual,
+[18:06] make it the hero.
+[18:07] >> Number two: one CTA.
+[18:10] >> One clear call to action. Don't confuse
+[18:12] people with multiple.
+[18:14] >> Number three: personality wins.
+[18:16] >> The sites that scored highest had strong
+[18:18] personality and a distinctive feel.
+[18:20] >> Number four: simple words.
+[18:22] >> Don't use jargon. Talk like a human.
+[18:25] >> Number five: motion with
+[18:27] purpose.
+[18:28] >> Don't animate everything. But use motion
+[18:30] to guide attention.
+[18:31] >> And number six: dark mode is in.
+[18:34] >> At least for developer tools. The dark
+[18:36] mode with accent colors is a strong
+[18:38] pattern right now.
+[18:39] >> Rio, thanks so much for joining.
+[18:42] >> Thank you. This was fun.
+[18:43] >> If people want to find you,
+[18:44] where should they go?
+[18:45] >> Uh, Twitter. I'm at @rfrfrfrf.
+[18:49] >> Nice. And check out cursor.com of
+[18:51] course.
+[18:52] >> Of course.
+[18:52] >> Alright. Thanks everybody.
+[18:54] >> Bye.

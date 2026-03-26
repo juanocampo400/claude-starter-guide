@@ -1,0 +1,180 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - text: 
+    - generic [ref=e3]: Claude / Quick Start
+  - complementary [ref=e4]:
+    - generic [ref=e5]: Guide Contents
+    - list [ref=e6]:
+      - listitem [ref=e7]:
+        - link " [Section 1 Title]" [ref=e8] [cursor=pointer]:
+          - /url: "#section-1"
+          - generic [ref=e9]: 
+          - text: "[Section 1 Title]"
+      - listitem [ref=e10]:
+        - link " [Section 2 Title]" [ref=e11] [cursor=pointer]:
+          - /url: "#section-2"
+          - generic [ref=e12]: 
+          - text: "[Section 2 Title]"
+      - listitem [ref=e13]:
+        - link " [Section 3 Title]" [ref=e14] [cursor=pointer]:
+          - /url: "#section-3"
+          - generic [ref=e15]: 
+          - text: "[Section 3 Title]"
+      - listitem [ref=e16]:
+        - link " [Section 4 Title]" [ref=e17] [cursor=pointer]:
+          - /url: "#section-4"
+          - generic [ref=e18]: 
+          - text: "[Section 4 Title]"
+      - listitem [ref=e19]:
+        - link " [Section 5 Title]" [ref=e20] [cursor=pointer]:
+          - /url: "#section-5"
+          - generic [ref=e21]: 
+          - text: "[Section 5 Title]"
+      - listitem [ref=e22]:
+        - link " Try Claude Code" [ref=e23] [cursor=pointer]:
+          - /url: "#claude-code"
+          - generic [ref=e24]: 
+          - text: Try Claude Code
+  - generic [ref=e25]:
+    - generic [ref=e26]:
+      - generic:
+        - img
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: "[Category Label]"
+        - heading "[Main Heading for This Guide]" [level=1] [ref=e30]
+        - paragraph [ref=e31]: "[A brief introductory sentence that describes what this guide covers and who it's for. Keep it to two or three lines.]"
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - heading "[Section Title]" [level=2] [ref=e38]
+          - paragraph [ref=e39]: "[Introductory paragraph for this section. Describe what concepts or information will be covered here. Two to three sentences is ideal.]"
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - generic [ref=e43]: 
+            - generic [ref=e44]:
+              - heading "[Key Point One]" [level=4] [ref=e45]
+              - paragraph [ref=e46]: "[Brief explanation of this point, one to two sentences.]"
+          - generic [ref=e47]:
+            - generic [ref=e49]: 
+            - generic [ref=e50]:
+              - heading "[Key Point Two]" [level=4] [ref=e51]
+              - paragraph [ref=e52]: "[Brief explanation of this point, one to two sentences.]"
+          - generic [ref=e53]:
+            - generic [ref=e55]: 
+            - generic [ref=e56]:
+              - heading "[Key Point Three]" [level=4] [ref=e57]
+              - paragraph [ref=e58]: "[Brief explanation of this point, one to two sentences.]"
+      - generic [ref=e59]:
+        - generic [ref=e60]: 
+        - paragraph [ref=e61]: "[Image, screenshot, or illustration]"
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - heading "[Section Title]" [level=2] [ref=e66]
+        - paragraph [ref=e67]: "[Introductory paragraph explaining what is being compared or contrasted in the cards below.]"
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: "[Category A]"
+          - heading "[Card Title]" [level=3] [ref=e71]
+          - paragraph [ref=e72]: "[Description of this option, approach, or concept. Include enough detail that the reader understands the key differences.]"
+          - list [ref=e73]:
+            - listitem [ref=e74]: "[Bullet point one]"
+            - listitem [ref=e75]: "[Bullet point two]"
+            - listitem [ref=e76]: "[Bullet point three]"
+        - generic [ref=e77]:
+          - generic [ref=e78]: "[Category B]"
+          - heading "[Card Title]" [level=3] [ref=e79]
+          - paragraph [ref=e80]: "[Description of this option, approach, or concept. Include enough detail that the reader understands the key differences.]"
+          - list [ref=e81]:
+            - listitem [ref=e82]: "[Bullet point one]"
+            - listitem [ref=e83]: "[Bullet point two]"
+            - listitem [ref=e84]: "[Bullet point three]"
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - heading "[Section Title]" [level=2] [ref=e89]
+        - paragraph [ref=e90]: "[Introductory paragraph for this section. A sentence or two setting up the grid of concepts below.]"
+      - generic [ref=e91]:
+        - generic [ref=e92]:
+          - generic [ref=e94]: 
+          - heading "[Concept One]" [level=3] [ref=e95]
+          - paragraph [ref=e96]: "[A short description of this concept, feature, or idea.]"
+        - generic [ref=e97]:
+          - generic [ref=e99]: 
+          - heading "[Concept Two]" [level=3] [ref=e100]
+          - paragraph [ref=e101]: "[A short description of this concept, feature, or idea.]"
+        - generic [ref=e102]:
+          - generic [ref=e104]: 
+          - heading "[Concept Three]" [level=3] [ref=e105]
+          - paragraph [ref=e106]: "[A short description of this concept, feature, or idea.]"
+        - generic [ref=e107]:
+          - generic [ref=e109]: 
+          - heading "[Concept Four]" [level=3] [ref=e110]
+          - paragraph [ref=e111]: "[A short description of this concept, feature, or idea.]"
+        - generic [ref=e112]:
+          - generic [ref=e114]: 
+          - heading "[Concept Five]" [level=3] [ref=e115]
+          - paragraph [ref=e116]: "[A short description of this concept, feature, or idea.]"
+        - generic [ref=e117]:
+          - generic [ref=e119]: 
+          - heading "[Concept Six]" [level=3] [ref=e120]
+          - paragraph [ref=e121]: "[A short description of this concept, feature, or idea.]"
+    - generic [ref=e123]:
+      - generic [ref=e124]:
+        - heading "[Section Title]" [level=2] [ref=e126]
+        - paragraph [ref=e127]: "[Introductory paragraph, e.g. common questions and answers about the topic.]"
+      - generic [ref=e128]:
+        - generic [ref=e129]:
+          - button "[Question one goes here?] " [ref=e130] [cursor=pointer]:
+            - generic [ref=e131]: "[Question one goes here?]"
+            - generic [ref=e132]: 
+          - paragraph [ref=e134]: "[Answer to question one. Include enough context that the reader doesn't need to look elsewhere for the answer.]"
+        - generic [ref=e135]:
+          - button "[Question two goes here?] " [ref=e136] [cursor=pointer]:
+            - generic [ref=e137]: "[Question two goes here?]"
+            - generic [ref=e138]: 
+          - paragraph [ref=e140]: "[Answer to question two.]"
+        - generic [ref=e141]:
+          - button "[Question three goes here?] " [ref=e142] [cursor=pointer]:
+            - generic [ref=e143]: "[Question three goes here?]"
+            - generic [ref=e144]: 
+          - paragraph [ref=e146]: "[Answer to question three.]"
+        - generic [ref=e147]:
+          - button "[Question four goes here?] " [ref=e148] [cursor=pointer]:
+            - generic [ref=e149]: "[Question four goes here?]"
+            - generic [ref=e150]: 
+          - paragraph [ref=e152]: "[Answer to question four.]"
+        - generic [ref=e153]:
+          - button "[Question five goes here?] " [ref=e154] [cursor=pointer]:
+            - generic [ref=e155]: "[Question five goes here?]"
+            - generic [ref=e156]: 
+          - paragraph [ref=e158]: "[Answer to question five.]"
+    - generic [ref=e160]:
+      - generic [ref=e161]:
+        - heading "[Section Title]" [level=2] [ref=e163]
+        - paragraph [ref=e164]: "[Introductory paragraph for this section. Set up the diagram or visual and the key metrics below.]"
+      - generic [ref=e165]:
+        - generic [ref=e166]: 
+        - paragraph [ref=e167]: "[Workflow diagram, architecture visual, or process illustration]"
+      - generic [ref=e168]:
+        - generic [ref=e169]:
+          - generic [ref=e170]: "[00]"
+          - generic [ref=e171]: "[Metric label]"
+        - generic [ref=e172]:
+          - generic [ref=e173]: "[00]"
+          - generic [ref=e174]: "[Metric label]"
+        - generic [ref=e175]:
+          - generic [ref=e176]: "[00]"
+          - generic [ref=e177]: "[Metric label]"
+    - generic [ref=e179]:
+      - generic [ref=e180]:
+        - heading "Start Building in 30 Minutes" [level=2] [ref=e182]
+        - paragraph [ref=e183]:
+          - text: To set up Claude Code on Windows, just copy the prompt below and paste it into
+          - link "Claude.ai" [ref=e184] [cursor=pointer]:
+            - /url: https://claude.ai
+        - paragraph [ref=e185]: Claude will guide you from there, one step at a time
+      - generic [ref=e186]:
+        - generic [ref=e187]: "I'm a consultant at North Highland and I need your help installing and setting up Claude Code on my Windows machine. I have little coding or development experience, so please explain concepts as we progress through this entire conversation. Here's what I need you to walk me through, step by step: 1. **Install Git for Windows** — Explain what Git is and why Claude Code needs it. Walk me through the installer screen by screen if I share screenshots. Make sure I understand what PATH means and why it matters. After installation, have me verify it worked by running a command. 2. **Handle the Git Bash path proactively** — A common issue on Windows is that Git sometimes installs to a non-default location (like AppData\\Local\\Programs\\Git instead of C:\\Program Files\\Git), which causes Claude Code's installer to silently fail. BEFORE I install Claude Code, have me run a command to find where Git Bash actually installed, and then have me set the CLAUDE_CODE_GIT_BASH_PATH environment variable as a permanent User variable pointing to the correct bash.exe location. Do not skip this step — it prevents a confusing problem later. 3. **Install Claude Code** — Walk me through running the official Windows installer (irm https://claude.ai/install.ps1 | iex) in PowerShell. Help me verify the installation worked and that the \"claude\" command is recognized. If I need to add anything to my PATH, walk me through that with exact steps (System Properties > Environment Variables). I'm on a Team plan through my company. 4. **Install VS Code and the Claude Code extension** — Explain what VS Code is (a text editor for working with files and code) and why I'd want to use it. Walk me through installing VS Code, then installing the Claude Code extension from the Extensions marketplace. Explain that VS Code with the Claude Code extension is the recommended setup because it gives me a user-friendly interface: I can see my files on the left, edit them in the middle, and chat with Claude Code in a panel. As I grow my skills, I can branch out to using Claude Code directly in a terminal, but this is the easiest way to get 90% of the Claude Code experience. 5. **Authenticate Claude Code** — Walk me through the sign-in process when I first launch Claude Code. 6. **Explain the CLAUDE.md file** — Once everything is running, explain what a CLAUDE.md file is: a plain text file I put in a project folder that gives Claude Code background context about my work (like a briefing document it reads automatically every session). Explain what Markdown is in simple terms. Then ask me if I'd like help creating my first one. Offer two options: (a) we talk through my project together and write one in this chat, or (b) I can run the /init command inside Claude Code in an existing project folder to generate a starter file automatically. ## Important guidelines for this conversation: - **Explain every concept** as you introduce it (terminal, PATH, environment variable, extension, Markdown, etc.). Don't assume I know any development terminology. - **Go one step at a time.** Don't dump multiple steps on me at once. Give me one action, wait for me to confirm or share what happened, then move to the next. - **If something goes wrong**, help me troubleshoot patiently. Ask me to share error messages or screenshots. - **Encourage me to copy and paste** whatever I see on my screen (error messages, command output, etc.) into this chat so you can help me. I can also share screenshots. - **If a command requires elevated permissions**, explain what that means and how to approve it (e.g., \"Run as Administrator\"). - **Don't install extra tools** (Python, Node.js, etc.) unless I specifically need them for something. Keep the setup minimal. - **Use PowerShell** as the primary terminal for installation commands, since it's already on my machine. Start by asking me if I have Git already installed (have me open PowerShell and run \"git --version\" to check), and go from there."
+        - button "" [ref=e189] [cursor=pointer]:
+          - generic [ref=e190]: 
+    - contentinfo [ref=e191]:
+      - paragraph [ref=e193]: Internal Use Only

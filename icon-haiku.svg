@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Head silhouette -->
+  <path d="M32 6C20.954 6 12 14.954 12 26c0 7.18 3.78 13.47 9.45 17H20v9c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2v-9h-1.45C48.22 39.47 52 33.18 52 26 52 14.954 43.046 6 32 6z" fill="#D97757" fill-opacity="0.12" stroke="#D97757" stroke-width="1.5"/>
+  <!-- Single dot -->
+  <circle cx="32" cy="26" r="3" fill="#D97757"/>
+</svg>
