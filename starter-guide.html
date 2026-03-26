@@ -1338,127 +1338,78 @@
 
     <section id="same-model" class="section section--gray">
   <div class="container">
-    <h2>Same model, every time – the weights never change between conversations</h2>
-    <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
-      During training, Anthropic builds the model's knowledge by adjusting billions of numerical values called
-      <span class="define-term"><strong>weights</strong><span class="define-tip"><strong>Weights</strong>The billions of numerical parameters inside a model that encode what it "knows." Set during training, then frozen permanently.<em>Think of them as the model's permanent knowledge base.</em></span></span>.
-      Once training ends, those weights are
-      <span class="define-term"><strong>locked</strong><span class="define-tip"><strong>Frozen weights</strong>After training, the model's parameters cannot change. No user interaction, feedback, or conversation can alter them.<em>The model you use today has the same weights as the model someone else used yesterday.</em></span></span>
-      permanently. Every conversation you have runs on the exact same frozen model. Claude does not learn from your inputs, carry memories between sessions, or improve the more you use it. The only way to shape what Claude does is by giving it information inside the conversation, which the next sections explain.
-    </p>
+    <h2>Everyone uses the same model – every conversation begins from the same starting point</h2>
 
-    <div class="diagram-wrap">
-      <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" class="diagram-svg" style="max-width:760px;" aria-label="Diagram showing two different conversations both connecting to the same frozen Claude model">
+    <!-- ── Row 1: Model explanation + conversations diagram ─── -->
+    <div style="display:flex;gap:40px;align-items:flex-start;margin-top:12px;margin-bottom:40px;flex-wrap:wrap;">
+      <div style="flex:1 1 0;min-width:240px;">
+        <p class="section-body" style="margin-top:0;margin-bottom:0;">
+          At its core, a model is a
+          <span class="define-term"><strong>neural network</strong><span class="define-tip"><strong>Neural network</strong>A structure made of billions of simple units (called neurons) linked by connections. Each connection carries a numerical value called a <strong>weight</strong> that controls how strongly one unit influences another. Training adjusts these weights until the network produces useful, coherent language.<em>Think of it like tuning billions of tiny dials until the system gets the answers right.</em></span></span>
+          that has been trained on massive amounts of text. Training is what gives the model everything it knows. Once training ends, the model is
+          <span class="define-term"><strong>locked</strong><span class="define-tip"><strong>Frozen model</strong>After training, a model's internal values cannot change. No user interaction, feedback, or conversation can alter them.<em>The model you use today is identical to the model someone else used yesterday.</em></span></span>
+          permanently. The model you use is the same model everyone else uses. It does not learn from your conversations, carry memories between sessions, or improve the more you use it. What you can change is the information you give it inside each conversation.
+        </p>
+      </div>
+      <div style="flex:2 1 0;min-width:320px;max-width:66%;">
+        <div class="diagram-wrap" style="margin-top:0;padding:28px 24px;">
+          <div style="display:flex;align-items:center;gap:24px;">
+            <!-- Conversations column -->
+            <div style="display:flex;flex-direction:column;gap:16px;max-width:240px;">
+              <!-- Conversation A -->
+              <div style="background:#ffffff;border:1.5px solid #dcdfe5;border-radius:8px;padding:12px 14px;">
+                <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11px;font-weight:700;color:#728197;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Conversation A</div>
+                <div style="background:#f4f6fa;border:1px solid #dcdfe5;border-radius:5px;padding:6px 10px;font-family:'Source Sans 3',Arial,sans-serif;font-size:12px;color:#132e53;margin-bottom:6px;">"Draft a client proposal"</div>
+                <div style="background:#039fb8;border-radius:5px;padding:6px 10px;font-family:'Source Sans 3',Arial,sans-serif;font-size:12px;color:#ffffff;margin-left:12px;">Here is a proposal…</div>
+              </div>
+              <!-- Conversation B -->
+              <div style="background:#ffffff;border:1.5px solid #dcdfe5;border-radius:8px;padding:12px 14px;">
+                <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11px;font-weight:700;color:#728197;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Conversation B</div>
+                <div style="background:#f4f6fa;border:1px solid #dcdfe5;border-radius:5px;padding:6px 10px;font-family:'Source Sans 3',Arial,sans-serif;font-size:12px;color:#132e53;margin-bottom:6px;">"Summarise this report"</div>
+                <div style="background:#039fb8;border-radius:5px;padding:6px 10px;font-family:'Source Sans 3',Arial,sans-serif;font-size:12px;color:#ffffff;margin-left:12px;">The key findings are…</div>
+              </div>
+            </div>
+            <!-- Model icons column -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <img src="icon-opus.svg" alt="Opus" style="width:32px;height:32px;">
+              <img src="icon-sonnet.svg" alt="Sonnet" style="width:32px;height:32px;">
+              <img src="icon-haiku.svg" alt="Haiku" style="width:32px;height:32px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <!-- ── Left conversation bubble ───────────────────────────── -->
-        <rect x="10" y="60" width="200" height="200" rx="8" fill="#ffffff" stroke="#dcdfe5" stroke-width="1.5"/>
-        <text x="110" y="88" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#728197" letter-spacing="0.06em" text-transform="uppercase">CONVERSATION A</text>
-        <!-- User message -->
-        <rect x="26" y="100" width="140" height="36" rx="6" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="1"/>
-        <text x="96" y="116" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">"Draft a client proposal</text>
-        <text x="96" y="130" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">for Q3 strategy work"</text>
-        <!-- Claude reply -->
-        <rect x="46" y="148" width="148" height="36" rx="6" fill="#039fb8" stroke="none"/>
-        <text x="120" y="164" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#ffffff">Here is a proposal</text>
-        <text x="120" y="178" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#ffffff">outline for you…</text>
-        <!-- User follow-up -->
-        <rect x="26" y="196" width="120" height="28" rx="6" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="1"/>
-        <text x="86" y="215" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">"Make it shorter"</text>
-        <!-- User avatar label -->
-        <circle cx="30" cy="242" r="10" fill="#dcdfe5"/>
-        <text x="30" y="246" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#728197">A</text>
-        <text x="46" y="246" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#728197">Consultant – Strategy</text>
+    <!-- ── Row 2: Tokens explanation + tokenizer visual ──── -->
+    <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;">
+      <div style="flex:1 1 0;min-width:240px;">
+        <p class="section-body" style="margin-top:0;margin-bottom:0;">
+          The model does not read your messages word by word. It breaks everything into
+          <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.<em>Think of tokens as the model's alphabet.</em></span></span>
+          – small chunks, roughly one word each. Your question, any documents you attach, and every word the model writes back all count as tokens. This matters because the model has a limited budget of tokens per conversation.
+        </p>
+      </div>
+      <div style="flex:2 1 0;min-width:320px;max-width:66%;">
+        <div class="diagram-wrap" style="margin-top:0;padding:24px;">
 
-        <!-- ── Right conversation bubble ──────────────────────────── -->
-        <rect x="550" y="60" width="200" height="200" rx="8" fill="#ffffff" stroke="#dcdfe5" stroke-width="1.5"/>
-        <text x="650" y="88" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#728197" letter-spacing="0.06em">CONVERSATION B</text>
-        <!-- User message -->
-        <rect x="566" y="100" width="150" height="36" rx="6" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="1"/>
-        <text x="641" y="116" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">"Summarise this 40-page</text>
-        <text x="641" y="130" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">financial report"</text>
-        <!-- Claude reply -->
-        <rect x="576" y="148" width="148" height="36" rx="6" fill="#039fb8" stroke="none"/>
-        <text x="650" y="164" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#ffffff">The key findings are</text>
-        <text x="650" y="178" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#ffffff">as follows…</text>
-        <!-- User follow-up -->
-        <rect x="566" y="196" width="150" height="28" rx="6" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="1"/>
-        <text x="641" y="215" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">"Add bullet points"</text>
-        <!-- User avatar label -->
-        <circle cx="570" cy="242" r="10" fill="#dcdfe5"/>
-        <text x="570" y="246" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#728197">B</text>
-        <text x="586" y="246" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#728197">Analyst – Finance</text>
+          <p class="diagram-label" style="margin-top:0;">Example sentence</p>
+          <p class="diagram-scenario" style="margin-bottom:16px;">
+            "Summarize the Q3 client engagement report and highlight key risks"
+          </p>
 
-        <!-- ── Connector lines ─────────────────────────────────────── -->
-        <!-- Left line: conversation A → model -->
-        <line x1="210" y1="160" x2="280" y2="160" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <polygon points="278,155 288,160 278,165" fill="#039fb8"/>
-        <!-- Right line: conversation B → model -->
-        <line x1="550" y1="160" x2="480" y2="160" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <polygon points="482,155 472,160 482,165" fill="#039fb8"/>
+          <p class="diagram-label">Broken into tokens</p>
+          <div style="margin-bottom:10px;line-height:2;">
+            <span class="token-chip" style="background:#dbeafe;">Summar</span><span class="token-chip" style="background:#fce7f3;">ize</span><span class="token-chip" style="background:#d1fae5;">the</span><span class="token-chip" style="background:#fef3c7;">Q</span><span class="token-chip" style="background:#ede9fe;">3</span><span class="token-chip" style="background:#ffedd5;">client</span><span class="token-chip" style="background:#dbeafe;">engagement</span><span class="token-chip" style="background:#fce7f3;">report</span><span class="token-chip" style="background:#d1fae5;">and</span><span class="token-chip" style="background:#fef3c7;">highlight</span><span class="token-chip" style="background:#ede9fe;">key</span><span class="token-chip" style="background:#ffedd5;">risks</span>
+          </div>
+          <p class="token-count">
+            <i class="fa-solid fa-calculator" style="margin-right:6px;"></i>12 tokens
+          </p>
 
-        <!-- ── Central model box ───────────────────────────────────── -->
-        <rect x="288" y="80" width="184" height="160" rx="10" fill="#132e53" stroke="#132e53" stroke-width="2"/>
-
-        <!-- Lock icon (drawn as SVG shapes to avoid Font Awesome inside SVG) -->
-        <!-- Lock body -->
-        <rect x="362" y="106" width="36" height="28" rx="4" fill="#ffffff"/>
-        <!-- Lock shackle (arc) -->
-        <path d="M369,106 L369,98 Q380,88 391,98 L391,106" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-        <!-- Lock keyhole -->
-        <circle cx="380" cy="118" r="4" fill="#132e53"/>
-        <rect x="378" y="118" width="4" height="7" rx="1" fill="#132e53"/>
-
-        <!-- Model label -->
-        <text x="380" y="153" text-anchor="middle" font-family="'Bebas Neue',Arial,sans-serif" font-size="18" fill="#ffffff" letter-spacing="0.04em">CLAUDE MODEL</text>
-        <!-- Frozen badge -->
-        <rect x="316" y="162" width="128" height="22" rx="4" fill="#039fb8"/>
-        <text x="380" y="177" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.05em">WEIGHTS FROZEN</text>
-        <!-- Sub-label -->
-        <text x="380" y="210" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#dcdfe5">Same for every conversation</text>
-        <text x="380" y="226" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#dcdfe5">No learning · No memory</text>
-
-        <!-- ── Bottom caption ──────────────────────────────────────── -->
-        <text x="380" y="290" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#728197">Two completely different conversations. One identical model.</text>
-      </svg>
+        </div>
+      </div>
     </div>
 
   </div>
-</section>
-
-    
-
-    <!-- ============ Section 3: Tokens ============ -->
-
-    <section id="tokens" class="section section--white">
-  <div class="container">
-
-    <h2>Tokens – how Claude reads everything you give it</h2>
-
-    <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
-      Claude does not read your messages word by word. It breaks everything into
-      <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.<em>Think of tokens as the model's alphabet.</em></span></span>
-      – small chunks, roughly one word each. Your question, any documents you attach, and every word Claude writes back all count as tokens. This matters because Claude has a limited budget of tokens per conversation, which is the subject of the next section.
-    </p>
-
-    <!-- Tokenizer visual -->
-    <div class="diagram-wrap">
-
-      <p class="diagram-label">Example sentence</p>
-      <p class="diagram-scenario" style="margin-bottom:20px;">
-        "Summarize the Q3 client engagement report and highlight key risks"
-      </p>
-
-      <p class="diagram-label">Broken into tokens</p>
-      <div style="margin-bottom:14px;line-height:2;">
-        <span class="token-chip" style="background:#dbeafe;">Summar</span><span class="token-chip" style="background:#fce7f3;">ize</span><span class="token-chip" style="background:#d1fae5;">the</span><span class="token-chip" style="background:#fef3c7;">Q</span><span class="token-chip" style="background:#ede9fe;">3</span><span class="token-chip" style="background:#ffedd5;">client</span><span class="token-chip" style="background:#dbeafe;">engagement</span><span class="token-chip" style="background:#fce7f3;">report</span><span class="token-chip" style="background:#d1fae5;">and</span><span class="token-chip" style="background:#fef3c7;">highlight</span><span class="token-chip" style="background:#ede9fe;">key</span><span class="token-chip" style="background:#ffedd5;">risks</span>
-      </div>
-      <p class="token-count">
-        <i class="fa-solid fa-calculator" style="margin-right:6px;"></i>12 tokens
-      </p>
-
-    </div><!-- end tokenizer visual -->
-
-  </div><!-- end container -->
 </section>
 
     
