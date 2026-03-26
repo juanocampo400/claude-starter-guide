@@ -597,6 +597,331 @@
       letter-spacing: 0.08em;
     }
 
+    /* ========================================
+       Diagram Wrapper (shared across sections)
+       ======================================== */
+    .diagram-wrap {
+      background: var(--nh-ice-blue);
+      border-radius: 6px;
+      border: 1px solid var(--nh-divider);
+      padding: 40px;
+      margin-top: 32px;
+    }
+
+    .diagram-svg {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .diagram-label {
+      font-family: "Source Sans 3", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--nh-slate);
+      margin: 0 0 10px 0;
+    }
+
+    .diagram-scenario {
+      font-family: "Source Sans 3", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 1rem;
+      color: var(--nh-navy);
+      margin: 0 0 28px 0;
+    }
+
+    /* ========================================
+       Token Chips (Section 3)
+       ======================================== */
+    .token-chip {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin: 3px;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    .token-count {
+      font-size: 0.85rem;
+      color: var(--nh-teal);
+      font-weight: 700;
+      margin: 0 0 32px 0;
+    }
+
+    /* ========================================
+       Step Navigation (shared Sections 4, 6)
+       ======================================== */
+    .step-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .step-nav-btn {
+      width: 38px;
+      height: 30px;
+      background: #F5F0EB;
+      border: 1px solid #E0D6CC;
+      border-radius: 7px;
+      box-shadow: 0 1.5px 0 #D6CBBF, 0 2px 4px rgba(0,0,0,0.06);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--nh-navy);
+      transition: background 0.15s ease, transform 0.1s ease;
+      padding: 0;
+      font-size: 14px;
+    }
+    .step-nav-btn:hover { background: #ede8e2; }
+    .step-nav-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 0.5px 0 #D6CBBF, 0 1px 2px rgba(0,0,0,0.06);
+    }
+    .step-nav-btn:disabled { opacity: 0.38; cursor: default; }
+
+    .step-stage-label {
+      font-size: 0.8rem;
+      color: var(--nh-slate);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .step-desc {
+      margin-top: 20px;
+      min-height: 48px;
+      text-align: center;
+    }
+
+    .step-desc-text {
+      font-family: "Source Sans 3", "IBM Plex Sans", Arial, sans-serif;
+      font-size: 0.92rem;
+      color: var(--nh-navy);
+      line-height: 1.6;
+      margin: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* ========================================
+       Info Cards Grid (Section 5)
+       ======================================== */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .info-cards .card--full {
+      grid-column: 1 / -1;
+    }
+
+    /* ========================================
+       Callout Box
+       ======================================== */
+    .callout {
+      background: var(--nh-white);
+      border-left: 4px solid var(--nh-teal);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin-top: 32px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .callout strong {
+      color: var(--nh-navy);
+    }
+
+    /* ========================================
+       Context Window Interactive (Section 4)
+       ======================================== */
+    #context-window {
+      padding: 64px 0 72px;
+    }
+    #context-window .section-body {
+      margin-top: 12px;
+      margin-bottom: 32px;
+    }
+
+    #cw-visual {
+      background: #fff;
+      border: 1px solid #dcdfe5;
+      border-radius: 16px;
+      padding: 32px 32px 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 16px rgba(19,46,83,0.06);
+    }
+    #cw-visual-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #728197;
+      margin-bottom: 20px;
+    }
+
+    #cw-bar-wrap {
+      position: relative;
+      margin-bottom: 4px;
+    }
+    #cw-bar-labels-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: #728197;
+      margin-bottom: 5px;
+      padding: 0 2px;
+    }
+    #cw-bar {
+      position: relative;
+      width: 100%;
+      height: 52px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      border: 1px solid #dcdfe5;
+      overflow: hidden;
+    }
+    .cw-chunk {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: opacity 0.35s ease;
+      opacity: 0.13;
+    }
+    .cw-chunk.active {
+      opacity: 1;
+    }
+
+    #cw-annotations {
+      position: relative;
+      height: 110px;
+      margin-top: 0;
+    }
+    .cw-ann {
+      position: absolute;
+      width: 170px;
+      background: #fff;
+      border: 1px solid #dcdfe5;
+      border-radius: 10px;
+      padding: 10px 13px 10px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: #44536a;
+      opacity: 0.18;
+      transition: opacity 0.35s ease, box-shadow 0.35s ease;
+      pointer-events: none;
+      transform: translateX(-50%);
+    }
+    .cw-ann.active {
+      opacity: 1;
+      box-shadow: 0 4px 18px rgba(19,46,83,0.10);
+      pointer-events: auto;
+    }
+    .cw-ann-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      font-size: 0.75rem;
+      color: #fff;
+    }
+    .cw-ann-label {
+      font-weight: 700;
+      font-size: 0.76rem;
+      color: #132e53;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .cw-ann-desc {
+      font-size: 0.73rem;
+      color: #728197;
+      line-height: 1.4;
+    }
+
+    .cw-connector {
+      position: absolute;
+      width: 1px;
+      background: #dcdfe5;
+      transform: translateX(-50%);
+      transition: opacity 0.35s ease;
+      opacity: 0.18;
+    }
+    .cw-connector.active {
+      opacity: 1;
+    }
+
+    #cw-token-counter {
+      font-size: 0.8rem;
+      color: #728197;
+      margin: 8px 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #cw-token-bar-track {
+      flex: 1;
+      height: 6px;
+      background: #f1f5f9;
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid #dcdfe5;
+    }
+    #cw-token-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #039fb8);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    #cw-token-text {
+      white-space: nowrap;
+      min-width: 190px;
+      text-align: right;
+    }
+    #cw-full-label {
+      font-size: 0.72rem;
+      color: #ef4444;
+      font-weight: 700;
+      display: none;
+      margin-left: 4px;
+    }
+
+    #cw-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    #cw-step-indicator {
+      font-size: 0.72rem;
+      color: #728197;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    /* ========================================
+       Agents Diagram (Section 6)
+       ======================================== */
+    #ag-diagram .ag-stage {
+      transition: opacity 0.4s ease;
+    }
+
+    /* ========================================
+       Section 5 Responsive
+       ======================================== */
+    @media (max-width: 768px) {
+      #getting-info-in .info-cards { grid-template-columns: 1fr !important; }
+    }
+
     .section-body { max-width: 680px; }
     @media (min-width: 1025px) { .section-body { max-width: 1000px; } }
 
@@ -808,7 +1133,7 @@
       <li><a href="#context-window">The Context Window</a></li>
       <li><a href="#getting-info-in">Getting Information In</a></li>
       <li><a href="#agents-in-action">Agents in Action</a></li>
-      <li><a href="#claude-code">Try Claude Code</a></li>
+      <li><a href="#claude-code">Start Building</a></li>
     </ul>
   </aside>
 
@@ -1015,18 +1340,15 @@
   <div class="container">
     <h2>Same model, every time – the weights never change between conversations</h2>
     <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
-      During training, Anthropic adjusts billions of numerical values called
-      <span class="define-term"><strong>weights</strong><span class="define-tip"><strong>Weights</strong>The billions of numerical parameters inside a model that encode what it "knows." Set during training, then frozen permanently.<em>Think of them as the model's permanent knowledge base.</em></span></span>
-      until the model understands language, reasoning, and the world. Once training ends, those weights are
+      During training, Anthropic builds the model's knowledge by adjusting billions of numerical values called
+      <span class="define-term"><strong>weights</strong><span class="define-tip"><strong>Weights</strong>The billions of numerical parameters inside a model that encode what it "knows." Set during training, then frozen permanently.<em>Think of them as the model's permanent knowledge base.</em></span></span>.
+      Once training ends, those weights are
       <span class="define-term"><strong>locked</strong><span class="define-tip"><strong>Frozen weights</strong>After training, the model's parameters cannot change. No user interaction, feedback, or conversation can alter them.<em>The model you use today has the same weights as the model someone else used yesterday.</em></span></span>
-      permanently. Every conversation you start, regardless of topic or user, runs on that exact same frozen model.
-      The model does not learn from your inputs, carry memories across sessions, or improve the more you use it – any
-      <span class="define-term"><strong>adaptation</strong><span class="define-tip"><strong>Adaptation via context</strong>Because weights cannot change, the only way to "customize" Claude's behavior is by providing instructions and background information inside the active conversation. The next sections explain how this works.<em>Context is the lever, not retraining.</em></span></span>
-      you see is driven by what you provide inside the conversation, not by changes to the model itself.
+      permanently. Every conversation you have runs on the exact same frozen model. Claude does not learn from your inputs, carry memories between sessions, or improve the more you use it. The only way to shape what Claude does is by giving it information inside the conversation, which the next sections explain.
     </p>
 
-    <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:40px;margin-top:32px;">
-      <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:760px;display:block;margin:0 auto;" aria-label="Diagram showing two different conversations both connecting to the same frozen Claude model">
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" class="diagram-svg" style="max-width:760px;" aria-label="Diagram showing two different conversations both connecting to the same frozen Claude model">
 
         <!-- ── Left conversation bubble ───────────────────────────── -->
         <rect x="10" y="60" width="200" height="200" rx="8" fill="#ffffff" stroke="#dcdfe5" stroke-width="1.5"/>
@@ -1113,31 +1435,26 @@
     <h2>Tokens – how Claude reads everything you give it</h2>
 
     <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
-      Claude doesn't read your messages the way you do. Instead, it converts everything into
+      Claude does not read your messages word by word. It breaks everything into
       <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.<em>Think of tokens as the model's alphabet.</em></span></span>
-      – small chunks of text, roughly one word or word-fragment each. Every piece of input you send (your question, any documents, any context) and every word Claude writes back is counted in tokens. Understanding this is the foundation for making sense of how Claude's memory works, which comes next.
+      – small chunks, roughly one word each. Your question, any documents you attach, and every word Claude writes back all count as tokens. This matters because Claude has a limited budget of tokens per conversation, which is the subject of the next section.
     </p>
 
     <!-- Tokenizer visual -->
-    <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:40px;margin-top:32px;">
+    <div class="diagram-wrap">
 
-      <p style="font-family:'Source Sans 3',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#728197;margin:0 0 10px 0;">
-        Example sentence
-      </p>
-      <p style="font-family:'Source Sans 3',sans-serif;font-size:1rem;color:#132e53;margin:0 0 20px 0;">
+      <p class="diagram-label">Example sentence</p>
+      <p class="diagram-scenario" style="margin-bottom:20px;">
         "Summarize the Q3 client engagement report and highlight key risks"
       </p>
 
-      <p style="font-family:'Source Sans 3',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#728197;margin:0 0 10px 0;">
-        Broken into tokens
-      </p>
+      <p class="diagram-label">Broken into tokens</p>
       <div style="margin-bottom:14px;line-height:2;">
-        <span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#dbeafe;">Summar</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fce7f3;">ize</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#d1fae5;">the</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fef3c7;">Q</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ede9fe;">3</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ffedd5;">client</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#dbeafe;">engagement</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fce7f3;">report</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#d1fae5;">and</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fef3c7;">highlight</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ede9fe;">key</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ffedd5;">risks</span>
+        <span class="token-chip" style="background:#dbeafe;">Summar</span><span class="token-chip" style="background:#fce7f3;">ize</span><span class="token-chip" style="background:#d1fae5;">the</span><span class="token-chip" style="background:#fef3c7;">Q</span><span class="token-chip" style="background:#ede9fe;">3</span><span class="token-chip" style="background:#ffedd5;">client</span><span class="token-chip" style="background:#dbeafe;">engagement</span><span class="token-chip" style="background:#fce7f3;">report</span><span class="token-chip" style="background:#d1fae5;">and</span><span class="token-chip" style="background:#fef3c7;">highlight</span><span class="token-chip" style="background:#ede9fe;">key</span><span class="token-chip" style="background:#ffedd5;">risks</span>
       </div>
-      <p style="font-family:'Source Sans 3',sans-serif;font-size:0.85rem;color:#039fb8;font-weight:700;margin:0 0 32px 0;">
+      <p class="token-count">
         <i class="fa-solid fa-calculator" style="margin-right:6px;"></i>12 tokens
       </p>
-
 
     </div><!-- end tokenizer visual -->
 
@@ -1149,209 +1466,6 @@
     <!-- ============ Section 4: Context Window ============ -->
 
     <section id="context-window" class="section section--gray">
-  <style>
-    /* ── Section 4: Context Window ────────────────────────────────────── */
-    #context-window {
-      padding: 64px 0 72px;
-    }
-    #context-window .section-body {
-      max-width: 680px;
-      margin-top: 12px;
-      margin-bottom: 32px;
-    }
-
-    /* ── Interactive context bar wrapper ────────────────────────────── */
-    #cw-visual {
-      background: #fff;
-      border: 1px solid #dcdfe5;
-      border-radius: 16px;
-      padding: 32px 32px 28px;
-      margin-bottom: 40px;
-      box-shadow: 0 2px 16px rgba(19,46,83,0.06);
-    }
-    #cw-visual-title {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: #728197;
-      margin-bottom: 20px;
-    }
-
-    /* Bar */
-    #cw-bar-wrap {
-      position: relative;
-      margin-bottom: 4px;
-    }
-    #cw-bar-labels-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.7rem;
-      color: #728197;
-      margin-bottom: 5px;
-      padding: 0 2px;
-    }
-    #cw-bar {
-      position: relative;
-      width: 100%;
-      height: 52px;
-      background: #f1f5f9;
-      border-radius: 8px;
-      border: 1px solid #dcdfe5;
-      overflow: hidden;
-    }
-    .cw-chunk {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      transition: opacity 0.35s ease;
-      opacity: 0.13;
-    }
-    .cw-chunk.active {
-      opacity: 1;
-    }
-
-    /* Annotation region */
-    #cw-annotations {
-      position: relative;
-      height: 110px;
-      margin-top: 0;
-    }
-    .cw-ann {
-      position: absolute;
-      width: 170px;
-      background: #fff;
-      border: 1px solid #dcdfe5;
-      border-radius: 10px;
-      padding: 10px 13px 10px;
-      font-size: 0.78rem;
-      line-height: 1.45;
-      color: #44536a;
-      opacity: 0.18;
-      transition: opacity 0.35s ease, box-shadow 0.35s ease;
-      pointer-events: none;
-      transform: translateX(-50%);
-    }
-    .cw-ann.active {
-      opacity: 1;
-      box-shadow: 0 4px 18px rgba(19,46,83,0.10);
-      pointer-events: auto;
-    }
-    .cw-ann-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
-      margin-bottom: 6px;
-      font-size: 0.75rem;
-      color: #fff;
-    }
-    .cw-ann-label {
-      font-weight: 700;
-      font-size: 0.76rem;
-      color: #132e53;
-      display: block;
-      margin-bottom: 3px;
-    }
-    .cw-ann-desc {
-      font-size: 0.73rem;
-      color: #728197;
-      line-height: 1.4;
-    }
-
-    /* Connector lines */
-    .cw-connector {
-      position: absolute;
-      width: 1px;
-      background: #dcdfe5;
-      transform: translateX(-50%);
-      transition: opacity 0.35s ease;
-      opacity: 0.18;
-    }
-    .cw-connector.active {
-      opacity: 1;
-    }
-
-    /* Token counter */
-    #cw-token-counter {
-      font-size: 0.8rem;
-      color: #728197;
-      margin: 8px 0 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    #cw-token-bar-track {
-      flex: 1;
-      height: 6px;
-      background: #f1f5f9;
-      border-radius: 3px;
-      overflow: hidden;
-      border: 1px solid #dcdfe5;
-    }
-    #cw-token-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #6366f1, #039fb8);
-      border-radius: 3px;
-      width: 0%;
-      transition: width 0.4s ease;
-    }
-    #cw-token-text {
-      white-space: nowrap;
-      min-width: 190px;
-      text-align: right;
-    }
-    #cw-full-label {
-      font-size: 0.72rem;
-      color: #ef4444;
-      font-weight: 700;
-      display: none;
-      margin-left: 4px;
-    }
-
-    /* Navigation buttons */
-    #cw-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 4px;
-    }
-    .cw-nav-btn {
-      width: 38px;
-      height: 30px;
-      background: #F5F0EB;
-      border: 1px solid #E0D6CC;
-      border-radius: 7px;
-      box-shadow: 0 1.5px 0 #D6CBBF, 0 2px 4px rgba(0,0,0,0.06);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s ease, transform 0.1s ease;
-      outline: none;
-    }
-    .cw-nav-btn:hover {
-      background: #ede8e2;
-    }
-    .cw-nav-btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 0.5px 0 #D6CBBF, 0 1px 2px rgba(0,0,0,0.06);
-    }
-    .cw-nav-btn:disabled {
-      opacity: 0.38;
-      cursor: default;
-    }
-    #cw-step-indicator {
-      font-size: 0.72rem;
-      color: #728197;
-      min-width: 50px;
-      text-align: center;
-    }
-
-  </style>
 
   <div class="container">
 
@@ -1399,13 +1513,13 @@
 
       <!-- Navigation -->
       <div id="cw-nav">
-        <button class="cw-nav-btn" id="cw-btn-back" aria-label="Previous step" disabled>
+        <button class="step-nav-btn" id="cw-btn-back" aria-label="Previous step" disabled>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M9 11L5 7L9 3" stroke="#132e53" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
         <div id="cw-step-indicator">0 / 9</div>
-        <button class="cw-nav-btn" id="cw-btn-next" aria-label="Next step">
+        <button class="step-nav-btn" id="cw-btn-next" aria-label="Next step">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M5 3L9 7L5 11" stroke="#132e53" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -1676,9 +1790,9 @@
     btnBack.addEventListener("click", retreat);
 
     document.addEventListener("keydown", function (e) {
-      // Only fire if focus is within the visual or no focusable element is focused elsewhere
-      if (e.key === "ArrowRight") advance();
-      if (e.key === "ArrowLeft")  retreat();
+      if (!window.__isSectionVisible("context-window")) return;
+      if (e.key === "ArrowRight") { advance(); e.preventDefault(); }
+      if (e.key === "ArrowLeft")  { retreat(); e.preventDefault(); }
     });
 
     // Initial render
@@ -1691,33 +1805,24 @@
 
     <!-- ============ Section 5: Getting Information In ============ -->
 
-    <style>
-@media (max-width: 768px) {
-  #getting-info-in .info-cards { grid-template-columns: 1fr !important; }
-}
-</style>
-
 <section id="getting-info-in" class="section section--white">
   <div class="container">
 
     <h2>Getting information in – every source becomes tokens in the same window</h2>
 
     <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
-      Claude can only work with what's inside its context window, but there are several ways to get external information in. You can attach files manually in Claude.ai, let Claude Code read files directly from your machine, or use
-      <span class="define-term"><strong>connectors</strong><span class="define-tip"><strong>MCP (Model Context Protocol)</strong>A standard that lets Claude reach out to external data sources like SharePoint, Slack, email, and databases. Called "connectors" in the Claude.ai interface.<em>Think of it as giving Claude permission to look things up on your behalf.</em></span></span>
-      to pull in live data from systems like SharePoint, Slack, and databases. No matter which method you use, the information always arrives the same way – as tokens added to the context window.
+      Claude can only work with what is inside its context window. There are several ways to get information in, from copy-paste to automated
+      <span class="define-term"><strong>connectors</strong><span class="define-tip"><strong>MCP (Model Context Protocol)</strong>A standard that lets Claude reach out to external data sources like SharePoint, Slack, email, and databases. Called "connectors" in the Claude.ai interface.<em>Think of it as giving Claude permission to look things up on your behalf.</em></span></span>.
+      No matter which method you use, the result is the same: tokens added to the context window.
     </p>
 
     <!-- Convergence diagram -->
-    <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:40px;margin-top:32px;text-align:center;">
+    <div class="diagram-wrap" style="text-align:center;">
 
-      <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:0 auto;" aria-label="Diagram showing three information sources converging into a single context window">
-
-        <!-- ── Source labels (top row) ─────────────────────────────── -->
+      <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" class="diagram-svg" style="max-width:600px;" aria-label="Diagram showing information sources converging into a single context window">
 
         <!-- Source 1: File upload (teal) -->
         <rect x="30" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#039fb8" stroke-width="1.5"/>
-        <!-- Upload icon: cloud with arrow -->
         <path d="M78,52 Q78,42 90,42 Q90,35 98,35 Q110,35 110,47 Q116,47 116,54 Q116,60 110,60 L78,60 Q70,60 70,54 Q70,48 78,52 Z" fill="none" stroke="#039fb8" stroke-width="2" stroke-linejoin="round"/>
         <line x1="90" y1="60" x2="90" y2="70" stroke="#039fb8" stroke-width="2"/>
         <polygon points="85,66 90,73 95,66" fill="#039fb8"/>
@@ -1726,14 +1831,12 @@
 
         <!-- Source 2: Direct file access (navy) -->
         <rect x="240" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#132e53" stroke-width="1.5"/>
-        <!-- Folder icon -->
         <path d="M275,55 L275,45 Q275,43 277,43 L285,43 L287,40 L313,40 Q315,40 315,42 L315,55 Q315,57 313,57 L277,57 Q275,57 275,55 Z" fill="none" stroke="#132e53" stroke-width="2" stroke-linejoin="round"/>
         <text x="300" y="94" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#132e53" letter-spacing="0.05em">DIRECT ACCESS</text>
         <text x="300" y="107" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">Claude Code</text>
 
         <!-- Source 3: Connectors / MCP (amber) -->
         <rect x="450" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
-        <!-- Plug icon (simplified) -->
         <rect x="497" y="38" width="16" height="18" rx="3" fill="none" stroke="#f59e0b" stroke-width="2"/>
         <line x1="499" y1="38" x2="499" y2="33" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
         <line x1="511" y1="38" x2="511" y2="33" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
@@ -1741,52 +1844,80 @@
         <text x="510" y="94" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#f59e0b" letter-spacing="0.05em">CONNECTORS</text>
         <text x="510" y="107" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">All products</text>
 
-        <!-- ── Converging connector lines ─────────────────────────── -->
-        <!-- Left source to centre -->
+        <!-- Converging lines -->
         <line x1="150" y1="50" x2="270" y2="165" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="5 3"/>
         <polygon points="266,160 274,169 278,159" fill="#039fb8"/>
-
-        <!-- Centre source straight down -->
         <line x1="300" y1="80" x2="300" y2="165" stroke="#132e53" stroke-width="1.5" stroke-dasharray="5 3"/>
         <polygon points="295,160 300,170 305,160" fill="#132e53"/>
-
-        <!-- Right source to centre -->
         <line x1="450" y1="50" x2="330" y2="165" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5 3"/>
         <polygon points="322,159 326,169 334,160" fill="#f59e0b"/>
 
-        <!-- ── Context Window bar ──────────────────────────────────── -->
+        <!-- Context Window bar -->
         <rect x="60" y="175" width="480" height="36" rx="6" fill="#f1f5f9"/>
         <rect x="60" y="175" width="480" height="36" rx="6" fill="none" stroke="#dcdfe5" stroke-width="1.5"/>
-
-        <!-- Filled portion representing tokens already in context -->
         <rect x="60" y="175" width="320" height="36" rx="6" fill="#132e53" opacity="0.12"/>
-
-        <!-- Token blocks inside bar -->
         <rect x="68" y="182" width="38" height="22" rx="3" fill="#039fb8" opacity="0.85"/>
         <text x="87" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">Upload</text>
-
         <rect x="112" y="182" width="48" height="22" rx="3" fill="#132e53" opacity="0.85"/>
         <text x="136" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">File read</text>
-
         <rect x="166" y="182" width="58" height="22" rx="3" fill="#f59e0b" opacity="0.9"/>
         <text x="195" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">Connector</text>
-
         <rect x="230" y="182" width="38" height="22" rx="3" fill="#039fb8" opacity="0.6"/>
         <rect x="274" y="182" width="48" height="22" rx="3" fill="#132e53" opacity="0.5"/>
         <rect x="328" y="182" width="24" height="22" rx="3" fill="#f59e0b" opacity="0.4"/>
-
-        <!-- Remaining capacity (empty) -->
-        <text x="380" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">· · · available capacity · · ·</text>
-
-        <!-- Bar label -->
+        <text x="440" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">· · · capacity · · ·</text>
         <text x="300" y="228" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" font-weight="700" fill="#132e53" letter-spacing="0.04em">CONTEXT WINDOW</text>
-
-        <!-- ── Bottom caption ─────────────────────────────────────── -->
         <text x="300" y="250" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#728197">No matter the source, it all becomes tokens in the same window.</text>
 
       </svg>
+    </div>
 
-    </div><!-- end convergence diagram -->
+    <!-- Method cards -->
+    <div class="info-cards">
+
+      <div class="card">
+        <div class="card__icon"><i class="fa-solid fa-paste"></i></div>
+        <div class="card__label">All products</div>
+        <h3>Copy and paste</h3>
+        <p>The simplest method. Paste text, data, or error messages directly into the chat. Good for quick questions when the information is already on your screen.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <div class="card__label">Claude.ai &amp; Claude Code</div>
+        <h3>Web search</h3>
+        <p>Claude can search the web mid-conversation and pull results into context. Useful when you need current information that was not included in Claude's training data.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <div class="card__label">Claude.ai</div>
+        <h3>File upload</h3>
+        <p>Drag files into the chat: PDFs, spreadsheets, images, code. Claude reads them and adds the content to the context window. Best for one-off documents you want Claude to analyze.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__icon"><i class="fa-solid fa-folder-open"></i></div>
+        <div class="card__label">Claude Code</div>
+        <h3>Direct file access</h3>
+        <p>Claude Code runs on your machine and reads files directly from your folders. No uploading needed. It can browse, open, and edit files as part of a task.</p>
+      </div>
+
+      <div class="card card--full">
+        <div class="card__icon"><i class="fa-solid fa-plug"></i></div>
+        <div class="card__label">All products</div>
+        <h3>Connectors (MCP)</h3>
+        <p>
+          <span class="define-term"><strong>MCP connectors</strong><span class="define-tip"><strong>MCP (Model Context Protocol)</strong>An open standard that lets Claude reach into external systems like SharePoint, Slack, Google Drive, Jira, and databases. Called "connectors" in the Claude.ai interface; in Claude Code, you configure them as MCP servers.<em><a href="https://docs.anthropic.com/en/docs/agents-and-tools/mcp" target="_blank" rel="noopener">Source: Anthropic docs</a></em></span></span>
+          let Claude pull live data from systems like SharePoint, Slack, Google Drive, and databases. Instead of you copying information out of those systems, Claude reaches in and retrieves what it needs. This is the most powerful method because it keeps Claude's context current and eliminates manual steps.
+        </p>
+      </div>
+
+    </div><!-- end info-cards -->
+
+    <div class="callout">
+      <strong>Key insight:</strong> Every method does the same thing – it puts tokens in the context window. The only differences are convenience and how much you have to do manually.
+    </div>
 
   </div><!-- end container -->
 </section>
@@ -1798,25 +1929,25 @@
     <section id="agents-in-action" class="section section--gray">
   <div class="container">
 
-    <h2>Agents in action – many small windows beat one overflowing conversation</h2>
+    <h2>Agents in action – this is where model selection pays off</h2>
 
     <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
-      This is where everything from earlier sections comes together. Instead of feeding a massive task into one conversation and watching the context window overflow, Claude can act as an orchestrator – spinning up specialized agents, each with its own fresh context window, matched to the right model for the job. Different models handle different roles, only relevant information flows back up, and the result is a clean, efficient workflow that scales far beyond what a single conversation can hold.
+      In the first section you learned that Claude has three models with different strengths. In Claude Code, a single task can use all three at once. Opus plans the work and makes judgment calls. Haiku handles high-volume scanning where speed matters more than depth. Sonnet does the detailed analysis in between. Each
+      <span class="define-term"><strong>agent</strong><span class="define-tip"><strong>Agent</strong>An independent Claude instance spun up by an orchestrator to handle a specific sub-task. Each agent gets its own context window, runs a model matched to the difficulty of its job, and returns only a summary when it finishes.<em>Think of agents as specialists on a project team, each briefed separately.</em></span></span>
+      gets its own context window, so no single conversation overflows.
     </p>
 
     <!-- Interactive orchestration flow diagram -->
-    <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:40px;margin-top:32px;">
+    <div class="diagram-wrap">
 
-      <p style="font-family:'Source Sans 3',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#728197;margin:0 0 6px 0;">
-        Example scenario
-      </p>
-      <p style="font-family:'Source Sans 3',sans-serif;font-size:1rem;color:#132e53;margin:0 0 28px 0;">
-        "Audit a large SharePoint site and produce a summary of what needs updating."
+      <p class="diagram-label">Claude Code example</p>
+      <p class="diagram-scenario">
+        "Audit this project folder – find all deprecated API calls, analyze each one, and produce a migration plan."
       </p>
 
       <!-- SVG diagram -->
       <div style="position:relative;">
-        <svg id="ag-diagram" viewBox="0 0 800 480" style="max-width:800px;width:100%;display:block;margin:0 auto;" aria-label="Interactive orchestration flow diagram">
+        <svg id="ag-diagram" viewBox="0 0 800 480" class="diagram-svg" style="max-width:800px;" aria-label="Interactive orchestration flow diagram showing Claude Code using multiple models">
           <defs>
             <marker id="ag-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="#728197"/>
@@ -1832,300 +1963,229 @@
             </marker>
           </defs>
 
-          <!-- ======================== STAGE 1 elements ======================== -->
-          <g class="ag-stage ag-stage-1" style="opacity:0;transition:opacity 0.4s ease;">
+          <!-- ======================== STAGE 1: You → Opus ======================== -->
+          <g class="ag-stage ag-stage-1" style="opacity:0;">
 
-            <!-- User icon bubble -->
-            <circle cx="110" cy="200" r="36" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
-            <text x="110" y="194" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#728197">&#xf007;</text>
-            <text x="110" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197" font-weight="700">You</text>
+            <!-- Claude Code icon -->
+            <rect x="74" y="168" width="72" height="64" rx="12" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
+            <image href="icon-claudecode.svg" x="90" y="176" width="40" height="40"/>
+            <text x="110" y="248" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197" font-weight="700">Claude Code</text>
 
-            <!-- Arrow from user to Opus -->
+            <!-- Arrow to Opus -->
             <line x1="150" y1="200" x2="228" y2="200" stroke="#728197" stroke-width="2" marker-end="url(#ag-arrow)"/>
 
             <!-- Opus node -->
             <rect x="235" y="165" width="110" height="70" rx="12" fill="#132e53"/>
-            <text x="290" y="196" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#ffffff" font-weight="700">Opus</text>
-            <text x="290" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#a8bbd4">Orchestrator</text>
-
-            <!-- Opus context bar (nearly empty) -->
-            <rect x="358" y="192" width="60" height="8" rx="4" fill="#dcdfe5"/>
-            <rect x="358" y="192" width="12" height="8" rx="4" fill="#132e53"/>
-            <text x="358" y="186" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#728197">context</text>
-
-            <!-- Label -->
-            <text x="290" y="260" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#728197">Opus reads your request and plans the approach</text>
-          </g>
-
-          <!-- ======================== STAGE 2 elements ======================== -->
-          <g class="ag-stage ag-stage-2" style="opacity:0;transition:opacity 0.4s ease;">
-
-            <!-- User icon bubble (persists) -->
-            <circle cx="110" cy="200" r="36" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
-            <text x="110" y="194" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#728197">&#xf007;</text>
-            <text x="110" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197" font-weight="700">You</text>
-
-            <!-- Arrow user → Opus -->
-            <line x1="150" y1="200" x2="228" y2="200" stroke="#dcdfe5" stroke-width="2" marker-end="url(#ag-arrow)"/>
-
-            <!-- Opus node -->
-            <rect x="235" y="165" width="110" height="70" rx="12" fill="#132e53"/>
+            <image href="icon-opus.svg" x="243" y="178" width="24" height="24"/>
             <text x="290" y="196" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#ffffff" font-weight="700">Opus</text>
             <text x="290" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#a8bbd4">Orchestrator</text>
 
             <!-- Opus context bar -->
             <rect x="358" y="192" width="60" height="8" rx="4" fill="#dcdfe5"/>
+            <rect x="358" y="192" width="12" height="8" rx="4" fill="#132e53"/>
+            <text x="358" y="186" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#728197">context</text>
+
+            <text x="290" y="260" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#728197">Opus reads your request and plans the approach</text>
+          </g>
+
+          <!-- ======================== STAGE 2: Opus → Haiku agents ======================== -->
+          <g class="ag-stage ag-stage-2" style="opacity:0;">
+
+            <rect x="74" y="168" width="72" height="64" rx="12" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
+            <image href="icon-claudecode.svg" x="90" y="176" width="40" height="40"/>
+
+            <line x1="150" y1="200" x2="228" y2="200" stroke="#dcdfe5" stroke-width="2" marker-end="url(#ag-arrow)"/>
+
+            <rect x="235" y="165" width="110" height="70" rx="12" fill="#132e53"/>
+            <image href="icon-opus.svg" x="243" y="178" width="24" height="24"/>
+            <text x="290" y="196" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#ffffff" font-weight="700">Opus</text>
+            <text x="290" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#a8bbd4">Orchestrator</text>
+
+            <rect x="358" y="192" width="60" height="8" rx="4" fill="#dcdfe5"/>
             <rect x="358" y="192" width="18" height="8" rx="4" fill="#132e53"/>
             <text x="358" y="186" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#728197">context</text>
 
-            <!-- Arrows from Opus fanning down to 5 Haiku agents -->
+            <!-- Fan-out arrows -->
             <line x1="290" y1="235" x2="470" y2="310" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ag-arrow-teal)"/>
             <line x1="290" y1="235" x2="530" y2="310" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ag-arrow-teal)"/>
             <line x1="290" y1="235" x2="590" y2="310" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ag-arrow-teal)"/>
             <line x1="290" y1="235" x2="650" y2="310" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ag-arrow-teal)"/>
             <line x1="290" y1="235" x2="710" y2="310" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ag-arrow-teal)"/>
 
-            <!-- 5 Haiku nodes -->
+            <!-- 5 Haiku agents with model icons -->
             <circle cx="470" cy="330" r="22" fill="#039fb8"/>
-            <text x="470" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700">Haiku</text>
-            <text x="470" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6">1</text>
+            <image href="icon-haiku.svg" x="458" y="318" width="24" height="24"/>
             <rect x="451" y="356" width="38" height="5" rx="2.5" fill="#dcdfe5"/>
             <rect x="451" y="356" width="8" height="5" rx="2.5" fill="#039fb8"/>
 
             <circle cx="530" cy="330" r="22" fill="#039fb8"/>
-            <text x="530" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700">Haiku</text>
-            <text x="530" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6">2</text>
+            <image href="icon-haiku.svg" x="518" y="318" width="24" height="24"/>
             <rect x="511" y="356" width="38" height="5" rx="2.5" fill="#dcdfe5"/>
             <rect x="511" y="356" width="7" height="5" rx="2.5" fill="#039fb8"/>
 
             <circle cx="590" cy="330" r="22" fill="#039fb8"/>
-            <text x="590" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700">Haiku</text>
-            <text x="590" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6">3</text>
+            <image href="icon-haiku.svg" x="578" y="318" width="24" height="24"/>
             <rect x="571" y="356" width="38" height="5" rx="2.5" fill="#dcdfe5"/>
             <rect x="571" y="356" width="9" height="5" rx="2.5" fill="#039fb8"/>
 
             <circle cx="650" cy="330" r="22" fill="#039fb8"/>
-            <text x="650" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700">Haiku</text>
-            <text x="650" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6">4</text>
+            <image href="icon-haiku.svg" x="638" y="318" width="24" height="24"/>
             <rect x="631" y="356" width="38" height="5" rx="2.5" fill="#dcdfe5"/>
             <rect x="631" y="356" width="6" height="5" rx="2.5" fill="#039fb8"/>
 
             <circle cx="710" cy="330" r="22" fill="#039fb8"/>
-            <text x="710" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700">Haiku</text>
-            <text x="710" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6">5</text>
+            <image href="icon-haiku.svg" x="698" y="318" width="24" height="24"/>
             <rect x="691" y="356" width="38" height="5" rx="2.5" fill="#dcdfe5"/>
             <rect x="691" y="356" width="8" height="5" rx="2.5" fill="#039fb8"/>
 
-            <!-- Label -->
             <text x="400" y="430" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#039fb8" font-weight="700">5 Haiku agents scanning files in parallel</text>
-            <text x="400" y="448" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197">Each has its own tiny context window – fast and cheap</text>
+            <text x="400" y="448" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197">Haiku is fast and cheap – ideal for simple, high-volume scanning</text>
           </g>
 
-          <!-- ======================== STAGE 3 elements ======================== -->
-          <g class="ag-stage ag-stage-3" style="opacity:0;transition:opacity 0.4s ease;">
+          <!-- ======================== STAGE 3: Haiku results → Opus ======================== -->
+          <g class="ag-stage ag-stage-3" style="opacity:0;">
 
-            <!-- User icon bubble -->
-            <circle cx="110" cy="200" r="36" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
-            <text x="110" y="194" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#728197">&#xf007;</text>
-            <text x="110" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197" font-weight="700">You</text>
+            <rect x="74" y="168" width="72" height="64" rx="12" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
+            <image href="icon-claudecode.svg" x="90" y="176" width="40" height="40"/>
 
-            <!-- Arrow user → Opus (faded) -->
             <line x1="150" y1="200" x2="228" y2="200" stroke="#dcdfe5" stroke-width="2" marker-end="url(#ag-arrow)"/>
 
-            <!-- Opus node -->
             <rect x="235" y="165" width="110" height="70" rx="12" fill="#132e53"/>
+            <image href="icon-opus.svg" x="243" y="178" width="24" height="24"/>
             <text x="290" y="196" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#ffffff" font-weight="700">Opus</text>
             <text x="290" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#a8bbd4">Orchestrator</text>
 
-            <!-- Opus context bar – slightly grown (indices received) -->
             <rect x="358" y="192" width="60" height="8" rx="4" fill="#dcdfe5"/>
             <rect x="358" y="192" width="26" height="8" rx="4" fill="#132e53"/>
             <text x="358" y="186" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#728197">context</text>
 
-            <!-- 5 Haiku nodes – faded (done) -->
+            <!-- Faded Haiku nodes -->
             <circle cx="470" cy="330" r="22" fill="#039fb8" opacity="0.35"/>
-            <text x="470" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700" opacity="0.5">Haiku</text>
-            <text x="470" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6" opacity="0.5">1</text>
-
             <circle cx="530" cy="330" r="22" fill="#039fb8" opacity="0.35"/>
-            <text x="530" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700" opacity="0.5">Haiku</text>
-            <text x="530" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6" opacity="0.5">2</text>
-
             <circle cx="590" cy="330" r="22" fill="#039fb8" opacity="0.35"/>
-            <text x="590" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700" opacity="0.5">Haiku</text>
-            <text x="590" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6" opacity="0.5">3</text>
-
             <circle cx="650" cy="330" r="22" fill="#039fb8" opacity="0.35"/>
-            <text x="650" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700" opacity="0.5">Haiku</text>
-            <text x="650" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6" opacity="0.5">4</text>
-
             <circle cx="710" cy="330" r="22" fill="#039fb8" opacity="0.35"/>
-            <text x="710" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" font-weight="700" opacity="0.5">Haiku</text>
-            <text x="710" y="337" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#c8f0f6" opacity="0.5">5</text>
 
-            <!-- Arrows from Haiku nodes back up to Opus -->
+            <!-- Return arrows -->
             <line x1="470" y1="308" x2="310" y2="230" stroke="#039fb8" stroke-width="1.5" marker-end="url(#ag-arrow-teal)"/>
             <line x1="530" y1="308" x2="310" y2="228" stroke="#039fb8" stroke-width="1.5" marker-end="url(#ag-arrow-teal)"/>
             <line x1="590" y1="308" x2="312" y2="230" stroke="#039fb8" stroke-width="1.5" marker-end="url(#ag-arrow-teal)"/>
             <line x1="650" y1="308" x2="315" y2="232" stroke="#039fb8" stroke-width="1.5" marker-end="url(#ag-arrow-teal)"/>
             <line x1="710" y1="308" x2="316" y2="234" stroke="#039fb8" stroke-width="1.5" marker-end="url(#ag-arrow-teal)"/>
 
-            <!-- Label -->
-            <text x="400" y="430" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#132e53" font-weight="700">Lightweight indices return – raw files never loaded</text>
-            <text x="400" y="448" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197">Opus merges results and filters down to what matters</text>
+            <text x="400" y="430" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#132e53" font-weight="700">Lightweight summaries return – raw files never loaded into Opus</text>
+            <text x="400" y="448" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197">Opus merges results and decides which files need deeper analysis</text>
           </g>
 
-          <!-- ======================== STAGE 4 elements ======================== -->
-          <g class="ag-stage ag-stage-4" style="opacity:0;transition:opacity 0.4s ease;">
+          <!-- ======================== STAGE 4: Opus → Sonnet agents ======================== -->
+          <g class="ag-stage ag-stage-4" style="opacity:0;">
 
-            <!-- User icon bubble -->
-            <circle cx="110" cy="200" r="36" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
-            <text x="110" y="194" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#728197">&#xf007;</text>
-            <text x="110" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197" font-weight="700">You</text>
+            <rect x="74" y="168" width="72" height="64" rx="12" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
+            <image href="icon-claudecode.svg" x="90" y="176" width="40" height="40"/>
 
-            <!-- Arrow user → Opus (faded) -->
             <line x1="150" y1="200" x2="228" y2="200" stroke="#dcdfe5" stroke-width="2" marker-end="url(#ag-arrow)"/>
 
-            <!-- Opus node -->
             <rect x="235" y="165" width="110" height="70" rx="12" fill="#132e53"/>
+            <image href="icon-opus.svg" x="243" y="178" width="24" height="24"/>
             <text x="290" y="196" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#ffffff" font-weight="700">Opus</text>
             <text x="290" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#a8bbd4">Orchestrator</text>
 
-            <!-- Opus context bar -->
             <rect x="358" y="192" width="60" height="8" rx="4" fill="#dcdfe5"/>
             <rect x="358" y="192" width="30" height="8" rx="4" fill="#132e53"/>
             <text x="358" y="186" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#728197">context</text>
 
-            <!-- Arrows from Opus to 3 Sonnet nodes -->
+            <!-- Fan-out to Sonnet -->
             <line x1="290" y1="235" x2="500" y2="310" stroke="#728197" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ag-arrow-slate)"/>
             <line x1="290" y1="235" x2="590" y2="310" stroke="#728197" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ag-arrow-slate)"/>
             <line x1="290" y1="235" x2="680" y2="310" stroke="#728197" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ag-arrow-slate)"/>
 
-            <!-- 3 Sonnet nodes (medium circles) -->
+            <!-- 3 Sonnet agents with model icons -->
             <circle cx="500" cy="330" r="28" fill="#728197"/>
-            <text x="500" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#ffffff" font-weight="700">Sonnet</text>
-            <text x="500" y="339" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#dde2ea">1</text>
+            <image href="icon-sonnet.svg" x="488" y="318" width="24" height="24"/>
             <rect x="477" y="363" width="46" height="6" rx="3" fill="#dcdfe5"/>
             <rect x="477" y="363" width="26" height="6" rx="3" fill="#728197"/>
 
             <circle cx="590" cy="330" r="28" fill="#728197"/>
-            <text x="590" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#ffffff" font-weight="700">Sonnet</text>
-            <text x="590" y="339" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#dde2ea">2</text>
+            <image href="icon-sonnet.svg" x="578" y="318" width="24" height="24"/>
             <rect x="567" y="363" width="46" height="6" rx="3" fill="#dcdfe5"/>
             <rect x="567" y="363" width="28" height="6" rx="3" fill="#728197"/>
 
             <circle cx="680" cy="330" r="28" fill="#728197"/>
-            <text x="680" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#ffffff" font-weight="700">Sonnet</text>
-            <text x="680" y="339" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#dde2ea">3</text>
+            <image href="icon-sonnet.svg" x="668" y="318" width="24" height="24"/>
             <rect x="657" y="363" width="46" height="6" rx="3" fill="#dcdfe5"/>
             <rect x="657" y="363" width="24" height="6" rx="3" fill="#728197"/>
 
-            <!-- Label -->
-            <text x="400" y="430" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#728197" font-weight="700">3 Sonnet agents researching key documents</text>
-            <text x="400" y="448" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197">Each reads full content and returns structured findings</text>
+            <text x="400" y="430" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#728197" font-weight="700">3 Sonnet agents analyzing flagged files in depth</text>
+            <text x="400" y="448" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197">Sonnet balances capability with speed – the right fit for detailed analysis</text>
           </g>
 
-          <!-- ======================== STAGE 5 elements ======================== -->
-          <g class="ag-stage ag-stage-5" style="opacity:0;transition:opacity 0.4s ease;">
+          <!-- ======================== STAGE 5: Final synthesis ======================== -->
+          <g class="ag-stage ag-stage-5" style="opacity:0;">
 
-            <!-- User icon bubble -->
-            <circle cx="60" cy="200" r="30" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
-            <text x="60" y="195" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#728197">&#xf007;</text>
-            <text x="60" y="210" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#728197" font-weight="700">You</text>
+            <rect x="24" y="173" width="64" height="54" rx="10" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="2"/>
+            <image href="icon-claudecode.svg" x="32" y="179" width="32" height="32"/>
+            <text x="56" y="242" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#728197" font-weight="700">Claude Code</text>
 
-            <!-- Arrow user → Opus (faded) -->
             <line x1="92" y1="200" x2="168" y2="200" stroke="#dcdfe5" stroke-width="2" marker-end="url(#ag-arrow)"/>
 
-            <!-- Opus node -->
             <rect x="175" y="165" width="110" height="70" rx="12" fill="#132e53"/>
+            <image href="icon-opus.svg" x="183" y="178" width="24" height="24"/>
             <text x="230" y="196" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#ffffff" font-weight="700">Opus</text>
             <text x="230" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#a8bbd4">Orchestrator</text>
 
-            <!-- Opus context bar – moderate fill (plan + condensed findings) -->
             <rect x="298" y="192" width="60" height="8" rx="4" fill="#dcdfe5"/>
             <rect x="298" y="192" width="38" height="8" rx="4" fill="#132e53"/>
             <text x="298" y="186" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#728197">context</text>
 
-            <!-- 3 Sonnet nodes – faded (done) -->
+            <!-- Faded Sonnet nodes -->
             <circle cx="460" cy="310" r="24" fill="#728197" opacity="0.35"/>
-            <text x="460" y="307" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" opacity="0.5">Sonnet</text>
-            <text x="460" y="318" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#dde2ea" opacity="0.5">1</text>
-
             <circle cx="540" cy="310" r="24" fill="#728197" opacity="0.35"/>
-            <text x="540" y="307" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" opacity="0.5">Sonnet</text>
-            <text x="540" y="318" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#dde2ea" opacity="0.5">2</text>
-
             <circle cx="620" cy="310" r="24" fill="#728197" opacity="0.35"/>
-            <text x="620" y="307" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#ffffff" opacity="0.5">Sonnet</text>
-            <text x="620" y="318" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#dde2ea" opacity="0.5">3</text>
 
-            <!-- Arrows from Sonnet back to Opus -->
+            <!-- Return arrows -->
             <line x1="460" y1="286" x2="252" y2="232" stroke="#728197" stroke-width="1.5" marker-end="url(#ag-arrow-slate)"/>
             <line x1="540" y1="286" x2="256" y2="234" stroke="#728197" stroke-width="1.5" marker-end="url(#ag-arrow-slate)"/>
             <line x1="620" y1="286" x2="260" y2="235" stroke="#728197" stroke-width="1.5" marker-end="url(#ag-arrow-slate)"/>
 
-            <!-- Arrow from Opus to Deliverable -->
+            <!-- Arrow to deliverable -->
             <line x1="285" y1="200" x2="670" y2="200" stroke="#f59e0b" stroke-width="2" marker-end="url(#ag-arrow-amber)"/>
 
-            <!-- Deliverable node -->
+            <!-- Deliverable (SVG-drawn document icon) -->
             <rect x="678" y="170" width="90" height="60" rx="10" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
-            <text x="723" y="196" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#f59e0b">&#xf15c;</text>
-            <text x="723" y="214" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#92400e" font-weight="700">Deliverable</text>
+            <rect x="700" y="182" width="28" height="36" rx="2" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <path d="M716,182 L716,188 L722,188 Z" fill="#f59e0b" opacity="0.5"/>
+            <line x1="705" y1="194" x2="722" y2="194" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+            <line x1="705" y1="200" x2="722" y2="200" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+            <line x1="705" y1="206" x2="718" y2="206" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+            <text x="723" y="232" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#92400e" font-weight="700">Migration plan</text>
 
-            <!-- Label -->
-            <text x="400" y="400" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#132e53" font-weight="700">Opus synthesizes findings into the final report</text>
-            <text x="400" y="418" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197">Context holds: request + plan + condensed findings – not raw files</text>
+            <text x="400" y="400" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#132e53" font-weight="700">Opus synthesizes findings into the final migration plan</text>
+            <text x="400" y="418" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#728197">Context holds: request + plan + condensed findings, not hundreds of raw files</text>
           </g>
 
         </svg>
       </div><!-- end svg wrapper -->
 
       <!-- Navigation controls -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px;">
-        <button id="ag-btn-prev" aria-label="Previous stage"
-          style="width:38px;height:30px;background:#F5F0EB;border:1px solid #E0D6CC;border-radius:7px;
-                 box-shadow:0 1.5px 0 #D6CBBF,0 2px 4px rgba(0,0,0,0.06);
-                 cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;
-                 color:#132e53;transition:opacity 0.2s;padding:0;">
-          &#8592;
-        </button>
-        <button id="ag-btn-next" aria-label="Next stage"
-          style="width:38px;height:30px;background:#F5F0EB;border:1px solid #E0D6CC;border-radius:7px;
-                 box-shadow:0 1.5px 0 #D6CBBF,0 2px 4px rgba(0,0,0,0.06);
-                 cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;
-                 color:#132e53;transition:opacity 0.2s;padding:0;">
-          &#8594;
-        </button>
-        <span id="ag-stage-label" style="font-family:'Source Sans 3',sans-serif;font-size:0.8rem;color:#728197;font-weight:700;letter-spacing:0.05em;">
-          Stage 1 of 5
-        </span>
+      <div class="step-nav">
+        <button class="step-nav-btn" id="ag-btn-prev" aria-label="Previous stage">&#8592;</button>
+        <button class="step-nav-btn" id="ag-btn-next" aria-label="Next stage">&#8594;</button>
+        <span class="step-stage-label" id="ag-stage-label">Stage 1 of 5</span>
       </div>
 
       <!-- Stage description text -->
-      <div id="ag-stage-desc" style="margin-top:20px;min-height:48px;text-align:center;">
-        <p id="ag-desc-text" style="font-family:'Source Sans 3',sans-serif;font-size:0.92rem;color:#132e53;line-height:1.6;margin:0;transition:opacity 0.3s ease;"></p>
+      <div class="step-desc">
+        <p class="step-desc-text" id="ag-desc-text"></p>
       </div>
 
     </div><!-- end interactive wrapper -->
 
+    <div class="callout" style="margin-top:32px;">
+      <strong>This is a Claude Code capability.</strong> Only Claude Code can orchestrate sub-agents across models like this. Claude.ai runs a single model in a single conversation. Claude Code manages the full lifecycle: splitting work, routing to the right model, and assembling the result.
+    </div>
+
   </div><!-- end container -->
 </section>
-
-<style>
-  /* Scoped styles for section-6 agents diagram */
-  #ag-diagram .ag-stage {
-    transition: opacity 0.4s ease;
-  }
-  #ag-btn-prev:hover,
-  #ag-btn-next:hover {
-    background: #EDE8E2 !important;
-  }
-  #ag-btn-prev:active,
-  #ag-btn-next:active {
-    box-shadow: 0 0 0 #D6CBBF, 0 1px 2px rgba(0,0,0,0.08) !important;
-    transform: translateY(1px);
-  }
-</style>
 
 <script>
 (function() {
@@ -2133,11 +2193,11 @@
   var agCurrent = 1;
 
   var agDescriptions = [
-    "You hand the high-level task to Opus. It reads your request, plans the approach, and decides how to break the work down. Its context window holds the plan – not raw data.",
-    "Opus spins up five Haiku agents in parallel. Each scans a subset of SharePoint files and returns a brief index: file name, type, last modified, and a one-line summary. Haiku is ideal here – the task is simple, speed matters, and each agent's context stays tiny.",
-    "The lightweight indices return to Opus. It merges them, identifies which items need deeper review, and filters out the rest. Opus never loaded the raw files – only the indices. Context stays lean.",
-    "Opus assigns the relevant documents to three Sonnet agents, each handling a small cluster of files. Sonnet reads the full content, analyzes it, and returns structured findings. Deeper work, right-sized model.",
-    "All findings return to Opus. Its context now holds the original request, the plan, and condensed findings – not thousands of raw pages. Opus writes the final deliverable."
+    "You give Claude Code a broad task. It routes the request to Opus, the most capable model, because the job requires multi-step planning. Opus reads your request, decides how to break the work down, and keeps a lean plan in its context window.",
+    "Opus spins up five Haiku agents in parallel, each scanning a subset of files. Why Haiku? The task is simple (scan a file, return a one-line summary), speed matters, and Haiku is the fastest and cheapest model. Each agent's context window stays tiny.",
+    "Only lightweight summaries return to Opus, not the raw files. Opus merges the results, identifies which files actually contain deprecated calls, and filters out the rest. Its context stays lean because the heavy reading happened in disposable Haiku windows.",
+    "Opus assigns the flagged files to three Sonnet agents for deeper analysis. Why Sonnet? It balances capability with speed, making it ideal for reading full file contents and producing structured findings. Each Sonnet agent handles a small cluster of files.",
+    "All findings return to Opus. Its context now holds the original request, the plan, and condensed findings, not hundreds of raw files. Opus writes the final migration plan. Three models, each used where its strengths matter most."
   ];
 
   function agShowStage(n) {
@@ -2180,8 +2240,9 @@
     if (btnPrev) btnPrev.addEventListener('click', agPrev);
 
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowRight') agNext();
-      if (e.key === 'ArrowLeft') agPrev();
+      if (!window.__isSectionVisible('agents-in-action')) return;
+      if (e.key === 'ArrowRight') { agNext(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { agPrev(); e.preventDefault(); }
     });
 
     agShowStage(1);
@@ -2243,6 +2304,16 @@ Start by asking me if I have Git already installed (have me open PowerShell and 
 
   <!-- ============ JavaScript ============ -->
   <script>
+    // Shared utility: check if a section is visible in the viewport
+    // Used by interactive diagrams to scope keyboard navigation
+    window.__isSectionVisible = function(sectionId) {
+      var el = document.getElementById(sectionId);
+      if (!el) return false;
+      var rect = el.getBoundingClientRect();
+      var vh = window.innerHeight;
+      return rect.top < vh * 0.7 && rect.bottom > vh * 0.3;
+    };
+
     // Sidebar toggle
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
