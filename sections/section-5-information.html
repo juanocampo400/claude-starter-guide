@@ -1,0 +1,139 @@
+<style>
+@media (max-width: 768px) {
+  #getting-info-in .info-cards { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<section id="getting-info-in" class="section section--white">
+  <div class="container">
+
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#132e53;letter-spacing:0.03em;">
+      Getting information in – every source becomes tokens in the same window
+    </h2>
+
+    <p class="section-body" style="margin-top:12px;margin-bottom:32px;font-family:'Source Sans 3',sans-serif;font-size:1.05rem;color:#132e53;line-height:1.65;">
+      Claude can only work with what's inside its context window, but there are several ways to get external information in. You can attach files manually in Claude.ai, let Claude Code read files directly from your machine, or use
+      <span class="define-term"><strong>connectors</strong><span class="define-tip"><strong>MCP (Model Context Protocol)</strong>A standard that lets Claude reach out to external data sources like SharePoint, Slack, email, and databases. Called "connectors" in the Claude.ai interface.<em>Think of it as giving Claude permission to look things up on your behalf.</em></span></span>
+      to pull in live data from systems like SharePoint, Slack, and databases. No matter which method you use, the information always arrives the same way – as tokens added to the context window.
+    </p>
+
+    <!-- Three comparison cards -->
+    <div class="info-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;">
+
+      <!-- Card 1: File uploads -->
+      <div class="card" style="border-top:3px solid #039fb8;">
+        <div class="card__label" style="color:#039fb8;">Manual</div>
+        <h3>File uploads</h3>
+        <p>Drag and drop files into the chat. The file contents are converted to tokens and added to context. Simple, but limited to what you manually attach each time.</p>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:8px;font-size:13px;color:#728197;">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Claude.ai</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Direct file access -->
+      <div class="card" style="border-top:3px solid #132e53;">
+        <div class="card__label" style="color:#132e53;">Automatic</div>
+        <h3>Direct file access</h3>
+        <p>Claude reads files directly from your machine, pulling in code, documents, and data as needed. No uploading required; it reads what it needs, when it needs it.</p>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:8px;font-size:13px;color:#728197;">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>Claude Code</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Connectors (MCP) -->
+      <div class="card" style="border-top:3px solid #f59e0b;">
+        <div class="card__label" style="color:#f59e0b;">Connected</div>
+        <h3>Connectors (MCP)</h3>
+        <p>Claude reaches out to external systems like SharePoint, Slack, databases, and calendars. It queries the source, gets the data, and brings it back into context automatically.</p>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:8px;font-size:13px;color:#728197;">
+          <i class="fa-solid fa-plug"></i>
+          <span>All products</span>
+        </div>
+      </div>
+
+    </div><!-- end info-cards grid -->
+
+    <!-- Convergence diagram -->
+    <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:40px;margin-top:32px;text-align:center;">
+
+      <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:0 auto;" aria-label="Diagram showing three information sources converging into a single context window">
+
+        <!-- ── Source labels (top row) ─────────────────────────────── -->
+
+        <!-- Source 1: File upload (teal) -->
+        <rect x="30" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#039fb8" stroke-width="1.5"/>
+        <!-- Upload icon: cloud with arrow -->
+        <path d="M78,52 Q78,42 90,42 Q90,35 98,35 Q110,35 110,47 Q116,47 116,54 Q116,60 110,60 L78,60 Q70,60 70,54 Q70,48 78,52 Z" fill="none" stroke="#039fb8" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="90" y1="60" x2="90" y2="70" stroke="#039fb8" stroke-width="2"/>
+        <polygon points="85,66 90,73 95,66" fill="#039fb8"/>
+        <text x="90" y="94" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#039fb8" letter-spacing="0.05em">FILE UPLOAD</text>
+        <text x="90" y="107" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">Claude.ai</text>
+
+        <!-- Source 2: Direct file access (navy) -->
+        <rect x="240" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#132e53" stroke-width="1.5"/>
+        <!-- Folder icon -->
+        <path d="M275,55 L275,45 Q275,43 277,43 L285,43 L287,40 L313,40 Q315,40 315,42 L315,55 Q315,57 313,57 L277,57 Q275,57 275,55 Z" fill="none" stroke="#132e53" stroke-width="2" stroke-linejoin="round"/>
+        <text x="300" y="94" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#132e53" letter-spacing="0.05em">DIRECT ACCESS</text>
+        <text x="300" y="107" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">Claude Code</text>
+
+        <!-- Source 3: Connectors / MCP (amber) -->
+        <rect x="450" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+        <!-- Plug icon (simplified) -->
+        <rect x="497" y="38" width="16" height="18" rx="3" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="499" y1="38" x2="499" y2="33" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+        <line x1="511" y1="38" x2="511" y2="33" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+        <line x1="505" y1="56" x2="505" y2="63" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+        <text x="510" y="94" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#f59e0b" letter-spacing="0.05em">CONNECTORS</text>
+        <text x="510" y="107" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">All products</text>
+
+        <!-- ── Converging connector lines ─────────────────────────── -->
+        <!-- Left source to centre -->
+        <line x1="150" y1="50" x2="270" y2="165" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <polygon points="266,160 274,169 278,159" fill="#039fb8"/>
+
+        <!-- Centre source straight down -->
+        <line x1="300" y1="80" x2="300" y2="165" stroke="#132e53" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <polygon points="295,160 300,170 305,160" fill="#132e53"/>
+
+        <!-- Right source to centre -->
+        <line x1="450" y1="50" x2="330" y2="165" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <polygon points="322,159 326,169 334,160" fill="#f59e0b"/>
+
+        <!-- ── Context Window bar ──────────────────────────────────── -->
+        <rect x="60" y="175" width="480" height="36" rx="6" fill="#f1f5f9"/>
+        <rect x="60" y="175" width="480" height="36" rx="6" fill="none" stroke="#dcdfe5" stroke-width="1.5"/>
+
+        <!-- Filled portion representing tokens already in context -->
+        <rect x="60" y="175" width="320" height="36" rx="6" fill="#132e53" opacity="0.12"/>
+
+        <!-- Token blocks inside bar -->
+        <rect x="68" y="182" width="38" height="22" rx="3" fill="#039fb8" opacity="0.85"/>
+        <text x="87" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">Upload</text>
+
+        <rect x="112" y="182" width="48" height="22" rx="3" fill="#132e53" opacity="0.85"/>
+        <text x="136" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">File read</text>
+
+        <rect x="166" y="182" width="58" height="22" rx="3" fill="#f59e0b" opacity="0.9"/>
+        <text x="195" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">Connector</text>
+
+        <rect x="230" y="182" width="38" height="22" rx="3" fill="#039fb8" opacity="0.6"/>
+        <rect x="274" y="182" width="48" height="22" rx="3" fill="#132e53" opacity="0.5"/>
+        <rect x="328" y="182" width="24" height="22" rx="3" fill="#f59e0b" opacity="0.4"/>
+
+        <!-- Remaining capacity (empty) -->
+        <text x="380" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">· · · available capacity · · ·</text>
+
+        <!-- Bar label -->
+        <text x="300" y="228" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" font-weight="700" fill="#132e53" letter-spacing="0.04em">CONTEXT WINDOW</text>
+
+        <!-- ── Bottom caption ─────────────────────────────────────── -->
+        <text x="300" y="250" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#728197">No matter the source, it all becomes tokens in the same window.</text>
+
+      </svg>
+
+    </div><!-- end convergence diagram -->
+
+  </div><!-- end container -->
+</section>

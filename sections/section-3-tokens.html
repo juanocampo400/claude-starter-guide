@@ -1,0 +1,57 @@
+<section id="tokens" class="section section--white">
+  <div class="container">
+
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#132e53;letter-spacing:0.03em;">
+      Tokens – how Claude reads everything you give it
+    </h2>
+
+    <p class="section-body" style="margin-top:12px;margin-bottom:32px;font-family:'Source Sans 3',sans-serif;font-size:1.05rem;color:#132e53;line-height:1.65;">
+      Claude doesn't read your messages the way you do. Instead, it converts everything into
+      <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.<em>Think of tokens as the model's alphabet.</em></span></span>
+      – small chunks of text, roughly one word or word-fragment each. Every piece of input you send (your question, any documents, any context) and every word Claude writes back is counted in tokens. Understanding this is the foundation for making sense of how Claude's memory works, which comes next.
+    </p>
+
+    <!-- Tokenizer visual -->
+    <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:40px;margin-top:32px;">
+
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#728197;margin:0 0 10px 0;">
+        Example sentence
+      </p>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:1rem;color:#132e53;margin:0 0 20px 0;">
+        "Summarize the Q3 client engagement report and highlight key risks"
+      </p>
+
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#728197;margin:0 0 10px 0;">
+        Broken into tokens
+      </p>
+      <div style="margin-bottom:14px;line-height:2;">
+        <span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#dbeafe;">Summar</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fce7f3;">ize</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#d1fae5;">the</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fef3c7;">Q</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ede9fe;">3</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ffedd5;">client</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#dbeafe;">engagement</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fce7f3;">report</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#d1fae5;">and</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fef3c7;">highlight</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ede9fe;">key</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ffedd5;">risks</span>
+      </div>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:0.85rem;color:#039fb8;font-weight:700;margin:0 0 32px 0;">
+        <i class="fa-solid fa-calculator" style="margin-right:6px;"></i>12 tokens
+      </p>
+
+      <!-- Second example -->
+      <div style="border-top:1px solid var(--nh-divider);padding-top:28px;">
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#728197;margin:0 0 10px 0;">
+          Shorter prompt – fewer tokens
+        </p>
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:1rem;color:#132e53;margin:0 0 14px 0;">
+          "What are the risks?"
+        </p>
+        <div style="margin-bottom:14px;line-height:2;">
+          <span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#dbeafe;">What</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fce7f3;">are</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#d1fae5;">the</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#fef3c7;">risks</span><span style="display:inline-block;padding:4px 10px;border-radius:12px;margin:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:#ede9fe;">?</span>
+        </div>
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:0.85rem;color:#039fb8;font-weight:700;margin:0 0 20px 0;">
+          <i class="fa-solid fa-calculator" style="margin-right:6px;"></i>5 tokens
+        </p>
+      </div>
+
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:0.8rem;color:#728197;margin:0;line-height:1.5;">
+        Real tokenization is more complex than this, but the principle holds: every input and output is measured in these small chunks.
+      </p>
+
+    </div><!-- end tokenizer visual -->
+
+  </div><!-- end container -->
+</section>

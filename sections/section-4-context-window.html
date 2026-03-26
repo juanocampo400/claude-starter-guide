@@ -1,0 +1,548 @@
+<section id="context-window" class="section section--gray">
+  <style>
+    /* ── Section 4: Context Window ────────────────────────────────────── */
+    #context-window {
+      padding: 64px 0 72px;
+    }
+    #context-window h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #132e53;
+      margin: 0 0 4px;
+      letter-spacing: -0.02em;
+    }
+    #context-window .section-body {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #44536a;
+      max-width: 680px;
+      margin-top: 12px;
+      margin-bottom: 32px;
+    }
+
+    /* ── Interactive context bar wrapper ────────────────────────────── */
+    #cw-visual {
+      background: #fff;
+      border: 1px solid #dcdfe5;
+      border-radius: 16px;
+      padding: 32px 32px 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 16px rgba(19,46,83,0.06);
+    }
+    #cw-visual-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #728197;
+      margin-bottom: 20px;
+    }
+
+    /* Bar */
+    #cw-bar-wrap {
+      position: relative;
+      margin-bottom: 4px;
+    }
+    #cw-bar-labels-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: #728197;
+      margin-bottom: 5px;
+      padding: 0 2px;
+    }
+    #cw-bar {
+      position: relative;
+      width: 100%;
+      height: 52px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      border: 1px solid #dcdfe5;
+      overflow: hidden;
+    }
+    .cw-chunk {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: opacity 0.35s ease;
+      opacity: 0.13;
+    }
+    .cw-chunk.active {
+      opacity: 1;
+    }
+
+    /* Annotation region */
+    #cw-annotations {
+      position: relative;
+      height: 110px;
+      margin-top: 0;
+    }
+    .cw-ann {
+      position: absolute;
+      width: 170px;
+      background: #fff;
+      border: 1px solid #dcdfe5;
+      border-radius: 10px;
+      padding: 10px 13px 10px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: #44536a;
+      opacity: 0.18;
+      transition: opacity 0.35s ease, box-shadow 0.35s ease;
+      pointer-events: none;
+      transform: translateX(-50%);
+    }
+    .cw-ann.active {
+      opacity: 1;
+      box-shadow: 0 4px 18px rgba(19,46,83,0.10);
+      pointer-events: auto;
+    }
+    .cw-ann-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      font-size: 0.75rem;
+      color: #fff;
+    }
+    .cw-ann-label {
+      font-weight: 700;
+      font-size: 0.76rem;
+      color: #132e53;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .cw-ann-desc {
+      font-size: 0.73rem;
+      color: #728197;
+      line-height: 1.4;
+    }
+
+    /* Connector lines */
+    .cw-connector {
+      position: absolute;
+      width: 1px;
+      background: #dcdfe5;
+      transform: translateX(-50%);
+      transition: opacity 0.35s ease;
+      opacity: 0.18;
+    }
+    .cw-connector.active {
+      opacity: 1;
+    }
+
+    /* Token counter */
+    #cw-token-counter {
+      font-size: 0.8rem;
+      color: #728197;
+      margin: 8px 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #cw-token-bar-track {
+      flex: 1;
+      height: 6px;
+      background: #f1f5f9;
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid #dcdfe5;
+    }
+    #cw-token-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #039fb8);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    #cw-token-text {
+      white-space: nowrap;
+      min-width: 190px;
+      text-align: right;
+    }
+    #cw-full-label {
+      font-size: 0.72rem;
+      color: #ef4444;
+      font-weight: 700;
+      display: none;
+      margin-left: 4px;
+    }
+
+    /* Navigation buttons */
+    #cw-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .cw-nav-btn {
+      width: 38px;
+      height: 30px;
+      background: #F5F0EB;
+      border: 1px solid #E0D6CC;
+      border-radius: 7px;
+      box-shadow: 0 1.5px 0 #D6CBBF, 0 2px 4px rgba(0,0,0,0.06);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+      outline: none;
+    }
+    .cw-nav-btn:hover {
+      background: #ede8e2;
+    }
+    .cw-nav-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 0.5px 0 #D6CBBF, 0 1px 2px rgba(0,0,0,0.06);
+    }
+    .cw-nav-btn:disabled {
+      opacity: 0.38;
+      cursor: default;
+    }
+    #cw-step-indicator {
+      font-size: 0.72rem;
+      color: #728197;
+      min-width: 50px;
+      text-align: center;
+    }
+
+  </style>
+
+  <div class="container">
+
+    <h2>The context window – the only memory Claude has</h2>
+
+    <p class="section-body">
+      Every conversation with Claude happens inside a
+      <span class="define-term"><strong>context window</strong><span class="define-tip"><strong>Context Window</strong>A fixed-size container (measured in tokens) that holds everything the model can see in one conversation. When it fills up, older content is dropped.<em>Think of it as the model's short-term working memory.</em></span></span>
+      – a fixed-size container that holds your messages, Claude's replies, uploaded files, and any background instructions, all at once.
+      When the window fills up, older content is dropped and the model has no way to retrieve it.
+      The practical insight is that
+      <span class="define-term"><strong>system prompts</strong><span class="define-tip"><strong>System Prompt</strong>Hidden instructions sent to the model by the product or platform before your conversation begins. They shape Claude's tone, rules, and behavior without being visible to you.<em>Every Claude product has one; they vary widely.</em></span></span>,
+      CLAUDE.md files, and project instructions are not magic features – they are simply text loaded into the window before you type your first message.
+    </p>
+
+    <!-- ── Interactive Visual ───────────────────────────────────────── -->
+    <div id="cw-visual" role="region" aria-label="Interactive context window diagram">
+      <div id="cw-visual-title">Context Window — Interactive Walkthrough</div>
+
+      <!-- Annotations ABOVE bar -->
+      <div id="cw-ann-above" style="position:relative; height:112px; margin-bottom:0;">
+      </div>
+
+      <!-- Bar -->
+      <div id="cw-bar-wrap">
+        <div id="cw-bar-labels-top">
+          <span>New chat</span>
+          <span id="cw-full-label">Window nearly full</span>
+          <span>200K tokens</span>
+        </div>
+        <div id="cw-bar">
+          <!-- chunks injected by JS -->
+        </div>
+      </div>
+
+      <!-- Annotations BELOW bar -->
+      <div id="cw-ann-below" style="position:relative; height:112px; margin-top:0;">
+      </div>
+
+      <!-- Token counter -->
+      <div id="cw-token-counter">
+        <div id="cw-token-bar-track"><div id="cw-token-bar-fill"></div></div>
+        <div id="cw-token-text">~0 of 200,000 tokens used</div>
+      </div>
+
+      <!-- Navigation -->
+      <div id="cw-nav">
+        <button class="cw-nav-btn" id="cw-btn-back" aria-label="Previous step" disabled>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M9 11L5 7L9 3" stroke="#132e53" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="cw-step-indicator">0 / 9</div>
+        <button class="cw-nav-btn" id="cw-btn-next" aria-label="Next step">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M5 3L9 7L5 11" stroke="#132e53" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+
+  </div><!-- /.container -->
+
+  <script>
+  (function () {
+    /* ── Step definitions ────────────────────────────────────────────── */
+    const STEPS = [
+      {
+        label: "System prompt",
+        color: "#6366f1",
+        pct: 8,
+        side: "below",
+        icon: "fa-gear",
+        desc: "Hidden instructions from the product itself. This is why Claude behaves differently in Claude.ai vs Claude Code."
+      },
+      {
+        label: "Recurring instructions",
+        color: "#8b5cf6",
+        pct: 6,
+        side: "below",
+        icon: "fa-bookmark",
+        desc: "Your CLAUDE.md or project instructions. Loaded automatically every conversation."
+      },
+      {
+        label: "User message",
+        color: "#039fb8",
+        pct: 4,
+        side: "below",
+        icon: "fa-user",
+        desc: "Your first message, converted to tokens."
+      },
+      {
+        label: "Claude's reply",
+        color: "#132e53",
+        pct: 8,
+        side: "above",
+        icon: "fa-robot",
+        desc: "Claude generates a response, adding tokens to the window."
+      },
+      {
+        label: "Tool results (web search)",
+        color: "#ef4444",
+        pct: 12,
+        side: "above",
+        icon: "fa-magnifying-glass",
+        desc: "Search results injected into context. Tool results can be large."
+      },
+      {
+        label: "Claude's reply",
+        color: "#132e53",
+        pct: 8,
+        side: "above",
+        icon: "fa-robot",
+        desc: "Claude synthesizes the search results into a response."
+      },
+      {
+        label: "Follow-up message",
+        color: "#039fb8",
+        pct: 3,
+        side: "below",
+        icon: "fa-user",
+        desc: "All prior messages are still in the window."
+      },
+      {
+        label: "Claude's reply",
+        color: "#132e53",
+        pct: 8,
+        side: "above",
+        icon: "fa-robot",
+        desc: "The window keeps filling with conversation history."
+      },
+      {
+        label: "File upload",
+        color: "#f59e0b",
+        pct: 18,
+        side: "below",
+        icon: "fa-file",
+        desc: "A large document takes up a big portion of the window."
+      }
+    ];
+
+    const TOTAL_TOKENS = 200000;
+    const BAR_H = 52;         // px, bar height
+    const ANN_CARD_W = 170;   // px, annotation card width
+    const ANN_REGION_H = 112; // px, above/below region height
+    const CONNECTOR_H = 20;   // px
+
+    /* ── Build layout data (left offsets) ───────────────────────────── */
+    let cumPct = 0;
+    const layout = STEPS.map((s, i) => {
+      const left = cumPct;
+      cumPct += s.pct;
+      const midPct = left + s.pct / 2;
+      return { ...s, left, mid: midPct };
+    });
+
+    /* ── DOM refs ────────────────────────────────────────────────────── */
+    const bar          = document.getElementById("cw-bar");
+    const annAbove     = document.getElementById("cw-ann-above");
+    const annBelow     = document.getElementById("cw-ann-below");
+    const tokenFill    = document.getElementById("cw-token-bar-fill");
+    const tokenText    = document.getElementById("cw-token-text");
+    const fullLabel    = document.getElementById("cw-full-label");
+    const btnBack      = document.getElementById("cw-btn-back");
+    const btnNext      = document.getElementById("cw-btn-next");
+    const stepInd      = document.getElementById("cw-step-indicator");
+
+    /* ── FA icon map ─────────────────────────────────────────────────── */
+    const FA_SVG = {
+      "fa-gear": `<svg viewBox="0 0 512 512" fill="currentColor" width="12" height="12"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>`,
+      "fa-bookmark": `<svg viewBox="0 0 384 512" fill="currentColor" width="11" height="12"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>`,
+      "fa-user": `<svg viewBox="0 0 448 512" fill="currentColor" width="11" height="12"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>`,
+      "fa-robot": `<svg viewBox="0 0 640 512" fill="currentColor" width="13" height="12"><path d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h224c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm-16-96a32 32 0 1 0 64 0 32 32 0 1 0 -64 0zm192 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>`,
+      "fa-magnifying-glass": `<svg viewBox="0 0 512 512" fill="currentColor" width="12" height="12"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>`,
+      "fa-file": `<svg viewBox="0 0 384 512" fill="currentColor" width="10" height="12"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>`
+    };
+
+    /* ── Build chunks ────────────────────────────────────────────────── */
+    layout.forEach((s, i) => {
+      const chunk = document.createElement("div");
+      chunk.className = "cw-chunk";
+      chunk.id = `cw-chunk-${i}`;
+      chunk.style.cssText = `
+        left:${s.left}%;
+        width:${s.pct}%;
+        background:${s.color};
+        border-radius: ${i === 0 ? "7px 0 0 7px" : "0"};
+      `;
+      bar.appendChild(chunk);
+    });
+
+    /* ── Build annotation cards + connectors ────────────────────────── */
+    layout.forEach((s, i) => {
+      const container = s.side === "above" ? annAbove : annBelow;
+      const isAbove = s.side === "above";
+
+      // Connector
+      const conn = document.createElement("div");
+      conn.className = "cw-connector";
+      conn.id = `cw-conn-${i}`;
+      if (isAbove) {
+        conn.style.cssText = `
+          left:${s.mid}%;
+          bottom:0;
+          height:${CONNECTOR_H}px;
+          background:${s.color};
+        `;
+      } else {
+        conn.style.cssText = `
+          left:${s.mid}%;
+          top:0;
+          height:${CONNECTOR_H}px;
+          background:${s.color};
+        `;
+      }
+      container.appendChild(conn);
+
+      // Card
+      const card = document.createElement("div");
+      card.className = "cw-ann";
+      card.id = `cw-ann-${i}`;
+
+      const iconEl = document.createElement("div");
+      iconEl.className = "cw-ann-icon";
+      iconEl.style.background = s.color;
+      iconEl.innerHTML = FA_SVG[s.icon] || "";
+
+      const labelEl = document.createElement("span");
+      labelEl.className = "cw-ann-label";
+      labelEl.textContent = s.label;
+
+      const descEl = document.createElement("span");
+      descEl.className = "cw-ann-desc";
+      descEl.textContent = s.desc;
+
+      card.appendChild(iconEl);
+      card.appendChild(labelEl);
+      card.appendChild(descEl);
+
+      // Position card
+      let leftPct = s.mid;
+      // clamp so card doesn't overflow
+      const halfCardPct = (ANN_CARD_W / 2) / (bar.offsetWidth || 800) * 100;
+      if (isAbove) {
+        card.style.cssText = `
+          left:${leftPct}%;
+          bottom:${CONNECTOR_H}px;
+          border-top:2.5px solid ${s.color};
+        `;
+      } else {
+        card.style.cssText = `
+          left:${leftPct}%;
+          top:${CONNECTOR_H}px;
+          border-top:2.5px solid ${s.color};
+        `;
+      }
+      container.appendChild(card);
+    });
+
+    /* ── State ───────────────────────────────────────────────────────── */
+    let currentStep = 0; // 0 = nothing active
+
+    function calcTokens(step) {
+      // sum pct of activated steps
+      let total = 0;
+      for (let i = 0; i < step; i++) total += layout[i].pct;
+      return Math.round((total / 100) * TOTAL_TOKENS);
+    }
+
+    function render(step) {
+      // step: 0 = nothing, 1..9 = steps 1..9 active
+      layout.forEach((s, i) => {
+        const idx = i + 1; // 1-based
+        const active = idx <= step;
+        const chunk = document.getElementById(`cw-chunk-${i}`);
+        const card  = document.getElementById(`cw-ann-${i}`);
+        const conn  = document.getElementById(`cw-conn-${i}`);
+        const isCurrentStep = idx === step;
+
+        chunk.classList.toggle("active", active);
+        card.classList.toggle("active", isCurrentStep);
+        conn.classList.toggle("active", isCurrentStep);
+      });
+
+      // Token counter
+      const used = calcTokens(step);
+      const pct  = (used / TOTAL_TOKENS) * 100;
+      tokenFill.style.width = pct + "%";
+      tokenText.textContent = `~${used.toLocaleString()} of ${TOTAL_TOKENS.toLocaleString()} tokens used`;
+
+      // Full label
+      if (step >= 9) {
+        fullLabel.style.display = "inline";
+        tokenFill.style.background = "linear-gradient(90deg,#6366f1,#039fb8 60%,#ef4444)";
+      } else {
+        fullLabel.style.display = "none";
+        tokenFill.style.background = "linear-gradient(90deg,#6366f1,#039fb8)";
+      }
+
+      // Buttons
+      btnBack.disabled = step <= 0;
+      btnNext.disabled = step >= 9;
+      stepInd.textContent = `${step} / 9`;
+    }
+
+    function advance() {
+      if (currentStep < 9) {
+        currentStep++;
+        render(currentStep);
+      }
+    }
+
+    function retreat() {
+      if (currentStep > 0) {
+        currentStep--;
+        render(currentStep);
+      }
+    }
+
+    btnNext.addEventListener("click", advance);
+    btnBack.addEventListener("click", retreat);
+
+    document.addEventListener("keydown", function (e) {
+      // Only fire if focus is within the visual or no focusable element is focused elsewhere
+      if (e.key === "ArrowRight") advance();
+      if (e.key === "ArrowLeft")  retreat();
+    });
+
+    // Initial render
+    render(0);
+  })();
+  </script>
+</section>

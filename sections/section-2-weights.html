@@ -1,0 +1,127 @@
+<section id="same-model" class="section section--gray">
+  <div class="container">
+    <h2>Same model, every time – the weights never change between conversations</h2>
+    <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
+      During training, Anthropic adjusts billions of numerical values called
+      <span class="define-term"><strong>weights</strong><span class="define-tip"><strong>Weights</strong>The billions of numerical parameters inside a model that encode what it "knows." Set during training, then frozen permanently.<em>Think of them as the model's permanent knowledge base.</em></span></span>
+      until the model understands language, reasoning, and the world. Once training ends, those weights are
+      <span class="define-term"><strong>locked</strong><span class="define-tip"><strong>Frozen weights</strong>After training, the model's parameters cannot change. No user interaction, feedback, or conversation can alter them.<em>The model you use today has the same weights as the model someone else used yesterday.</em></span></span>
+      permanently. Every conversation you start, regardless of topic or user, runs on that exact same frozen model.
+      The model does not learn from your inputs, carry memories across sessions, or improve the more you use it – any
+      <span class="define-term"><strong>adaptation</strong><span class="define-tip"><strong>Adaptation via context</strong>Because weights cannot change, the only way to "customize" Claude's behavior is by providing instructions and background information inside the active conversation. The next sections explain how this works.<em>Context is the lever, not retraining.</em></span></span>
+      you see is driven by what you provide inside the conversation, not by changes to the model itself.
+    </p>
+
+    <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:40px;margin-top:32px;">
+      <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:760px;display:block;margin:0 auto;" aria-label="Diagram showing two different conversations both connecting to the same frozen Claude model">
+
+        <!-- ── Left conversation bubble ───────────────────────────── -->
+        <rect x="10" y="60" width="200" height="200" rx="8" fill="#ffffff" stroke="#dcdfe5" stroke-width="1.5"/>
+        <text x="110" y="88" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#728197" letter-spacing="0.06em" text-transform="uppercase">CONVERSATION A</text>
+        <!-- User message -->
+        <rect x="26" y="100" width="140" height="36" rx="6" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="1"/>
+        <text x="96" y="116" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">"Draft a client proposal</text>
+        <text x="96" y="130" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">for Q3 strategy work"</text>
+        <!-- Claude reply -->
+        <rect x="46" y="148" width="148" height="36" rx="6" fill="#039fb8" stroke="none"/>
+        <text x="120" y="164" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#ffffff">Here is a proposal</text>
+        <text x="120" y="178" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#ffffff">outline for you…</text>
+        <!-- User follow-up -->
+        <rect x="26" y="196" width="120" height="28" rx="6" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="1"/>
+        <text x="86" y="215" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">"Make it shorter"</text>
+        <!-- User avatar label -->
+        <circle cx="30" cy="242" r="10" fill="#dcdfe5"/>
+        <text x="30" y="246" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#728197">A</text>
+        <text x="46" y="246" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#728197">Consultant – Strategy</text>
+
+        <!-- ── Right conversation bubble ──────────────────────────── -->
+        <rect x="550" y="60" width="200" height="200" rx="8" fill="#ffffff" stroke="#dcdfe5" stroke-width="1.5"/>
+        <text x="650" y="88" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#728197" letter-spacing="0.06em">CONVERSATION B</text>
+        <!-- User message -->
+        <rect x="566" y="100" width="150" height="36" rx="6" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="1"/>
+        <text x="641" y="116" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">"Summarise this 40-page</text>
+        <text x="641" y="130" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">financial report"</text>
+        <!-- Claude reply -->
+        <rect x="576" y="148" width="148" height="36" rx="6" fill="#039fb8" stroke="none"/>
+        <text x="650" y="164" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#ffffff">The key findings are</text>
+        <text x="650" y="178" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#ffffff">as follows…</text>
+        <!-- User follow-up -->
+        <rect x="566" y="196" width="150" height="28" rx="6" fill="#f4f6fa" stroke="#dcdfe5" stroke-width="1"/>
+        <text x="641" y="215" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#132e53">"Add bullet points"</text>
+        <!-- User avatar label -->
+        <circle cx="570" cy="242" r="10" fill="#dcdfe5"/>
+        <text x="570" y="246" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#728197">B</text>
+        <text x="586" y="246" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#728197">Analyst – Finance</text>
+
+        <!-- ── Connector lines ─────────────────────────────────────── -->
+        <!-- Left line: conversation A → model -->
+        <line x1="210" y1="160" x2="280" y2="160" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <polygon points="278,155 288,160 278,165" fill="#039fb8"/>
+        <!-- Right line: conversation B → model -->
+        <line x1="550" y1="160" x2="480" y2="160" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <polygon points="482,155 472,160 482,165" fill="#039fb8"/>
+
+        <!-- ── Central model box ───────────────────────────────────── -->
+        <rect x="288" y="80" width="184" height="160" rx="10" fill="#132e53" stroke="#132e53" stroke-width="2"/>
+
+        <!-- Lock icon (drawn as SVG shapes to avoid Font Awesome inside SVG) -->
+        <!-- Lock body -->
+        <rect x="362" y="106" width="36" height="28" rx="4" fill="#ffffff"/>
+        <!-- Lock shackle (arc) -->
+        <path d="M369,106 L369,98 Q380,88 391,98 L391,106" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+        <!-- Lock keyhole -->
+        <circle cx="380" cy="118" r="4" fill="#132e53"/>
+        <rect x="378" y="118" width="4" height="7" rx="1" fill="#132e53"/>
+
+        <!-- Model label -->
+        <text x="380" y="153" text-anchor="middle" font-family="'Bebas Neue',Arial,sans-serif" font-size="18" fill="#ffffff" letter-spacing="0.04em">CLAUDE MODEL</text>
+        <!-- Frozen badge -->
+        <rect x="316" y="162" width="128" height="22" rx="4" fill="#039fb8"/>
+        <text x="380" y="177" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.05em">WEIGHTS FROZEN</text>
+        <!-- Sub-label -->
+        <text x="380" y="210" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#dcdfe5">Same for every conversation</text>
+        <text x="380" y="226" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#dcdfe5">No learning · No memory</text>
+
+        <!-- ── Bottom caption ──────────────────────────────────────── -->
+        <text x="380" y="290" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" fill="#728197">Two completely different conversations. One identical model.</text>
+      </svg>
+    </div>
+
+    <!-- FAQ accordion answering the common questions -->
+    <div class="accordion" style="margin-top:32px;">
+      <div class="accordion__item">
+        <button class="accordion__trigger" onclick="this.closest('.accordion__item').classList.toggle('open')">
+          <span>"Is Claude learning from my conversations or my firm's data?"</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__content">
+            No. The model's weights are set before you ever open a conversation. Nothing you type can alter them. Your inputs are processed to generate a response and then discarded at the end of the session unless you or your administrator explicitly configure storage or fine-tuning separately.
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__trigger" onclick="this.closest('.accordion__item').classList.toggle('open')">
+          <span>"Why doesn't Claude remember what we discussed yesterday?"</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__content">
+            Each conversation starts with a blank context window. Because nothing from previous sessions is passed in, Claude has no record of past exchanges. The next section covers context windows in detail and explains how to work around this for ongoing projects.
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__trigger" onclick="this.closest('.accordion__item').classList.toggle('open')">
+          <span>"Does Claude get smarter the more I use it?"</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__content">
+            The model itself does not improve with use – the weights are the same on your first conversation as on your thousandth. What does improve is how you prompt it. Better context, clearer instructions, and structured inputs produce noticeably better outputs, which is what the remaining sections of this guide are about.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
