@@ -1171,7 +1171,7 @@
     <div class="sidebar__label">Guide Contents</div>
     <ul class="sidebar__nav">
       <li><a href="#models-vs-products">Model vs. product</a></li>
-      <li><a href="#same-model">What the model knows</a></li>
+      <li><a href="#same-model">How the model was trained</a></li>
       <li><a href="#context-window">The context window</a></li>
       <li><a href="#agents-in-action">Models working together</a></li>
       <li><a href="#claude-code">Try it yourself</a></li>
@@ -1311,21 +1311,21 @@
               <div class="split__title split__title--models">Models</div>
               <div class="split__items">
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-opus.svg" alt="Opus"></div>
+                  <div class="split__item-icon"><img src="icon-opus.svg" alt="Opus" style="width:32px;height:32px;"></div>
                   <div>
                     <div class="split__item-name split__item-name--navy">Opus</div>
                     <div class="split__item-desc">Most capable – best multi-step reasoning, least likely to miss nuance or cut corners</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-sonnet.svg" alt="Sonnet"></div>
+                  <div class="split__item-icon"><img src="icon-sonnet.svg" alt="Sonnet" style="width:32px;height:32px;"></div>
                   <div>
                     <div class="split__item-name split__item-name--navy">Sonnet</div>
                     <div class="split__item-desc">Faster responses – strong at coding, structured output, and research</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-haiku.svg" alt="Haiku"></div>
+                  <div class="split__item-icon"><img src="icon-haiku.svg" alt="Haiku" style="width:32px;height:32px;"></div>
                   <div>
                     <div class="split__item-name split__item-name--navy">Haiku</div>
                     <div class="split__item-desc">Near-instant responses – good for summaries, short tasks, and quick questions</div>
@@ -1379,7 +1379,7 @@
 
     <section id="same-model" class="section section--gray">
   <div class="container">
-    <h2>The model learned everything it knows during training, then stopped.</h2>
+    <h2>The model was trained on the internet, then learned to be helpful, then stopped.</h2>
 
     <!-- ── Row 1: Model explanation + conversations diagram ─── -->
     <div style="display:flex;gap:40px;align-items:center;margin-top:32px;margin-bottom:40px;flex-wrap:wrap;">
@@ -1387,9 +1387,11 @@
         <p class="section-body" style="margin-top:0;margin-bottom:0;">
           A model is a
           <span class="define-term"><strong>neural network</strong><span class="define-tip"><strong>Neural network</strong>A structure made of billions of simple units (called neurons) linked by connections. Each connection carries a numerical value called a <strong>weight</strong> that controls how strongly one unit influences another. Training adjusts these weights until the network produces useful, coherent language.<em>Think of it like tuning billions of tiny dials until the system gets the answers right.</em></span></span>
-          that has been trained on massive amounts of text. Training is what gives the model everything it knows. Once training ends, the model is
-          <span class="define-term"><strong>locked</strong><span class="define-tip"><strong>Frozen model</strong>After training, a model's internal values cannot change. No user interaction, feedback, or conversation can alter them.<em>The model you use today is identical to the model someone else used yesterday.</em></span></span>
-          permanently. The model you use is the same model everyone else uses. It does not learn from your conversations, carry memories between sessions, or improve the more you use it. What you can change is the context you give it in each conversation.
+          that was
+          <span class="define-term"><strong>trained</strong><span class="define-tip"><strong>Training</strong>Training happens in two stages. First, <strong>pre-training</strong>: the model reads enormous amounts of text from the internet (books, articles, websites, code) and learns patterns in language, facts, and reasoning. Then, <strong>post-training</strong>: it learns to follow instructions, answer questions helpfully, and have conversations.<em>Pre-training gives it knowledge; post-training teaches it how to use that knowledge well.</em></span></span>
+          on massive amounts of text from the internet, then taught to follow instructions and have conversations. Once training ends, the model has a
+          <span class="define-term"><strong>knowledge cutoff</strong><span class="define-tip"><strong>Knowledge cutoff</strong>The date when the model's training data ends. The model has no awareness of events, discoveries, or changes that happened after this date.<em>It is like asking someone who went off the grid on that date.</em></span></span>
+          date, meaning it has no awareness of events after its training data ends. The model you use is the same model everyone else uses. It does not learn from your conversations, carry memories between sessions, or improve the more you use it. What you can change is the context you give it in each conversation.
         </p>
       </div>
       <div style="flex:2 1 0;min-width:320px;max-width:66%;">
@@ -1460,9 +1462,12 @@
 
             <!-- User prompt box (editable) -->
             <div style="width:100%;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:12px;padding:10px 14px 8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);position:relative;">
-              <div id="tokenizer-input" contenteditable="true" spellcheck="false" style="font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#1a1a1a;line-height:1.45;min-height:1.45em;outline:none;position:relative;z-index:1;"></div>
-              <div id="tokenizer-placeholder" style="font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#b0b5be;line-height:1.45;position:absolute;top:10px;left:14px;pointer-events:none;">Type here...</div>
-              <div style="margin-top:6px;font-family:'Source Sans 3',Arial,sans-serif;font-size:9px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;text-align:right;">User</div>
+              <div id="tokenizer-input" contenteditable="true" spellcheck="false" style="font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#1a1a1a;line-height:1.45;min-height:1.45em;outline:none;position:relative;z-index:1;">Summarize this paragraph</div>
+              <div id="tokenizer-placeholder" style="font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#b0b5be;line-height:1.45;position:absolute;top:10px;left:14px;pointer-events:none;display:none;">Type here...</div>
+              <div style="margin-top:6px;display:flex;justify-content:space-between;align-items:center;">
+                <div id="tokenizer-hint" style="font-family:'Source Sans 3',Arial,sans-serif;font-size:9px;color:#9ca3af;letter-spacing:0.02em;cursor:default;transition:opacity 0.3s;">&#9998; click to edit</div>
+                <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:9px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">User</div>
+              </div>
             </div>
 
             <!-- Arrow: "tokens" -->
@@ -1604,14 +1609,23 @@
       idsEl.textContent = ids.join(", ");
     }
 
+    var hint = document.getElementById("tokenizer-hint");
+
     input.addEventListener("input", update);
+    /* Hide hint when user focuses the input */
+    input.addEventListener("focus", function() {
+      if (hint) hint.style.opacity = "0";
+    });
+    input.addEventListener("blur", function() {
+      if (hint && !input.textContent.trim()) hint.style.opacity = "1";
+    });
     /* Also catch paste to strip formatting */
     input.addEventListener("paste", function(e) {
       e.preventDefault();
       var text = (e.clipboardData || window.clipboardData).getData("text/plain");
       document.execCommand("insertText", false, text);
     });
-    /* Initialize empty */
+    /* Initialize with pre-populated text */
     update();
   })();
   </script>
