@@ -635,19 +635,11 @@
        Token Chips (Section 3)
        ======================================== */
     .token-chip {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 12px;
-      margin: 3px;
-      font-size: 14px;
+      display: inline;
+      padding: 3px 1px;
+      font-size: 15px;
       font-family: "Source Sans 3", sans-serif;
-    }
-
-    .token-count {
-      font-size: 0.85rem;
-      color: var(--nh-teal);
-      font-weight: 700;
-      margin: 0 0 32px 0;
+      line-height: 2.4;
     }
 
     /* ========================================
@@ -1348,7 +1340,7 @@
           <span class="define-term"><strong>neural network</strong><span class="define-tip"><strong>Neural network</strong>A structure made of billions of simple units (called neurons) linked by connections. Each connection carries a numerical value called a <strong>weight</strong> that controls how strongly one unit influences another. Training adjusts these weights until the network produces useful, coherent language.<em>Think of it like tuning billions of tiny dials until the system gets the answers right.</em></span></span>
           that has been trained on massive amounts of text. Training is what gives the model everything it knows. Once training ends, the model is
           <span class="define-term"><strong>locked</strong><span class="define-tip"><strong>Frozen model</strong>After training, a model's internal values cannot change. No user interaction, feedback, or conversation can alter them.<em>The model you use today is identical to the model someone else used yesterday.</em></span></span>
-          permanently. The model you use is the same model everyone else uses. It does not learn from your conversations, carry memories between sessions, or improve the more you use it. What you can change is the information you give it inside each conversation.
+          permanently. The model you use is the same model everyone else uses. It does not learn from your conversations, carry memories between sessions, or improve the more you use it. What you can change is the context you give it in each conversation.
         </p>
       </div>
       <div style="flex:2 1 0;min-width:320px;max-width:66%;">
@@ -1408,27 +1400,47 @@
     <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;">
       <div style="flex:1 1 0;min-width:240px;">
         <p class="section-body" style="margin-top:0;margin-bottom:0;">
-          The model does not read your messages word by word. It breaks everything into
+          The model does not see context like you do. It breaks text, audio, video, and images into 
           <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.<em>Think of tokens as the model's alphabet.</em></span></span>
-          – small chunks, roughly one word each. Your question, any documents you attach, and every word the model writes back all count as tokens. This matters because the model has a limited budget of tokens per conversation.
+          – small chunks, each corresponding to an ID in the model's vocabulary. Your question, any documents you attach, and every word the model writes back all count as tokens. This matters because the model has a limited budget of tokens per conversation.
         </p>
       </div>
       <div style="flex:2 1 0;min-width:320px;max-width:66%;">
-        <div class="diagram-wrap" style="margin-top:0;padding:24px;">
+        <div class="diagram-wrap" style="margin-top:0;padding:20px 24px;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
 
-          <p class="diagram-label" style="margin-top:0;">Example sentence</p>
-          <p class="diagram-scenario" style="margin-bottom:16px;">
-            "Summarize the Q3 client engagement report and highlight key risks"
-          </p>
+            <!-- User prompt box -->
+            <div style="width:100%;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:12px;padding:10px 14px 8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#1a1a1a;line-height:1.45;">Draft an email to summarize the last week for my client's executive board</div>
+              <div style="margin-top:6px;font-family:'Source Sans 3',Arial,sans-serif;font-size:9px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;text-align:right;">User</div>
+            </div>
 
-          <p class="diagram-label">Broken into tokens</p>
-          <div style="margin-bottom:10px;line-height:2;">
-            <span class="token-chip" style="background:#dbeafe;">Summar</span><span class="token-chip" style="background:#fce7f3;">ize</span><span class="token-chip" style="background:#d1fae5;">the</span><span class="token-chip" style="background:#fef3c7;">Q</span><span class="token-chip" style="background:#ede9fe;">3</span><span class="token-chip" style="background:#ffedd5;">client</span><span class="token-chip" style="background:#dbeafe;">engagement</span><span class="token-chip" style="background:#fce7f3;">report</span><span class="token-chip" style="background:#d1fae5;">and</span><span class="token-chip" style="background:#fef3c7;">highlight</span><span class="token-chip" style="background:#ede9fe;">key</span><span class="token-chip" style="background:#ffedd5;">risks</span>
+            <!-- Arrow: "tokens" -->
+            <div style="display:flex;flex-direction:column;align-items:center;margin:5px 0 1px;">
+              <div style="width:1.5px;height:14px;background:#555;"></div>
+              <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11px;color:#555;margin:2px 0;">tokens</div>
+              <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #555;"></div>
+            </div>
+
+            <!-- Colored tokens -->
+            <div style="width:100%;padding:4px 0;">
+              <span class="token-chip" style="background:#dbeafe;">Draft</span> <span class="token-chip" style="background:#d1fae5;">an</span> <span class="token-chip" style="background:#fce7f3;">email</span> <span class="token-chip" style="background:#fef3c7;">to</span> <span class="token-chip" style="background:#d1fae5;">summarize</span> <span class="token-chip" style="background:#fce7f3;">the</span> <span class="token-chip" style="background:#dbeafe;">last</span> <span class="token-chip" style="background:#fef3c7;">week</span> <span class="token-chip" style="background:#dbeafe;">for</span> <span class="token-chip" style="background:#fce7f3;">my</span> <span class="token-chip" style="background:#fef3c7;">clien</span><span class="token-chip" style="background:#fce7f3;">t's</span> <span class="token-chip" style="background:#ede9fe;">executive</span> <span class="token-chip" style="background:#d1fae5;">board</span>
+            </div>
+
+            <!-- Arrow: "token IDs" -->
+            <div style="display:flex;flex-direction:column;align-items:center;margin:1px 0 5px;">
+              <div style="width:1.5px;height:14px;background:#555;"></div>
+              <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11px;color:#555;margin:2px 0;">token IDs</div>
+              <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #555;"></div>
+            </div>
+
+            <!-- Token IDs box (Model) -->
+            <div style="width:100%;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:12px;padding:10px 14px 8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <div style="font-family:'Source Code Pro','Courier New',monospace;font-size:12px;color:#1a1a1a;line-height:1.5;">360, 4154, 385, 4876, 304, 19138, 675, 278, 1833, 4723, 363, 590, 3132, 29915, 29879, 22760, 7613</div>
+              <div style="margin-top:6px;font-family:'Source Sans 3',Arial,sans-serif;font-size:9px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;text-align:right;">Model</div>
+            </div>
+
           </div>
-          <p class="token-count">
-            <i class="fa-solid fa-calculator" style="margin-right:6px;"></i>12 tokens
-          </p>
-
         </div>
       </div>
     </div>
