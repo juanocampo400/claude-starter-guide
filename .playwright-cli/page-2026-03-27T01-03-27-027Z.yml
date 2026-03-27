@@ -1,0 +1,306 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - text: 
+    - generic [ref=e3]: Claude / Quick Start
+  - complementary [ref=e4]:
+    - generic [ref=e5]: Guide Contents
+    - list [ref=e6]:
+      - listitem [ref=e7]:
+        - link "Models vs. Products" [ref=e8] [cursor=pointer]:
+          - /url: "#models-vs-products"
+      - listitem [ref=e9]:
+        - link "Same Model, Every Time" [ref=e10] [cursor=pointer]:
+          - /url: "#same-model"
+      - listitem [ref=e11]:
+        - link "Tokens" [ref=e12] [cursor=pointer]:
+          - /url: "#tokens"
+      - listitem [ref=e13]:
+        - link "The Context Window" [ref=e14] [cursor=pointer]:
+          - /url: "#context-window"
+      - listitem [ref=e15]:
+        - link "Getting Information In" [ref=e16] [cursor=pointer]:
+          - /url: "#getting-info-in"
+      - listitem [ref=e17]:
+        - link "Agents in Action" [ref=e18] [cursor=pointer]:
+          - /url: "#agents-in-action"
+      - listitem [ref=e19]:
+        - link "Start Building" [ref=e20] [cursor=pointer]:
+          - /url: "#claude-code"
+  - generic [ref=e21]:
+    - generic [ref=e22]:
+      - generic:
+        - img
+      - generic [ref=e24]:
+        - heading "Getting Started with Claude" [level=1] [ref=e25]
+        - paragraph [ref=e26]: "[A brief introductory sentence that describes what this guide covers and who it's for. Keep it to two or three lines.]"
+        - paragraph [ref=e27]: April 2026
+    - generic [ref=e29]:
+      - heading "Models vs products – 'Claude' can mean many things" [level=2] [ref=e30]
+      - paragraph [ref=e31]:
+        - text: You can think of
+        - strong [ref=e33]: models
+        - text: as the brains and
+        - strong [ref=e35]: products
+        - text: as the hands and feet. Models are the Artificial Intelligence itself, each with different tradeoffs between capability and speed. Products are the workspaces that give those models different tools to work with.
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: Models
+            - generic [ref=e40]:
+              - generic [ref=e41]:
+                - img "Opus" [ref=e43]
+                - generic [ref=e44]:
+                  - generic [ref=e45]: Opus
+                  - generic [ref=e46]: Most capable – best multi-step reasoning, least likely to miss nuance or cut corners
+              - generic [ref=e47]:
+                - img "Sonnet" [ref=e49]
+                - generic [ref=e50]:
+                  - generic [ref=e51]: Sonnet
+                  - generic [ref=e52]: Faster responses – strong at coding, structured output, and research
+              - generic [ref=e53]:
+                - img "Haiku" [ref=e55]
+                - generic [ref=e56]:
+                  - generic [ref=e57]: Haiku
+                  - generic [ref=e58]: Near-instant responses – good for summaries, short tasks, and quick questions
+          - generic [ref=e59]:
+            - generic [ref=e60]: Products
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - img "Claude Code" [ref=e64]
+                - generic [ref=e65]:
+                  - generic [ref=e66]: Claude Code
+                  - generic [ref=e67]: Runs on your computer – works directly in your files, the most you and your team can do with Claude
+              - generic [ref=e68]:
+                - img "Claude Cowork" [ref=e70]
+                - generic [ref=e71]:
+                  - generic [ref=e72]: Claude Cowork
+                  - generic [ref=e73]: Inside Claude Desktop – works on your files with no setup needed, but less control than Code
+              - generic [ref=e74]:
+                - img "Claude.ai" [ref=e76]
+                - generic [ref=e77]:
+                  - generic [ref=e78]: Claude.ai
+                  - generic [ref=e79]: Chat in your browser (or Claude Desktop app) – upload files, download outputs to your computer
+        - generic [ref=e80]:
+          - img "Claude.ai model selector showing Opus, Sonnet, and Haiku" [ref=e81]
+          - generic [ref=e83]: Product
+          - generic [ref=e85]: Models
+    - generic [ref=e87]:
+      - heading "The model – every conversation starts from the same point" [level=2] [ref=e88]
+      - generic [ref=e89]:
+        - paragraph [ref=e91]:
+          - text: A model is a
+          - strong [ref=e93]: neural network
+          - text: that has been trained on massive amounts of text. Training is what gives the model everything it knows. Once training ends, the model is
+          - strong [ref=e95]: locked
+          - text: permanently. The model you use is the same model everyone else uses. It does not learn from your conversations, carry memories between sessions, or improve the more you use it. What you can change is the context you give it in each conversation.
+        - generic [ref=e98]:
+          - img
+          - generic [ref=e99]:
+            - img "Opus" [ref=e100]
+            - img "Sonnet" [ref=e101]
+            - img "Haiku" [ref=e102]
+          - generic [ref=e103]:
+            - generic [ref=e104]: Draft talking points for tomorrow's all-hands
+            - generic [ref=e105]: Manager
+          - generic [ref=e106]:
+            - generic [ref=e107]: Summarize this Q3 deck into three bullet points
+            - generic [ref=e108]: Exec
+          - generic [ref=e109]:
+            - generic [ref=e110]: Draft a client proposal for the Q2 engagement
+            - generic [ref=e111]: Consultant
+          - generic [ref=e112]:
+            - generic [ref=e113]: Write a follow-up email from today's intro call
+            - generic [ref=e114]: BD
+      - generic [ref=e115]:
+        - paragraph [ref=e117]:
+          - text: The model does not see context like you do. It breaks text, audio, video, and images into
+          - strong [ref=e119]: tokens
+          - text: – small chunks, each corresponding to an ID in the model's vocabulary. Your question, any documents you attach, and every word the model writes back all count as tokens. This matters because the model has a limited budget of tokens per conversation.
+        - generic [ref=e122]:
+          - generic [ref=e123]:
+            - generic: Type here...
+            - generic [ref=e125]: User
+          - generic [ref=e128]: tokens
+          - generic [ref=e133]: token IDs
+          - generic [ref=e137]: Model
+    - generic [ref=e139]:
+      - heading "The context window – the only memory Claude has" [level=2] [ref=e140]
+      - paragraph [ref=e141]:
+        - text: Every conversation with Claude happens inside a
+        - strong [ref=e143]: context window
+        - text: – a fixed-size container that holds your messages, Claude's replies, uploaded files, and any background instructions, all at once. When the window fills up, older content is dropped and the model has no way to retrieve it. The practical insight is that
+        - strong [ref=e145]: system prompts
+        - text: ", CLAUDE.md files, and project instructions are not magic features – they are simply text loaded into the window before you type your first message."
+      - region "Interactive context window diagram" [ref=e146]:
+        - generic [ref=e147]: Context Window — Interactive Walkthrough
+        - generic [ref=e148]:
+          - generic:
+            - generic:
+              - img
+            - generic: Claude's reply
+            - text: Claude generates a response, adding tokens to the window.
+          - generic:
+            - generic:
+              - img
+            - generic: Tool results (web search)
+            - text: Search results injected into context. Tool results can be large.
+          - generic:
+            - generic:
+              - img
+            - generic: Claude's reply
+            - text: Claude synthesizes the search results into a response.
+          - generic:
+            - generic:
+              - img
+            - generic: Claude's reply
+            - text: The window keeps filling with conversation history.
+        - generic [ref=e154]:
+          - generic [ref=e155]: New chat
+          - generic [ref=e156]: 200K tokens
+        - generic [ref=e167]:
+          - generic:
+            - generic:
+              - img
+            - generic: System prompt
+            - text: Hidden instructions from the product itself. This is why Claude behaves differently in Claude.ai vs Claude Code.
+          - generic:
+            - generic:
+              - img
+            - generic: Recurring instructions
+            - text: Your CLAUDE.md or project instructions. Loaded automatically every conversation.
+          - generic:
+            - generic:
+              - img
+            - generic: User message
+            - text: Your first message, converted to tokens.
+          - generic:
+            - generic:
+              - img
+            - generic: Follow-up message
+            - text: All prior messages are still in the window.
+          - generic:
+            - generic:
+              - img
+            - generic: File upload
+            - text: A large document takes up a big portion of the window.
+        - generic [ref=e175]: ~0 of 200,000 tokens used
+        - generic [ref=e176]:
+          - button "Previous step" [disabled] [ref=e177]:
+            - img [ref=e178]
+          - generic [ref=e180]: 0 / 9
+          - button "Next step" [ref=e181] [cursor=pointer]:
+            - img [ref=e182]
+    - generic [ref=e185]:
+      - heading "Getting information in – every source becomes tokens in the same window" [level=2] [ref=e186]
+      - paragraph [ref=e187]:
+        - text: Claude can only work with what is inside its context window. There are several ways to get information in, from copy-paste to automated
+        - strong [ref=e189]: connectors
+        - text: ". No matter which method you use, the result is the same: tokens added to the context window."
+      - img "Diagram showing information sources converging into a single context window" [ref=e191]:
+        - generic [ref=e195]: FILE UPLOAD
+        - generic [ref=e196]: Claude.ai
+        - generic [ref=e199]: DIRECT ACCESS
+        - generic [ref=e200]: Claude Code
+        - generic [ref=e203]: CONNECTORS
+        - generic [ref=e204]: All products
+        - generic [ref=e214]: Upload
+        - generic [ref=e216]: File read
+        - generic [ref=e218]: Connector
+        - generic [ref=e222]: · · · capacity · · ·
+        - generic [ref=e223]: CONTEXT WINDOW
+        - generic [ref=e224]: No matter the source, it all becomes tokens in the same window.
+      - generic [ref=e225]:
+        - generic [ref=e226]:
+          - generic [ref=e228]: 
+          - generic [ref=e229]: All products
+          - heading "Copy and paste" [level=3] [ref=e230]
+          - paragraph [ref=e231]: The simplest method. Paste text, data, or error messages directly into the chat. Good for quick questions when the information is already on your screen.
+        - generic [ref=e232]:
+          - generic [ref=e234]: 
+          - generic [ref=e235]: Claude.ai & Claude Code
+          - heading "Web search" [level=3] [ref=e236]
+          - paragraph [ref=e237]: Claude can search the web mid-conversation and pull results into context. Useful when you need current information that was not included in Claude's training data.
+        - generic [ref=e238]:
+          - generic [ref=e240]: 
+          - generic [ref=e241]: Claude.ai
+          - heading "File upload" [level=3] [ref=e242]
+          - paragraph [ref=e243]: "Drag files into the chat: PDFs, spreadsheets, images, code. Claude reads them and adds the content to the context window. Best for one-off documents you want Claude to analyze."
+        - generic [ref=e244]:
+          - generic [ref=e246]: 
+          - generic [ref=e247]: Claude Code
+          - heading "Direct file access" [level=3] [ref=e248]
+          - paragraph [ref=e249]: Claude Code runs on your machine and reads files directly from your folders. No uploading needed. It can browse, open, and edit files as part of a task.
+        - generic [ref=e250]:
+          - generic [ref=e252]: 
+          - generic [ref=e253]: All products
+          - heading "Connectors (MCP)" [level=3] [ref=e254]
+          - paragraph [ref=e255]:
+            - strong [ref=e257]: MCP connectors
+            - text: let Claude pull live data from systems like SharePoint, Slack, Google Drive, and databases. Instead of you copying information out of those systems, Claude reaches in and retrieves what it needs. This is the most powerful method because it keeps Claude's context current and eliminates manual steps.
+      - generic [ref=e258]:
+        - strong [ref=e259]: "Key insight:"
+        - text: Every method does the same thing – it puts tokens in the context window. The only differences are convenience and how much you have to do manually.
+    - generic [ref=e261]:
+      - heading "Agents in action – this is where model selection pays off" [level=2] [ref=e262]
+      - paragraph [ref=e263]:
+        - text: In the first section you learned that Claude has three models with different strengths. In Claude Code, a single task can use all three at once. Opus plans the work and makes judgment calls. Haiku handles high-volume scanning where speed matters more than depth. Sonnet does the detailed analysis in between. Each
+        - strong [ref=e265]: agent
+        - text: gets its own context window, so no single conversation overflows.
+      - generic [ref=e266]:
+        - paragraph [ref=e267]: Claude Code example
+        - paragraph [ref=e268]: "\"Audit this project folder – find all deprecated API calls, analyze each one, and produce a migration plan.\""
+        - img "Interactive orchestration flow diagram showing Claude Code using multiple models" [ref=e270]:
+          - generic [ref=e271]:
+            - generic [ref=e274]: Claude Code
+            - generic [ref=e277]: Opus
+            - generic [ref=e278]: Orchestrator
+            - generic [ref=e281]: context
+            - generic [ref=e282]: Opus reads your request and plans the approach
+          - generic [ref=e283]:
+            - generic [ref=e288]: Opus
+            - generic [ref=e289]: Orchestrator
+            - generic [ref=e292]: context
+            - generic [ref=e318]: 5 Haiku agents scanning files in parallel
+            - generic [ref=e319]: Haiku is fast and cheap – ideal for simple, high-volume scanning
+          - generic [ref=e320]:
+            - generic [ref=e325]: Opus
+            - generic [ref=e326]: Orchestrator
+            - generic [ref=e329]: context
+            - generic [ref=e340]: Lightweight summaries return – raw files never loaded into Opus
+            - generic [ref=e341]: Opus merges results and decides which files need deeper analysis
+          - generic [ref=e342]:
+            - generic [ref=e347]: Opus
+            - generic [ref=e348]: Orchestrator
+            - generic [ref=e351]: context
+            - generic [ref=e367]: 3 Sonnet agents analyzing flagged files in depth
+            - generic [ref=e368]: Sonnet balances capability with speed – the right fit for detailed analysis
+          - generic [ref=e369]:
+            - generic [ref=e372]: Claude Code
+            - generic [ref=e375]: Opus
+            - generic [ref=e376]: Orchestrator
+            - generic [ref=e379]: context
+            - generic [ref=e389]: Migration plan
+            - generic [ref=e390]: Opus synthesizes findings into the final migration plan
+            - generic [ref=e391]: "Context holds: request + plan + condensed findings, not hundreds of raw files"
+        - generic [ref=e392]:
+          - button "Previous stage" [ref=e393] [cursor=pointer]: ←
+          - button "Next stage" [ref=e394] [cursor=pointer]: →
+          - generic [ref=e395]: Stage 1 of 5
+        - generic [ref=e396]:
+          - paragraph
+      - generic [ref=e397]:
+        - strong [ref=e398]: This is a Claude Code capability.
+        - text: "Only Claude Code can orchestrate sub-agents across models like this. Claude.ai runs a single model in a single conversation. Claude Code manages the full lifecycle: splitting work, routing to the right model, and assembling the result."
+    - generic [ref=e400]:
+      - heading "Start building in 30 minutes" [level=2] [ref=e401]
+      - paragraph [ref=e402]:
+        - text: To set up Claude Code on Windows, copy the prompt below and paste in
+        - link "Claude.ai" [ref=e403] [cursor=pointer]:
+          - /url: https://claude.ai
+        - text: . Claude will guide you from there, one step at a time.
+      - generic [ref=e404]:
+        - generic [ref=e405]: "I'm a consultant at North Highland and I need your help installing and setting up Claude Code on my Windows machine. I have little coding or development experience, so please explain concepts as we progress through this entire conversation. Here's what I need you to walk me through, step by step: 1. Install Git for Windows – Explain what Git is and why Claude Code needs it. Walk me through the installer screen by screen if I share screenshots. Make sure I understand what PATH means and why it matters. After installation, have me verify it worked by running a command. 2. Handle the Git Bash path proactively – A common issue on Windows is that Git sometimes installs to a non-default location (like AppData\\Local\\Programs\\Git instead of C:\\Program Files\\Git), which causes Claude Code's installer to silently fail. BEFORE I install Claude Code, have me run a command to find where Git Bash actually installed, and then have me set the CLAUDE_CODE_GIT_BASH_PATH environment variable as a permanent User variable pointing to the correct bash.exe location. Do not skip this step – it prevents a confusing problem later. 3. Install Claude Code – Walk me through running the official Windows installer (irm https://claude.ai/install.ps1 | iex) in PowerShell. Help me verify the installation worked and that the \"claude\" command is recognized. If I need to add anything to my PATH, walk me through that with exact steps (System Properties > Environment Variables). I'm on a Team plan through my company. 4. Install VS Code and the Claude Code extension – Explain what VS Code is (a text editor for working with files and code) and why I'd want to use it. Walk me through installing VS Code, then installing the Claude Code extension from the Extensions marketplace. Explain that VS Code with the Claude Code extension is the recommended setup because it gives me a user-friendly interface: I can see my files on the left, edit them in the middle, and chat with Claude Code in a panel. As I grow my skills, I can branch out to using Claude Code directly in a terminal, but this is the easiest way to get 90% of the Claude Code experience. 5. Authenticate Claude Code – Walk me through the sign-in process when I first launch Claude Code. 6. Explain the CLAUDE.md file – Once everything is running, explain what a CLAUDE.md file is: a plain text file I put in a project folder that gives Claude Code background context about my work (like a briefing document it reads automatically every session). Explain what Markdown is in simple terms. Then ask me if I'd like help creating my first one. Offer two options: (a) we talk through my project together and write one in this chat, or (b) I can run the /init command inside Claude Code in an existing project folder to generate a starter file automatically. ## Important guidelines for this conversation: - Explain every concept as you introduce it (terminal, PATH, environment variable, extension, Markdown, etc.). Don't assume I know any development terminology. - Go one step at a time. Don't dump multiple steps on me at once. Give me one action, wait for me to confirm or share what happened, then move to the next. - If something goes wrong, help me troubleshoot patiently. Ask me to share error messages or screenshots. - Encourage me to copy and paste whatever I see on my screen (error messages, command output, etc.) into this chat so you can help me. I can also share screenshots. - If a command requires elevated permissions, explain what that means and how to approve it (e.g., \"Run as Administrator\"). - Don't install extra tools (Python, Node.js, etc.) unless I specifically need them for something. Keep the setup minimal. - Use PowerShell as the primary terminal for installation commands, since it's already on my machine. Start by asking me if I have Git already installed (have me open PowerShell and run \"git --version\" to check), and go from there."
+        - button "" [ref=e407] [cursor=pointer]:
+          - generic [ref=e408]: 
+    - contentinfo [ref=e409]:
+      - paragraph [ref=e411]: Internal Use Only
