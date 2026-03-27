@@ -1338,13 +1338,13 @@
 
     <section id="same-model" class="section section--gray">
   <div class="container">
-    <h2>Everyone uses the same model – every conversation begins from the same starting point</h2>
+    <h2>The model – every conversation starts from the same point</h2>
 
     <!-- ── Row 1: Model explanation + conversations diagram ─── -->
     <div style="display:flex;gap:40px;align-items:flex-start;margin-top:12px;margin-bottom:40px;flex-wrap:wrap;">
       <div style="flex:1 1 0;min-width:240px;">
         <p class="section-body" style="margin-top:0;margin-bottom:0;">
-          At its core, a model is a
+          A model is a
           <span class="define-term"><strong>neural network</strong><span class="define-tip"><strong>Neural network</strong>A structure made of billions of simple units (called neurons) linked by connections. Each connection carries a numerical value called a <strong>weight</strong> that controls how strongly one unit influences another. Training adjusts these weights until the network produces useful, coherent language.<em>Think of it like tuning billions of tiny dials until the system gets the answers right.</em></span></span>
           that has been trained on massive amounts of text. Training is what gives the model everything it knows. Once training ends, the model is
           <span class="define-term"><strong>locked</strong><span class="define-tip"><strong>Frozen model</strong>After training, a model's internal values cannot change. No user interaction, feedback, or conversation can alter them.<em>The model you use today is identical to the model someone else used yesterday.</em></span></span>
@@ -1353,28 +1353,52 @@
       </div>
       <div style="flex:2 1 0;min-width:320px;max-width:66%;">
         <div class="diagram-wrap" style="margin-top:0;padding:28px 24px;">
-          <div style="display:flex;align-items:center;gap:24px;">
-            <!-- Conversations column -->
-            <div style="display:flex;flex-direction:column;gap:16px;max-width:240px;">
-              <!-- Conversation A -->
-              <div style="background:#ffffff;border:1.5px solid #dcdfe5;border-radius:8px;padding:12px 14px;">
-                <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11px;font-weight:700;color:#728197;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Conversation A</div>
-                <div style="background:#f4f6fa;border:1px solid #dcdfe5;border-radius:5px;padding:6px 10px;font-family:'Source Sans 3',Arial,sans-serif;font-size:12px;color:#132e53;margin-bottom:6px;">"Draft a client proposal"</div>
-                <div style="background:#039fb8;border-radius:5px;padding:6px 10px;font-family:'Source Sans 3',Arial,sans-serif;font-size:12px;color:#ffffff;margin-left:12px;">Here is a proposal…</div>
-              </div>
-              <!-- Conversation B -->
-              <div style="background:#ffffff;border:1.5px solid #dcdfe5;border-radius:8px;padding:12px 14px;">
-                <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11px;font-weight:700;color:#728197;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Conversation B</div>
-                <div style="background:#f4f6fa;border:1px solid #dcdfe5;border-radius:5px;padding:6px 10px;font-family:'Source Sans 3',Arial,sans-serif;font-size:12px;color:#132e53;margin-bottom:6px;">"Summarise this report"</div>
-                <div style="background:#039fb8;border-radius:5px;padding:6px 10px;font-family:'Source Sans 3',Arial,sans-serif;font-size:12px;color:#ffffff;margin-left:12px;">The key findings are…</div>
-              </div>
+          <!-- Radial layout: icons centered, prompt boxes surrounding with connecting lines -->
+          <div style="position:relative;width:520px;height:340px;max-width:100%;margin:0 auto;">
+
+            <!-- SVG connecting lines (dashed gray) -->
+            <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 520 340" preserveAspectRatio="none">
+              <!-- Manager (right edge) → stops 20px before icon left edge -->
+              <line x1="160" y1="45" x2="208" y2="100" stroke="#c8cdd5" stroke-width="1.5" stroke-dasharray="5,3"/>
+              <!-- Exec (left edge) → stops 20px after icon right edge -->
+              <line x1="360" y1="95" x2="312" y2="128" stroke="#c8cdd5" stroke-width="1.5" stroke-dasharray="5,3"/>
+              <!-- Consultant (right edge) → stops 20px before icon left edge -->
+              <line x1="160" y1="235" x2="208" y2="210" stroke="#c8cdd5" stroke-width="1.5" stroke-dasharray="5,3"/>
+              <!-- BD (left edge) → stops 20px after icon right edge -->
+              <line x1="360" y1="293" x2="312" y2="240" stroke="#c8cdd5" stroke-width="1.5" stroke-dasharray="5,3"/>
+            </svg>
+
+            <!-- Center: model icons -->
+            <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:10px;align-items:center;">
+              <img src="icon-opus.svg" alt="Opus" style="width:64px;height:64px;display:block;">
+              <img src="icon-sonnet.svg" alt="Sonnet" style="width:64px;height:64px;display:block;">
+              <img src="icon-haiku.svg" alt="Haiku" style="width:64px;height:64px;display:block;">
             </div>
-            <!-- Model icons column -->
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-              <img src="icon-opus.svg" alt="Opus" style="width:32px;height:32px;">
-              <img src="icon-sonnet.svg" alt="Sonnet" style="width:32px;height:32px;">
-              <img src="icon-haiku.svg" alt="Haiku" style="width:32px;height:32px;">
+
+            <!-- Manager: top-left -->
+            <div style="position:absolute;left:0;top:7px;width:160px;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:14px;padding:11px 13px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.4;">Draft talking points for tomorrow's all-hands</div>
+              <div style="margin-top:7px;font-family:'Source Sans 3',Arial,sans-serif;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">Manager</div>
             </div>
+
+            <!-- Exec: top-right, staggered down -->
+            <div style="position:absolute;right:0;top:57px;width:160px;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:14px;padding:11px 13px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.4;">Summarize this Q3 deck into three bullet points</div>
+              <div style="margin-top:7px;font-family:'Source Sans 3',Arial,sans-serif;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">Exec</div>
+            </div>
+
+            <!-- Consultant: bottom-left, staggered up -->
+            <div style="position:absolute;left:0;top:197px;width:160px;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:14px;padding:11px 13px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.4;">Draft a client proposal for the Q2 engagement</div>
+              <div style="margin-top:7px;font-family:'Source Sans 3',Arial,sans-serif;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">Consultant</div>
+            </div>
+
+            <!-- BD: bottom-right -->
+            <div style="position:absolute;right:0;top:255px;width:160px;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:14px;padding:11px 13px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.4;">Write a follow-up email from today's intro call</div>
+              <div style="margin-top:7px;font-family:'Source Sans 3',Arial,sans-serif;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">BD</div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -2205,7 +2229,7 @@
     <section id="claude-code" class="section section--gray">
       <div class="container">
         <h2>Start building in 30 minutes</h2>
-        <p class="section-body" style="margin-top:12px;margin-bottom:32px;">To set up Claude Code on Windows, copy the prompt below and paste it into <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>. Claude will guide you from there, one step at a time.</p>
+        <p class="section-body" style="margin-top:12px;margin-bottom:32px;">To set up Claude Code on Windows, copy the prompt below and paste in <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>. Claude will guide you from there, one step at a time.</p>
 
         <div class="claude-chat">
           <div class="claude-chat__body" id="promptText">I'm a consultant at North Highland and I need your help installing and setting up Claude Code on my Windows machine. I have little coding or development experience, so please explain concepts as we progress through this entire conversation.
