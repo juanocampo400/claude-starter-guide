@@ -1420,17 +1420,19 @@
             <div style="display:flex;flex-direction:column;align-items:center;margin:5px 0 1px;">
               <div style="width:1.5px;height:14px;background:#555;"></div>
               <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11px;color:#555;margin:2px 0;">tokens</div>
+              <div style="width:1.5px;height:10px;background:#555;"></div>
               <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #555;"></div>
             </div>
 
             <!-- Colored tokens (dynamic) -->
-            <div id="tokenizer-chips" style="width:100%;padding:4px 0;min-height:2.4em;">
+            <div id="tokenizer-chips" style="width:100%;padding:10px 14px;min-height:2.4em;background:#ffffff;border-radius:0;">
             </div>
 
             <!-- Arrow: "token IDs" -->
             <div style="display:flex;flex-direction:column;align-items:center;margin:1px 0 5px;">
               <div style="width:1.5px;height:14px;background:#555;"></div>
               <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:11px;color:#555;margin:2px 0;">token IDs</div>
+              <div style="width:1.5px;height:10px;background:#555;"></div>
               <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #555;"></div>
             </div>
 
@@ -1499,11 +1501,47 @@
       return tokens;
     }
 
+    var lastGoodText = "";
+    var IDS_MAX_LINES = 2;
+
     function update() {
       var text = input.textContent || "";
       placeholder.style.display = text ? "none" : "";
       var toks = tokenize(text);
       /* Build chips */
+      var chipHTML = "";
+      var ids = [];
+      for (var i = 0; i < toks.length; i++) {
+        var bg = COLORS[i % COLORS.length];
+        var t  = toks[i];
+        chipHTML += '<span class="token-chip" style="background:' + bg + ';">'
+                  + t.replace(/</g,"&lt;").replace(/>/g,"&gt;") + '</span> ';
+        ids.push(tokenId(t));
+      }
+      chipsEl.innerHTML = chipHTML;
+      idsEl.textContent = ids.join(", ");
+
+      /* Check if token IDs exceed two lines; if so, revert */
+      var lineHeight = parseFloat(getComputedStyle(idsEl).lineHeight) || 18;
+      if (idsEl.scrollHeight > lineHeight * IDS_MAX_LINES + 4) {
+        input.textContent = lastGoodText;
+        update_render(lastGoodText);
+        /* Restore cursor to end */
+        var range = document.createRange();
+        var sel = window.getSelection();
+        range.selectNodeContents(input);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        return;
+      }
+      lastGoodText = text;
+    }
+
+    /* Render without overflow check (used by revert) */
+    function update_render(text) {
+      placeholder.style.display = text ? "none" : "";
+      var toks = tokenize(text);
       var chipHTML = "";
       var ids = [];
       for (var i = 0; i < toks.length; i++) {
