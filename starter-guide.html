@@ -699,17 +699,67 @@
     }
 
     /* ========================================
-       Info Cards Grid (Section 5)
+       Method Strip — horizontal logo-grid
        ======================================== */
-    .info-cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 32px;
+    .method-strip__label {
+      text-align: center;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--nh-slate);
+      margin: 36px 0 16px;
+      letter-spacing: 0.01em;
     }
 
-    .info-cards .card--full {
-      grid-column: 1 / -1;
+    .method-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      padding-bottom: 8px;
+    }
+
+    .method-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--nh-ice-blue);
+      border: 1px solid var(--nh-divider);
+      border-radius: 0;
+      padding: 16px 20px;
+      flex: 1 1 0;
+      transition: box-shadow 0.2s;
+    }
+
+    .method-chip:hover {
+      box-shadow: 0 2px 12px rgba(19, 46, 83, 0.07);
+    }
+
+    .method-chip i {
+      color: var(--nh-teal);
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .method-chip__text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .method-chip__text strong {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--nh-navy);
+    }
+
+    .method-chip__text span {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--nh-slate);
+      line-height: 1.35;
     }
 
     /* ========================================
@@ -908,10 +958,11 @@
     }
 
     /* ========================================
-       Section 5 Responsive
+       Method Strip Responsive
        ======================================== */
     @media (max-width: 768px) {
-      #getting-info-in .info-cards { grid-template-columns: 1fr !important; }
+      .method-strip { gap: 10px; }
+      .method-chip { padding: 12px 14px; }
     }
 
     .section-body { max-width: 680px; }
@@ -1119,13 +1170,11 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar__label">Guide Contents</div>
     <ul class="sidebar__nav">
-      <li><a href="#models-vs-products">Models vs. Products</a></li>
-      <li><a href="#same-model">Same Model, Every Time</a></li>
-      <li><a href="#tokens">Tokens</a></li>
-      <li><a href="#context-window">The Context Window</a></li>
-      <li><a href="#getting-info-in">Getting Information In</a></li>
-      <li><a href="#agents-in-action">Agents in Action</a></li>
-      <li><a href="#claude-code">Start Building</a></li>
+      <li><a href="#models-vs-products">Model vs. product</a></li>
+      <li><a href="#same-model">What the model knows</a></li>
+      <li><a href="#context-window">The context window</a></li>
+      <li><a href="#agents-in-action">Models working together</a></li>
+      <li><a href="#claude-code">Try it yourself</a></li>
     </ul>
   </aside>
 
@@ -1254,7 +1303,7 @@
     <!-- ============ Section 1: Models vs. Products ============ -->
     <section id="models-vs-products" class="section section--white">
       <div class="container">
-        <h2>Models vs products – 'Claude' can mean many things</h2>
+        <h2>"Claude" is both a model and a product.</h2>
         <p class="section-body" style="margin-top:12px;margin-bottom:32px;">You can think of <span class="define-term"><strong>models</strong><span class="define-tip"><strong>Large Language Model (LLM)</strong>A family of state-of-the-art AI systems trained on broad data to understand and generate human language. Claude's models (Opus, Sonnet, Haiku) differ in capability, speed, and cost.<em><a href="https://docs.anthropic.com/en/docs/about-claude/models" target="_blank" rel="noopener">Source: Anthropic docs</a></em></span></span> as the brains and <span class="define-term"><strong>products</strong><span class="define-tip"><strong>Product</strong>A user-facing application built on top of one or more models. Each product (Claude.ai, Claude Code, Cowork) provides a different interface and toolset for interacting with the underlying AI.<em><a href="https://claude.com/product/overview" target="_blank" rel="noopener">Source: Anthropic</a></em></span></span> as the hands and feet. Models are the Artificial Intelligence itself, each with different tradeoffs between capability and speed. Products are the workspaces that give those models different tools to work with.</p>
         <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:48px 40px;" class="card--with-screenshot">
           <div class="split">
@@ -1330,10 +1379,10 @@
 
     <section id="same-model" class="section section--gray">
   <div class="container">
-    <h2>The model – every conversation starts from the same point</h2>
+    <h2>The model learned everything it knows during training, then stopped.</h2>
 
     <!-- ── Row 1: Model explanation + conversations diagram ─── -->
-    <div style="display:flex;gap:40px;align-items:flex-start;margin-top:12px;margin-bottom:40px;flex-wrap:wrap;">
+    <div style="display:flex;gap:40px;align-items:center;margin-top:32px;margin-bottom:40px;flex-wrap:wrap;">
       <div style="flex:1 1 0;min-width:240px;">
         <p class="section-body" style="margin-top:0;margin-bottom:0;">
           A model is a
@@ -1397,12 +1446,12 @@
     </div>
 
     <!-- ── Row 2: Tokens explanation + tokenizer visual ──── -->
-    <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;">
+    <div style="display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
       <div style="flex:1 1 0;min-width:240px;">
         <p class="section-body" style="margin-top:0;margin-bottom:0;">
-          The model does not see context like you do. It breaks text, audio, video, and images into 
+          The model does not see things like we do. It breaks text, audio, video, and images into 
           <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.<em>Think of tokens as the model's alphabet.</em></span></span>
-          – small chunks, each corresponding to an ID in the model's vocabulary. Your question, any documents you attach, and every word the model writes back all count as tokens. This matters because the model has a limited budget of tokens per conversation.
+          – small chunks, each corresponding to an ID in the model's vocabulary. Your question, any documents you attach, and every word the model writes back all count as tokens. This is why some things that seem trivial to us, like counting dots in a message, can trip it up – it can only see these tokens. Together these tokens make up the model's context. 
         </p>
       </div>
       <div style="flex:2 1 0;min-width:320px;max-width:66%;">
@@ -1577,16 +1626,20 @@
 
   <div class="container">
 
-    <h2>The context window – the only memory Claude has</h2>
+    <h2>Every conversation, the model starts with a fresh context window.</h2>
 
     <p class="section-body">
       Every conversation with Claude happens inside a
       <span class="define-term"><strong>context window</strong><span class="define-tip"><strong>Context Window</strong>A fixed-size container (measured in tokens) that holds everything the model can see in one conversation. When it fills up, older content is dropped.<em>Think of it as the model's short-term working memory.</em></span></span>
       – a fixed-size container that holds your messages, Claude's replies, uploaded files, and any background instructions, all at once.
       When the window fills up, older content is dropped and the model has no way to retrieve it.
+      As tokens pile up, costs rise and performance degrades (sometimes called "context rot").
       The practical insight is that
       <span class="define-term"><strong>system prompts</strong><span class="define-tip"><strong>System Prompt</strong>Hidden instructions sent to the model by the product or platform before your conversation begins. They shape Claude's tone, rules, and behavior without being visible to you.<em>Every Claude product has one; they vary widely.</em></span></span>,
       CLAUDE.md files, and project instructions are not magic features – they are simply text loaded into the window before you type your first message.
+      There are several ways to get information in, from simple copy-paste to file uploads to automated
+      <span class="define-term"><strong>connectors</strong><span class="define-tip"><strong>MCP (Model Context Protocol)</strong>An open standard that lets Claude reach into external systems like SharePoint, Slack, Google Drive, Jira, and databases. Called "connectors" in the Claude.ai interface; in Claude Code, you configure them as MCP servers.<em>Think of it as giving Claude permission to look things up on your behalf.</em></span></span>
+      that pull data from tools like Slack or SharePoint. No matter the method, the result is the same: tokens in the context window.
     </p>
 
     <!-- ── Interactive Visual ───────────────────────────────────────── -->
@@ -1907,128 +1960,44 @@
     render(0);
   })();
   </script>
-</section>
 
-    
-
-    <!-- ============ Section 5: Getting Information In ============ -->
-
-<section id="getting-info-in" class="section section--white">
+  <!-- Method strip — tools that bring outside info into context -->
   <div class="container">
-
-    <h2>Getting information in – every source becomes tokens in the same window</h2>
-
-    <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
-      Claude can only work with what is inside its context window. There are several ways to get information in, from copy-paste to automated
-      <span class="define-term"><strong>connectors</strong><span class="define-tip"><strong>MCP (Model Context Protocol)</strong>A standard that lets Claude reach out to external data sources like SharePoint, Slack, email, and databases. Called "connectors" in the Claude.ai interface.<em>Think of it as giving Claude permission to look things up on your behalf.</em></span></span>.
-      No matter which method you use, the result is the same: tokens added to the context window.
-    </p>
-
-    <!-- Convergence diagram -->
-    <div class="diagram-wrap" style="text-align:center;">
-
-      <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" class="diagram-svg" style="max-width:600px;" aria-label="Diagram showing information sources converging into a single context window">
-
-        <!-- Source 1: File upload (teal) -->
-        <rect x="30" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#039fb8" stroke-width="1.5"/>
-        <path d="M78,52 Q78,42 90,42 Q90,35 98,35 Q110,35 110,47 Q116,47 116,54 Q116,60 110,60 L78,60 Q70,60 70,54 Q70,48 78,52 Z" fill="none" stroke="#039fb8" stroke-width="2" stroke-linejoin="round"/>
-        <line x1="90" y1="60" x2="90" y2="70" stroke="#039fb8" stroke-width="2"/>
-        <polygon points="85,66 90,73 95,66" fill="#039fb8"/>
-        <text x="90" y="94" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#039fb8" letter-spacing="0.05em">FILE UPLOAD</text>
-        <text x="90" y="107" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">Claude.ai</text>
-
-        <!-- Source 2: Direct file access (navy) -->
-        <rect x="240" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#132e53" stroke-width="1.5"/>
-        <path d="M275,55 L275,45 Q275,43 277,43 L285,43 L287,40 L313,40 Q315,40 315,42 L315,55 Q315,57 313,57 L277,57 Q275,57 275,55 Z" fill="none" stroke="#132e53" stroke-width="2" stroke-linejoin="round"/>
-        <text x="300" y="94" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#132e53" letter-spacing="0.05em">DIRECT ACCESS</text>
-        <text x="300" y="107" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">Claude Code</text>
-
-        <!-- Source 3: Connectors / MCP (amber) -->
-        <rect x="450" y="20" width="120" height="60" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
-        <rect x="497" y="38" width="16" height="18" rx="3" fill="none" stroke="#f59e0b" stroke-width="2"/>
-        <line x1="499" y1="38" x2="499" y2="33" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <line x1="511" y1="38" x2="511" y2="33" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <line x1="505" y1="56" x2="505" y2="63" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <text x="510" y="94" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" font-weight="700" fill="#f59e0b" letter-spacing="0.05em">CONNECTORS</text>
-        <text x="510" y="107" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">All products</text>
-
-        <!-- Converging lines -->
-        <line x1="150" y1="50" x2="270" y2="165" stroke="#039fb8" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <polygon points="266,160 274,169 278,159" fill="#039fb8"/>
-        <line x1="300" y1="80" x2="300" y2="165" stroke="#132e53" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <polygon points="295,160 300,170 305,160" fill="#132e53"/>
-        <line x1="450" y1="50" x2="330" y2="165" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <polygon points="322,159 326,169 334,160" fill="#f59e0b"/>
-
-        <!-- Context Window bar -->
-        <rect x="60" y="175" width="480" height="36" rx="6" fill="#f1f5f9"/>
-        <rect x="60" y="175" width="480" height="36" rx="6" fill="none" stroke="#dcdfe5" stroke-width="1.5"/>
-        <rect x="60" y="175" width="320" height="36" rx="6" fill="#132e53" opacity="0.12"/>
-        <rect x="68" y="182" width="38" height="22" rx="3" fill="#039fb8" opacity="0.85"/>
-        <text x="87" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">Upload</text>
-        <rect x="112" y="182" width="48" height="22" rx="3" fill="#132e53" opacity="0.85"/>
-        <text x="136" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">File read</text>
-        <rect x="166" y="182" width="58" height="22" rx="3" fill="#f59e0b" opacity="0.9"/>
-        <text x="195" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="9" fill="#ffffff" font-weight="700">Connector</text>
-        <rect x="230" y="182" width="38" height="22" rx="3" fill="#039fb8" opacity="0.6"/>
-        <rect x="274" y="182" width="48" height="22" rx="3" fill="#132e53" opacity="0.5"/>
-        <rect x="328" y="182" width="24" height="22" rx="3" fill="#f59e0b" opacity="0.4"/>
-        <text x="440" y="197" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="10" fill="#728197">· · · capacity · · ·</text>
-        <text x="300" y="228" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="12" font-weight="700" fill="#132e53" letter-spacing="0.04em">CONTEXT WINDOW</text>
-        <text x="300" y="250" text-anchor="middle" font-family="'Source Sans 3',Arial,sans-serif" font-size="11" fill="#728197">No matter the source, it all becomes tokens in the same window.</text>
-
-      </svg>
+    <p class="method-strip__label">Tools that bring outside information into the context window</p>
+    <div class="method-strip">
+      <div class="method-chip">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="method-chip__text">
+          <strong>Web search &amp; browsing</strong>
+          <span>Search the web or interact with live pages via browser tools and extensions.</span>
+        </div>
+      </div>
+      <div class="method-chip">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <div class="method-chip__text">
+          <strong>File upload</strong>
+          <span>Drag PDFs, spreadsheets, images, or code into Claude.ai.</span>
+        </div>
+      </div>
+      <div class="method-chip">
+        <i class="fa-solid fa-folder-open"></i>
+        <div class="method-chip__text">
+          <strong>Direct file access</strong>
+          <span>Claude Code and Cowork read, edit, and create files straight from your machine.</span>
+        </div>
+      </div>
+      <div class="method-chip">
+        <i class="fa-solid fa-plug"></i>
+        <div class="method-chip__text">
+          <strong>MCP Servers</strong>
+          <span>Pull data from Outlook, SharePoint, and databases, or control apps like PowerPoint.</span>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Method cards -->
-    <div class="info-cards">
-
-      <div class="card">
-        <div class="card__icon"><i class="fa-solid fa-paste"></i></div>
-        <div class="card__label">All products</div>
-        <h3>Copy and paste</h3>
-        <p>The simplest method. Paste text, data, or error messages directly into the chat. Good for quick questions when the information is already on your screen.</p>
-      </div>
-
-      <div class="card">
-        <div class="card__icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-        <div class="card__label">Claude.ai &amp; Claude Code</div>
-        <h3>Web search</h3>
-        <p>Claude can search the web mid-conversation and pull results into context. Useful when you need current information that was not included in Claude's training data.</p>
-      </div>
-
-      <div class="card">
-        <div class="card__icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-        <div class="card__label">Claude.ai</div>
-        <h3>File upload</h3>
-        <p>Drag files into the chat: PDFs, spreadsheets, images, code. Claude reads them and adds the content to the context window. Best for one-off documents you want Claude to analyze.</p>
-      </div>
-
-      <div class="card">
-        <div class="card__icon"><i class="fa-solid fa-folder-open"></i></div>
-        <div class="card__label">Claude Code</div>
-        <h3>Direct file access</h3>
-        <p>Claude Code runs on your machine and reads files directly from your folders. No uploading needed. It can browse, open, and edit files as part of a task.</p>
-      </div>
-
-      <div class="card card--full">
-        <div class="card__icon"><i class="fa-solid fa-plug"></i></div>
-        <div class="card__label">All products</div>
-        <h3>Connectors (MCP)</h3>
-        <p>
-          <span class="define-term"><strong>MCP connectors</strong><span class="define-tip"><strong>MCP (Model Context Protocol)</strong>An open standard that lets Claude reach into external systems like SharePoint, Slack, Google Drive, Jira, and databases. Called "connectors" in the Claude.ai interface; in Claude Code, you configure them as MCP servers.<em><a href="https://docs.anthropic.com/en/docs/agents-and-tools/mcp" target="_blank" rel="noopener">Source: Anthropic docs</a></em></span></span>
-          let Claude pull live data from systems like SharePoint, Slack, Google Drive, and databases. Instead of you copying information out of those systems, Claude reaches in and retrieves what it needs. This is the most powerful method because it keeps Claude's context current and eliminates manual steps.
-        </p>
-      </div>
-
-    </div><!-- end info-cards -->
-
-    <div class="callout">
-      <strong>Key insight:</strong> Every method does the same thing – it puts tokens in the context window. The only differences are convenience and how much you have to do manually.
-    </div>
-
-  </div><!-- end container -->
 </section>
+
 
     
 
@@ -2037,7 +2006,7 @@
     <section id="agents-in-action" class="section section--gray">
   <div class="container">
 
-    <h2>Agents in action – this is where model selection pays off</h2>
+    <h2>With the right context, models can work together to automate complex work.</h2>
 
     <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
       In the first section you learned that Claude has three models with different strengths. In Claude Code, a single task can use all three at once. Opus plans the work and makes judgment calls. Haiku handles high-volume scanning where speed matters more than depth. Sonnet does the detailed analysis in between. Each
@@ -2361,7 +2330,7 @@
         <!-- ============ Section 6: Try Claude Code (Real Content) ============ -->
     <section id="claude-code" class="section section--gray">
       <div class="container">
-        <h2>Start building in 30 minutes</h2>
+        <h2>Try it. Set up Claude Code and build something.</h2>
         <p class="section-body" style="margin-top:12px;margin-bottom:32px;">To set up Claude Code on Windows, copy the prompt below and paste in <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>. Claude will guide you from there, one step at a time.</p>
 
         <div class="claude-chat">
