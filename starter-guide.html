@@ -1409,9 +1409,10 @@
         <div class="diagram-wrap" style="margin-top:0;padding:20px 24px;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
 
-            <!-- User prompt box -->
-            <div style="width:100%;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:12px;padding:10px 14px 8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-              <div style="font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#1a1a1a;line-height:1.45;">Draft an email to summarize the last week for my client's executive board</div>
+            <!-- User prompt box (editable) -->
+            <div style="width:100%;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:12px;padding:10px 14px 8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);position:relative;">
+              <div id="tokenizer-input" contenteditable="true" spellcheck="false" style="font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#1a1a1a;line-height:1.45;min-height:1.45em;outline:none;position:relative;z-index:1;"></div>
+              <div id="tokenizer-placeholder" style="font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#b0b5be;line-height:1.45;position:absolute;top:10px;left:14px;pointer-events:none;">Type here...</div>
               <div style="margin-top:6px;font-family:'Source Sans 3',Arial,sans-serif;font-size:9px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;text-align:right;">User</div>
             </div>
 
@@ -1422,9 +1423,8 @@
               <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #555;"></div>
             </div>
 
-            <!-- Colored tokens -->
-            <div style="width:100%;padding:4px 0;">
-              <span class="token-chip" style="background:#dbeafe;">Draft</span> <span class="token-chip" style="background:#d1fae5;">an</span> <span class="token-chip" style="background:#fce7f3;">email</span> <span class="token-chip" style="background:#fef3c7;">to</span> <span class="token-chip" style="background:#d1fae5;">summarize</span> <span class="token-chip" style="background:#fce7f3;">the</span> <span class="token-chip" style="background:#dbeafe;">last</span> <span class="token-chip" style="background:#fef3c7;">week</span> <span class="token-chip" style="background:#dbeafe;">for</span> <span class="token-chip" style="background:#fce7f3;">my</span> <span class="token-chip" style="background:#fef3c7;">clien</span><span class="token-chip" style="background:#fce7f3;">t's</span> <span class="token-chip" style="background:#ede9fe;">executive</span> <span class="token-chip" style="background:#d1fae5;">board</span>
+            <!-- Colored tokens (dynamic) -->
+            <div id="tokenizer-chips" style="width:100%;padding:4px 0;min-height:2.4em;">
             </div>
 
             <!-- Arrow: "token IDs" -->
@@ -1434,9 +1434,9 @@
               <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #555;"></div>
             </div>
 
-            <!-- Token IDs box (Model) -->
+            <!-- Token IDs box (Model, dynamic) -->
             <div style="width:100%;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:12px;padding:10px 14px 8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-              <div style="font-family:'Source Code Pro','Courier New',monospace;font-size:12px;color:#1a1a1a;line-height:1.5;">360, 4154, 385, 4876, 304, 19138, 675, 278, 1833, 4723, 363, 590, 3132, 29915, 29879, 22760, 7613</div>
+              <div id="tokenizer-ids" style="font-family:'Source Code Pro','Courier New',monospace;font-size:12px;color:#1a1a1a;line-height:1.5;min-height:1.5em;"></div>
               <div style="margin-top:6px;font-family:'Source Sans 3',Arial,sans-serif;font-size:9px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;text-align:right;">Model</div>
             </div>
 
@@ -1446,9 +1446,92 @@
     </div>
 
   </div>
+
+  <!-- Interactive tokenizer logic -->
+  <script>
+  (function() {
+    const input       = document.getElementById("tokenizer-input");
+    const placeholder = document.getElementById("tokenizer-placeholder");
+    const chipsEl     = document.getElementById("tokenizer-chips");
+    const idsEl       = document.getElementById("tokenizer-ids");
+
+    const COLORS = ["#dbeafe","#d1fae5","#fce7f3","#fef3c7","#ede9fe"];
+
+    /* Simple hash to generate a stable "token ID" per string */
+    function tokenId(s) {
+      var h = 0;
+      for (var i = 0; i < s.length; i++) {
+        h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+      }
+      return Math.abs(h) % 90000 + 100;          // range 100–90099
+    }
+
+    /* Lightweight pseudo-tokenizer: splits on spaces, then breaks words
+       into subword chunks the way a BPE tokenizer would.              */
+    function splitSubword(w) {
+      /* First try natural seams: camelCase, apostrophes, digit runs */
+      var natural = w.match(/[A-Z]?[a-z]+|[A-Z]+(?=[A-Z]|$)|\d+|['']\w+|[^A-Za-z0-9'']+/g);
+      if (natural && natural.length > 1) return natural;
+      /* No natural seams; chunk into 2-4 char pieces (BPE-like) */
+      var chunks = [];
+      var pos = 0;
+      /* Use a seeded step size based on char codes for variety */
+      while (pos < w.length) {
+        var step = 2 + (w.charCodeAt(pos) % 3);   // 2, 3, or 4
+        if (pos + step >= w.length) step = w.length - pos;  // take remainder
+        chunks.push(w.slice(pos, pos + step));
+        pos += step;
+      }
+      return chunks;
+    }
+
+    function tokenize(text) {
+      if (!text.trim()) return [];
+      var words = text.split(/(\s+)/);
+      var tokens = [];
+      for (var i = 0; i < words.length; i++) {
+        var w = words[i];
+        if (!w || /^\s+$/.test(w)) continue;
+        if (w.length <= 5) { tokens.push(w); continue; }
+        var parts = splitSubword(w);
+        for (var j = 0; j < parts.length; j++) tokens.push(parts[j]);
+      }
+      return tokens;
+    }
+
+    function update() {
+      var text = input.textContent || "";
+      placeholder.style.display = text ? "none" : "";
+      var toks = tokenize(text);
+      /* Build chips */
+      var chipHTML = "";
+      var ids = [];
+      for (var i = 0; i < toks.length; i++) {
+        var bg = COLORS[i % COLORS.length];
+        var t  = toks[i];
+        chipHTML += '<span class="token-chip" style="background:' + bg + ';">'
+                  + t.replace(/</g,"&lt;").replace(/>/g,"&gt;") + '</span> ';
+        ids.push(tokenId(t));
+      }
+      chipsEl.innerHTML = chipHTML;
+      idsEl.textContent = ids.join(", ");
+    }
+
+    input.addEventListener("input", update);
+    /* Also catch paste to strip formatting */
+    input.addEventListener("paste", function(e) {
+      e.preventDefault();
+      var text = (e.clipboardData || window.clipboardData).getData("text/plain");
+      document.execCommand("insertText", false, text);
+    });
+    /* Initialize empty */
+    update();
+  })();
+  </script>
+
 </section>
 
-    
+
 
     <!-- ============ Section 4: Context Window ============ -->
 
