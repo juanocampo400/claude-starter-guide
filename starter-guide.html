@@ -1138,11 +1138,21 @@
       color: var(--nh-slate);
     }
 
+    .card--with-screenshot {
+      background: var(--nh-ice-blue);
+      border-radius: 6px;
+      border: 1px solid var(--nh-divider);
+      padding: 48px 40px;
+    }
+
     .card--with-screenshot .split {
       margin-bottom: 36px;
     }
 
     .screenshot-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--nh-divider);
@@ -1153,6 +1163,230 @@
       width: 100%;
       display: block;
     }
+
+    /* ========================================
+       Extracted Inline Styles
+       ======================================== */
+
+    /* Section body modifiers */
+    .section-body--spaced { margin-top: 12px; margin-bottom: 32px; }
+    .section-body--flush  { margin-top: 0; margin-bottom: 0; }
+
+    /* Hero date subtitle */
+    .hero__date {
+      font-size: 14px;
+      margin-top: 8px;
+      margin-bottom: 0;
+      color: var(--nh-teal);
+      font-style: normal;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Icon sizes */
+    .icon--sm { width: 32px; height: 32px; }
+    .icon--lg { width: 64px; height: 64px; display: block; }
+
+    /* Content row layout (training section) */
+    .content-row {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .content-row__text  { flex: 1 1 0; min-width: 240px; }
+    .content-row__visual { flex: 2 1 0; min-width: 320px; max-width: 53%; }
+
+    /* Screenshot highlights */
+    .screenshot-highlight {
+      position: absolute;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 6px;
+    }
+
+    .screenshot-highlight__label {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Diagram wrap modifier */
+    .diagram-wrap--flush { margin-top: 0; }
+
+    /* Radial layout (training diagram) */
+    .radial-layout {
+      position: relative;
+      width: 520px;
+      height: 340px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .radial-layout__center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .svg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Prompt bubbles (training diagram) */
+    .prompt-bubble {
+      position: absolute;
+      width: 160px;
+      background: #ffffff;
+      border: 1.5px solid #d5d7dc;
+      border-radius: 14px;
+      padding: 11px 13px 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .prompt-bubble__text {
+      font-family: 'Outfit', 'Source Sans 3', Arial, sans-serif;
+      font-size: 11.5px;
+      color: #1a1a1a;
+      line-height: 1.4;
+    }
+
+    .prompt-bubble__role {
+      margin-top: 7px;
+      font-family: 'Outfit', 'Source Sans 3', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: #9ca3af;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Tokenizer UI (training section) */
+    .tokenizer-box {
+      width: 100%;
+      background: #ffffff;
+      border: 1.5px solid #d5d7dc;
+      border-radius: 12px;
+      padding: 10px 14px 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .tokenizer-input {
+      font-family: 'Outfit', 'Source Sans 3', Arial, sans-serif;
+      font-size: 13px;
+      color: #1a1a1a;
+      line-height: 1.45;
+      min-height: 1.45em;
+      outline: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tokenizer-placeholder {
+      font-family: 'Outfit', 'Source Sans 3', Arial, sans-serif;
+      font-size: 13px;
+      color: #b0b5be;
+      line-height: 1.45;
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      pointer-events: none;
+      display: none;
+    }
+
+    .tokenizer-box__footer {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tokenizer-hint {
+      font-family: 'Outfit', 'Source Sans 3', Arial, sans-serif;
+      font-size: 9px;
+      color: #9ca3af;
+      letter-spacing: 0.02em;
+      cursor: default;
+      transition: opacity 0.3s;
+    }
+
+    .tokenizer-label {
+      font-family: 'Outfit', 'Source Sans 3', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      color: #9ca3af;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .tokenizer-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tokenizer-arrow__line { width: 1.5px; background: #555; }
+
+    .tokenizer-arrow__text {
+      font-family: 'Outfit', 'Source Sans 3', Arial, sans-serif;
+      font-size: 11px;
+      color: #555;
+      margin: 2px 0;
+    }
+
+    .tokenizer-arrow__head {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #555;
+    }
+
+    .tokenizer-chips {
+      width: 100%;
+      padding: 10px 14px;
+      min-height: 2.4em;
+      background: #ffffff;
+    }
+
+    .tokenizer-ids {
+      font-family: 'Source Code Pro', 'Courier New', monospace;
+      font-size: 12px;
+      color: #1a1a1a;
+      line-height: 1.5;
+      min-height: 1.5em;
+    }
+
+    .tokenizer-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Context window annotation regions */
+    .cw-ann-region { position: relative; height: 112px; }
+    .cw-ann-region--above { margin-bottom: 0; }
+    .cw-ann-region--below { margin-top: 0; }
   </style>
 </head>
 <body>
@@ -1295,7 +1529,7 @@
         <div class="fade-up">
           <h1>Getting Started with Claude</h1>
           <p class="placeholder">[A brief introductory sentence that describes what this guide covers and who it's for. Keep it to two or three lines.]</p>
-          <p class="placeholder" style="font-size:14px;margin-top:8px;margin-bottom:0;color:var(--nh-teal);font-style:normal;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">April 2026</p>
+          <p class="placeholder hero__date">April 2026</p>
         </div>
       </div>
     </section>
@@ -1304,28 +1538,28 @@
     <section id="models-vs-products" class="section section--white">
       <div class="container">
         <h2>"Claude" is both a model and a product.</h2>
-        <p class="section-body" style="margin-top:12px;margin-bottom:32px;">You can think of <span class="define-term"><strong>models</strong><span class="define-tip"><strong>Large Language Model (LLM)</strong>A family of state-of-the-art AI systems trained on broad data to understand and generate human language. Claude's models (Opus, Sonnet, Haiku) differ in capability, speed, and cost.<em><a href="https://docs.anthropic.com/en/docs/about-claude/models" target="_blank" rel="noopener">Source: Anthropic docs</a></em></span></span> as the brains and <span class="define-term"><strong>products</strong><span class="define-tip"><strong>Product</strong>A user-facing application built on top of one or more models. Each product (Claude.ai, Claude Code, Cowork) provides a different interface and toolset for interacting with the underlying AI.<em><a href="https://claude.com/product/overview" target="_blank" rel="noopener">Source: Anthropic</a></em></span></span> as the hands and feet. Models are the Artificial Intelligence itself, each with different tradeoffs between capability and speed. Products are the workspaces that give those models different tools to work with.</p>
-        <div style="background:var(--nh-ice-blue);border-radius:6px;border:1px solid var(--nh-divider);padding:48px 40px;" class="card--with-screenshot">
+        <p class="section-body section-body--spaced">You can think of <span class="define-term"><strong>models</strong><span class="define-tip"><strong>Large Language Model (LLM)</strong>A family of state-of-the-art AI systems trained on broad data to understand and generate human language. Claude's models (Opus, Sonnet, Haiku) differ in capability, speed, and cost.<em><a href="https://docs.anthropic.com/en/docs/about-claude/models" target="_blank" rel="noopener">Source: Anthropic docs</a></em></span></span> as the brains and <span class="define-term"><strong>products</strong><span class="define-tip"><strong>Product</strong>A user-facing application built on top of one or more models. Each product (Claude.ai, Claude Code, Cowork) provides a different interface and toolset for interacting with the underlying AI.<em><a href="https://claude.com/product/overview" target="_blank" rel="noopener">Source: Anthropic</a></em></span></span> as the hands and feet. Models are the Artificial Intelligence itself, each with different tradeoffs between capability and speed. Products are the workspaces that give those models different tools to work with.</p>
+        <div class="card--with-screenshot">
           <div class="split">
             <div>
               <div class="split__title split__title--models">Models</div>
               <div class="split__items">
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-opus.svg" alt="Opus" style="width:32px;height:32px;"></div>
+                  <div class="split__item-icon"><img src="icon-opus.svg" alt="Opus" class="icon--sm"></div>
                   <div>
                     <div class="split__item-name split__item-name--navy">Opus</div>
                     <div class="split__item-desc">Most capable – best multi-step reasoning, least likely to miss nuance or cut corners</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-sonnet.svg" alt="Sonnet" style="width:32px;height:32px;"></div>
+                  <div class="split__item-icon"><img src="icon-sonnet.svg" alt="Sonnet" class="icon--sm"></div>
                   <div>
                     <div class="split__item-name split__item-name--navy">Sonnet</div>
                     <div class="split__item-desc">Faster responses – strong at coding, structured output, and research</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-haiku.svg" alt="Haiku" style="width:32px;height:32px;"></div>
+                  <div class="split__item-icon"><img src="icon-haiku.svg" alt="Haiku" class="icon--sm"></div>
                   <div>
                     <div class="split__item-name split__item-name--navy">Haiku</div>
                     <div class="split__item-desc">Near-instant responses – good for summaries, short tasks, and quick questions</div>
@@ -1337,21 +1571,21 @@
               <div class="split__title split__title--products">Products</div>
               <div class="split__items">
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-claudecode.svg" alt="Claude Code" style="width:32px;height:32px;"></div>
+                  <div class="split__item-icon"><img src="icon-claudecode.svg" alt="Claude Code" class="icon--sm"></div>
                   <div>
                     <div class="split__item-name split__item-name--teal">Claude Code</div>
                     <div class="split__item-desc">Runs on your computer – works directly in your files, the most you and your team can do with Claude</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-cowork.svg" alt="Claude Cowork" style="width:32px;height:32px;"></div>
+                  <div class="split__item-icon"><img src="icon-cowork.svg" alt="Claude Cowork" class="icon--sm"></div>
                   <div>
                     <div class="split__item-name split__item-name--teal">Claude Cowork</div>
                     <div class="split__item-desc">Inside Claude Desktop – works on your files with no setup needed, but less control than Code</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icon-claudeai.svg" alt="Claude.ai" style="width:32px;height:32px;"></div>
+                  <div class="split__item-icon"><img src="icon-claudeai.svg" alt="Claude.ai" class="icon--sm"></div>
                   <div>
                     <div class="split__item-name split__item-name--teal">Claude.ai</div>
                     <div class="split__item-desc">Chat in your browser (or Claude Desktop app) – upload files, download outputs to your computer</div>
@@ -1360,15 +1594,15 @@
               </div>
             </div>
           </div>
-          <div class="screenshot-wrap" style="max-width:680px;margin:0 auto;position:relative;">
+          <div class="screenshot-wrap">
             <img src="claudeai-chat-and-models-dropdown.png" alt="Claude.ai model selector showing Opus, Sonnet, and Haiku">
             <!-- Product highlight -->
-            <div style="position:absolute;top:2%;left:28%;width:44%;height:17%;border:2px solid rgba(3,159,184,0.65);border-radius:6px;">
-              <span style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:rgba(3,159,184,1);color:white;font-size:11px;font-weight:700;padding:2px 10px;border-radius:4px;white-space:nowrap;text-transform:uppercase;letter-spacing:0.08em;">Product</span>
+            <div class="screenshot-highlight" style="top:2%;left:28%;width:44%;height:17%;border-color:rgba(3,159,184,0.65);">
+              <span class="screenshot-highlight__label" style="bottom:-12px;background:rgba(3,159,184,1);">Product</span>
             </div>
             <!-- Models highlight -->
-            <div style="position:absolute;top:53%;left:50%;width:42%;height:47%;border:2px solid rgba(19,46,83,0.6);border-radius:6px;">
-              <span style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:rgba(19,46,83,1);color:white;font-size:11px;font-weight:700;padding:2px 10px;border-radius:4px;white-space:nowrap;text-transform:uppercase;letter-spacing:0.08em;">Models</span>
+            <div class="screenshot-highlight" style="top:53%;left:50%;width:42%;height:47%;border-color:rgba(19,46,83,0.6);">
+              <span class="screenshot-highlight__label" style="top:-12px;background:rgba(19,46,83,1);">Models</span>
             </div>
           </div>
         </div>
@@ -1382,9 +1616,9 @@
     <h2>The model learned everything it knows during training, and nothing after that.</h2>
 
     <!-- ── Row 1: Model explanation + conversations diagram ─── -->
-    <div style="display:flex;gap:40px;align-items:center;margin-top:32px;margin-bottom:40px;flex-wrap:wrap;">
-      <div style="flex:1 1 0;min-width:240px;">
-        <p class="section-body" style="margin-top:0;margin-bottom:0;">
+    <div class="content-row" style="margin-top:32px;margin-bottom:40px;">
+      <div class="content-row__text">
+        <p class="section-body section-body--flush">
           Models are
           <span class="define-term"><strong>neural networks</strong><span class="define-tip"><strong>Neural network</strong>A structure made of billions of simple units (called neurons) linked by connections. Each connection carries a numerical value called a <strong>weight</strong> that controls how strongly one unit influences another. Training adjusts these weights until the network produces useful, coherent language.<em>Think of it like tuning billions of tiny dials until the system gets the answers right.</em></span></span>
           that were
@@ -1394,13 +1628,13 @@
           date, meaning they have no awareness of events after training data ends. The models you use are the same ones everyone else uses. They do not learn from your conversations, or improve capabilities the more you use them. What you can change is the context you give them in each conversation.
         </p>
       </div>
-      <div style="flex:2 1 0;min-width:320px;max-width:53%;">
-        <div class="diagram-wrap" style="margin-top:0;padding:28px 24px;">
+      <div class="content-row__visual">
+        <div class="diagram-wrap diagram-wrap--flush" style="padding:28px 24px;">
           <!-- Radial layout: icons centered, prompt boxes surrounding with connecting lines -->
-          <div style="position:relative;width:520px;height:340px;max-width:100%;margin:0 auto;">
+          <div class="radial-layout">
 
             <!-- SVG connecting lines (dashed gray) -->
-            <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 520 340" preserveAspectRatio="none">
+            <svg class="svg-overlay" viewBox="0 0 520 340" preserveAspectRatio="none">
               <!-- Manager (right edge) → stops 20px before icon left edge -->
               <line x1="160" y1="45" x2="208" y2="100" stroke="#c8cdd5" stroke-width="1.5" stroke-dasharray="5,3"/>
               <!-- Exec (left edge) → stops 20px after icon right edge -->
@@ -1412,34 +1646,34 @@
             </svg>
 
             <!-- Center: model icons -->
-            <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:10px;align-items:center;">
-              <img src="icon-opus.svg" alt="Opus" style="width:64px;height:64px;display:block;">
-              <img src="icon-sonnet.svg" alt="Sonnet" style="width:64px;height:64px;display:block;">
-              <img src="icon-haiku.svg" alt="Haiku" style="width:64px;height:64px;display:block;">
+            <div class="radial-layout__center">
+              <img src="icon-opus.svg" alt="Opus" class="icon--lg">
+              <img src="icon-sonnet.svg" alt="Sonnet" class="icon--lg">
+              <img src="icon-haiku.svg" alt="Haiku" class="icon--lg">
             </div>
 
             <!-- Manager: top-left -->
-            <div style="position:absolute;left:0;top:7px;width:160px;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:14px;padding:11px 13px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-              <div style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.4;">Draft talking points for tomorrow's all-hands</div>
-              <div style="margin-top:7px;font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">Manager</div>
+            <div class="prompt-bubble" style="left:0;top:7px;">
+              <div class="prompt-bubble__text">Draft talking points for tomorrow's all-hands</div>
+              <div class="prompt-bubble__role">Manager</div>
             </div>
 
             <!-- Exec: top-right, staggered down -->
-            <div style="position:absolute;right:0;top:57px;width:160px;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:14px;padding:11px 13px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-              <div style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.4;">Summarize this Q3 deck into three bullet points</div>
-              <div style="margin-top:7px;font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">Exec</div>
+            <div class="prompt-bubble" style="right:0;top:57px;">
+              <div class="prompt-bubble__text">Summarize this Q3 deck into three bullet points</div>
+              <div class="prompt-bubble__role">Exec</div>
             </div>
 
             <!-- Consultant: bottom-left, staggered up -->
-            <div style="position:absolute;left:0;top:197px;width:160px;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:14px;padding:11px 13px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-              <div style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.4;">Draft a client proposal for the Q2 engagement</div>
-              <div style="margin-top:7px;font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">Consultant</div>
+            <div class="prompt-bubble" style="left:0;top:197px;">
+              <div class="prompt-bubble__text">Draft a client proposal for the Q2 engagement</div>
+              <div class="prompt-bubble__role">Consultant</div>
             </div>
 
             <!-- BD: bottom-right -->
-            <div style="position:absolute;right:0;top:255px;width:160px;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:14px;padding:11px 13px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-              <div style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.4;">Write a follow-up email from today's intro call</div>
-              <div style="margin-top:7px;font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">BD</div>
+            <div class="prompt-bubble" style="right:0;top:255px;">
+              <div class="prompt-bubble__text">Write a follow-up email from today's intro call</div>
+              <div class="prompt-bubble__role">BD</div>
             </div>
 
           </div>
@@ -1448,52 +1682,52 @@
     </div>
 
     <!-- ── Row 2: Tokens explanation + tokenizer visual ──── -->
-    <div style="display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
-      <div style="flex:1 1 0;min-width:240px;">
-        <p class="section-body" style="margin-top:0;margin-bottom:0;">
+    <div class="content-row">
+      <div class="content-row__text">
+        <p class="section-body section-body--flush">
           A model does not see things like we do. It breaks text, audio, video, and images into 
           <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.<em>Think of tokens as the model's alphabet.</em></span></span>
           – small chunks, each corresponding to an ID in its own vocabulary. Your question, any documents you attach, and every word the model writes back all count as tokens. This is why some things that seem trivial to us, like counting dots in a message, can trip it up – it can only see these tokens. Together these tokens make up the model's context. 
         </p>
       </div>
-      <div style="flex:2 1 0;min-width:320px;max-width:53%;">
-        <div class="diagram-wrap" style="margin-top:0;padding:20px 24px;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+      <div class="content-row__visual">
+        <div class="diagram-wrap diagram-wrap--flush" style="padding:20px 24px;">
+          <div class="tokenizer-column">
 
             <!-- User prompt box (editable) -->
-            <div style="width:100%;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:12px;padding:10px 14px 8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);position:relative;">
-              <div id="tokenizer-input" contenteditable="true" spellcheck="false" style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:13px;color:#1a1a1a;line-height:1.45;min-height:1.45em;outline:none;position:relative;z-index:1;">Summarize this paragraph</div>
-              <div id="tokenizer-placeholder" style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:13px;color:#b0b5be;line-height:1.45;position:absolute;top:10px;left:14px;pointer-events:none;display:none;">Type here...</div>
-              <div style="margin-top:6px;display:flex;justify-content:space-between;align-items:center;">
-                <div id="tokenizer-hint" style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:9px;color:#9ca3af;letter-spacing:0.02em;cursor:default;transition:opacity 0.3s;">&#9998; click to edit</div>
-                <div style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:9px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;">User</div>
+            <div class="tokenizer-box" style="position:relative;">
+              <div id="tokenizer-input" class="tokenizer-input" contenteditable="true" spellcheck="false">Summarize this paragraph</div>
+              <div id="tokenizer-placeholder" class="tokenizer-placeholder">Type here...</div>
+              <div class="tokenizer-box__footer">
+                <div id="tokenizer-hint" class="tokenizer-hint">&#9998; click to edit</div>
+                <div class="tokenizer-label">User</div>
               </div>
             </div>
 
             <!-- Arrow: "tokens" -->
-            <div style="display:flex;flex-direction:column;align-items:center;margin:5px 0 1px;">
-              <div style="width:1.5px;height:14px;background:#555;"></div>
-              <div style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:11px;color:#555;margin:2px 0;">tokens</div>
-              <div style="width:1.5px;height:10px;background:#555;"></div>
-              <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #555;"></div>
+            <div class="tokenizer-arrow" style="margin:5px 0 1px;">
+              <div class="tokenizer-arrow__line" style="height:14px;"></div>
+              <div class="tokenizer-arrow__text">tokens</div>
+              <div class="tokenizer-arrow__line" style="height:10px;"></div>
+              <div class="tokenizer-arrow__head"></div>
             </div>
 
             <!-- Colored tokens (dynamic) -->
-            <div id="tokenizer-chips" style="width:100%;padding:10px 14px;min-height:2.4em;background:#ffffff;border-radius:0;">
+            <div id="tokenizer-chips" class="tokenizer-chips">
             </div>
 
             <!-- Arrow: "token IDs" -->
-            <div style="display:flex;flex-direction:column;align-items:center;margin:1px 0 5px;">
-              <div style="width:1.5px;height:14px;background:#555;"></div>
-              <div style="font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:11px;color:#555;margin:2px 0;">token IDs</div>
-              <div style="width:1.5px;height:10px;background:#555;"></div>
-              <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #555;"></div>
+            <div class="tokenizer-arrow" style="margin:1px 0 5px;">
+              <div class="tokenizer-arrow__line" style="height:14px;"></div>
+              <div class="tokenizer-arrow__text">token IDs</div>
+              <div class="tokenizer-arrow__line" style="height:10px;"></div>
+              <div class="tokenizer-arrow__head"></div>
             </div>
 
             <!-- Token IDs box (Model, dynamic) -->
-            <div style="width:100%;background:#ffffff;border:1.5px solid #d5d7dc;border-radius:12px;padding:10px 14px 8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-              <div id="tokenizer-ids" style="font-family:'Source Code Pro','Courier New',monospace;font-size:12px;color:#1a1a1a;line-height:1.5;min-height:1.5em;"></div>
-              <div style="margin-top:6px;font-family:'Outfit','Source Sans 3',Arial,sans-serif;font-size:9px;font-weight:700;color:#9ca3af;letter-spacing:0.05em;text-transform:uppercase;text-align:right;">Model</div>
+            <div class="tokenizer-box">
+              <div id="tokenizer-ids" class="tokenizer-ids"></div>
+              <div class="tokenizer-label" style="margin-top:6px;text-align:right;">Model</div>
             </div>
 
           </div>
@@ -1660,7 +1894,7 @@
       <div id="cw-visual-title">Context Window — Interactive Walkthrough</div>
 
       <!-- Annotations ABOVE bar -->
-      <div id="cw-ann-above" style="position:relative; height:112px; margin-bottom:0;">
+      <div id="cw-ann-above" class="cw-ann-region cw-ann-region--above">
       </div>
 
       <!-- Bar -->
@@ -1676,7 +1910,7 @@
       </div>
 
       <!-- Annotations BELOW bar -->
-      <div id="cw-ann-below" style="position:relative; height:112px; margin-top:0;">
+      <div id="cw-ann-below" class="cw-ann-region cw-ann-region--below">
       </div>
 
       <!-- Token counter -->
@@ -2021,7 +2255,7 @@
 
     <h2>With the right context, models can work together to automate complex work.</h2>
 
-    <p class="section-body" style="margin-top:12px;margin-bottom:32px;">
+    <p class="section-body section-body--spaced">
       In the first section you learned that Claude has three models with different strengths. In Claude Code, a single task can use all three at once. Opus plans the work and makes judgment calls. Haiku handles high-volume scanning where speed matters more than depth. Sonnet does the detailed analysis in between. Each
       <span class="define-term"><strong>agent</strong><span class="define-tip"><strong>Agent</strong>An independent Claude instance spun up by an orchestrator to handle a specific sub-task. Each agent gets its own context window, runs a model matched to the difficulty of its job, and returns only a summary when it finishes.<em>Think of agents as specialists on a project team, each briefed separately.</em></span></span>
       gets its own context window, so no single conversation overflows.
@@ -2270,7 +2504,7 @@
 
     </div><!-- end interactive wrapper -->
 
-    <div class="callout" style="margin-top:32px;">
+    <div class="callout">
       <strong>This is a Claude Code capability.</strong> Only Claude Code can orchestrate sub-agents across models like this. Claude.ai runs a single model in a single conversation. Claude Code manages the full lifecycle: splitting work, routing to the right model, and assembling the result.
     </div>
 
@@ -2344,7 +2578,7 @@
     <section id="claude-code" class="section section--gray">
       <div class="container">
         <h2>Set up Claude Code and build something.</h2>
-        <p class="section-body" style="margin-top:12px;margin-bottom:32px;">To set up Claude Code on Windows, copy the prompt below and paste in <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>. Claude will guide you from there, one step at a time.</p>
+        <p class="section-body section-body--spaced">To set up Claude Code on Windows, copy the prompt below and paste in <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>. Claude will guide you from there, one step at a time.</p>
 
         <div class="claude-chat">
           <div class="claude-chat__body" id="promptText">I'm a consultant at North Highland and I need your help installing and setting up Claude Code on my Windows machine. I have little coding or development experience, so please explain concepts as we progress through this entire conversation.
