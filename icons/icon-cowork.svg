@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221 230">
+  <!-- Lightning bolt (traced from cowork.png) -->
+  <path d="M220,0 L144,106 L180,151 L0,229 L74,139 L41,93 Z" fill="#d77757"/>
+  <!-- Circuit lines -->
+  <polyline points="156,55 88,97 134,142 66,176" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Circuit nodes -->
+  <circle cx="156" cy="55" r="8" fill="white"/>
+  <circle cx="88" cy="97" r="8" fill="white"/>
+  <circle cx="134" cy="142" r="8" fill="white"/>
+  <circle cx="66" cy="176" r="8" fill="white"/>
+</svg>

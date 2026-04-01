@@ -1,0 +1,14 @@
+# Generated
+claude-starter-guide.html
+
+# Dev/internal
+notes.md
+.playwright-cli/
+
+# Local config
+.claude/
+.vscode/
+.DS_Store
+
+# Raw media
+*.mov

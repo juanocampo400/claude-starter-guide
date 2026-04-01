@@ -1,0 +1,3175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Starter Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Code+Pro:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* ========================================
+       Design Tokens
+       ======================================== */
+    :root {
+      --sg-charcoal: #2a2520;
+      --sg-charcoal-dark: #1a1714;
+      --sg-white: #fcfcfa;
+      --sg-page: var(--sg-white);
+      --sg-claude-ui: #fff;
+      --sg-gray-text: rgba(42,37,32,0.8);
+      --sg-gray-mid: rgba(42,37,32,0.55);
+      --sg-surface-light: #f2f1ed;
+      --sg-text-faded: rgba(42,37,32,0.5);
+      --sg-divider: rgba(42,37,32,0.1);
+      --sg-light-border: rgba(42,37,32,0.15);
+
+      /* ========================================
+         Semantic Color Tokens (surfaces/borders/text)
+         ======================================== */
+      --sg-surface-muted: #f5f0e8;
+      --sg-surface-muted-2: #f5f2ee;
+      --sg-surface-claude-chat: #faf9f5;
+      --sg-surface-hover: #ede8e2;
+      --sg-surface-card: #f7f5f0;
+      --sg-surface-user-bubble: #f0eee6;
+      --sg-surface-tag: #f3f1eb;
+
+      --sg-border-subtle: #e0dbd3;
+      --sg-border-strong: #d6cbbf;
+      --sg-border-warm: #e0d6cc;
+
+      --sg-surface-cool: #f1f5f9;
+      --sg-border-cool: #dcdfe5;
+      --sg-border-cool-strong: #d5d7dc;
+      --sg-border-claude-ui: var(--sg-border-cool-strong);
+
+      --sg-text-ui: #1a1a1a;
+      --sg-text-muted: #8c8178;
+      --sg-text-muted-2: #9a958e;
+      --sg-text-cool-muted: #9ca3af;
+      --sg-text-cool-placeholder: #b0b5be;
+      --sg-ui-ink-muted: #555;
+
+      /* Status & compare (table, dot demo, context bar chunks) */
+      --sg-semantic-success: #5a8a5e;
+      --sg-semantic-success-vivid: #27864f;
+      --sg-semantic-error: #c0392b;
+      --sg-semantic-warning: #c4a87a;
+      --sg-semantic-muted: #b5ada3;
+      --sg-semantic-ink: #6b6158;
+      --sg-semantic-copied: #2e7d32;
+
+      /* Cool UI text (annotation cards, muted steps) */
+      --sg-text-cool-secondary: #44536a;
+      --sg-text-cool-tertiary: #728197;
+
+      /* Accents */
+      --sg-accent-claude-blue: #2c84db;
+      --sg-diagram-slate: #8a7e72;
+      /* Code syntax (training bash demo) */
+      --sg-syntax-keyword: #8b6914;
+      --sg-syntax-string: var(--sg-semantic-success-vivid);
+      --sg-syntax-command: #2563b0;
+
+      /* Scrollbars, chat copy control */
+      --sg-scrollbar-thumb: #c4c4c4;
+      --sg-scrollbar-thumb-hover: #999;
+      --sg-chat-copy-bg: #c4754b;
+      --sg-chat-copy-bg-hover: #b0643d;
+
+      /* Video overlay controls */
+      --sg-video-control-icon: var(--sg-claude-ui);
+      --sg-video-control-icon-hover: #d6dce4;
+
+      /* Tokenizer chip cycle (JS reads these) */
+      --sg-token-chip-1: #dbeafe;
+      --sg-token-chip-2: #d1fae5;
+      --sg-token-chip-3: #fce7f3;
+      --sg-token-chip-4: #fef3c7;
+      --sg-token-chip-5: #ede9fe;
+
+      /* Font stacks */
+      --font-display: "Bebas Neue", "Oswald", Arial, sans-serif;
+      --font-body: "Source Sans 3", Arial, sans-serif;
+      --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+      --font-mono: "Source Code Pro", "SF Mono", "Menlo", "Consolas", "Courier New", monospace;
+
+      --nav-height: 44px;
+      --sidebar-width: 260px;
+      --container-max: 1200px;
+    }
+
+    /* ========================================
+       Reset & Base
+       ======================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--sg-gray-text);
+      background: var(--sg-page);
+    }
+
+    /* ========================================
+       Typography
+       ======================================== */
+    h1, .display-heading {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    h2, h3, h4, h5, h6 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: var(--sg-charcoal);
+    }
+
+    h1 { font-size: 48px; line-height: 1.1; }
+    h2 { font-size: 36px; line-height: 1.2; }
+    h3 { font-size: 24px; line-height: 1.3; }
+
+    a { color: var(--sg-charcoal); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--sg-charcoal); }
+
+    .placeholder {
+      color: var(--sg-text-faded);
+
+    }
+
+    /* ========================================
+       Buttons
+       ======================================== */
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      border: 2px solid var(--sg-charcoal);
+      color: var(--sg-charcoal);
+      padding: 12px 28px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-transform: none;
+    }
+    .btn-ghost:hover { background: var(--sg-charcoal); color: var(--sg-white); }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--sg-charcoal);
+      border: none;
+      color: var(--sg-white);
+      padding: 12px 28px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--sg-charcoal-dark); }
+
+    /* ========================================
+       Video Player
+       ======================================== */
+    .video-section {
+      padding: 0 0 80px;
+      background: var(--sg-page);
+    }
+
+    .video-card {
+      position: relative;
+      border: 1px solid var(--sg-divider);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .video-card video {
+      display: block;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .video-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.45));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .video-card:hover .video-controls {
+      opacity: 1;
+    }
+
+    .video-play-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .video-play-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--sg-video-control-icon);
+    }
+
+    .video-play-btn:hover svg {
+      fill: var(--sg-video-control-icon-hover);
+    }
+
+    .video-scrubber {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .video-scrubber::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: var(--sg-video-control-icon);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .video-scrubber::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      background: var(--sg-video-control-icon);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+
+    .video-fullscreen-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .video-fullscreen-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--sg-video-control-icon);
+    }
+
+    .video-fullscreen-btn:hover svg {
+      fill: var(--sg-video-control-icon-hover);
+    }
+
+    /* ========================================
+       Layout
+       ======================================== */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 75px 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section--white { background: var(--sg-page); }
+    .section--gray { background: var(--sg-page); }
+    .section--dark { background: var(--sg-charcoal); color: var(--sg-white); }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      max-width: 680px;
+      font-size: 21px;
+    }
+
+
+    /* ========================================
+       Top Navigation
+       ======================================== */
+    .topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: var(--sg-page);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+    }
+
+    .topnav__logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--sg-charcoal);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      padding: 0 8px;
+    }
+
+    .topnav__logo span {
+      color: var(--sg-charcoal);
+    }
+
+    .topnav__toggle {
+      display: none;
+      position: absolute;
+      left: 24px;
+      background: none;
+      border: none;
+      color: var(--sg-charcoal);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* ========================================
+       Sidebar Navigation
+       ======================================== */
+    .sidebar {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--nav-height));
+      background: var(--sg-page);
+      border-right: none;
+      overflow-y: auto;
+      padding: 32px 24px;
+      z-index: 900;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar__label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--sg-gray-mid);
+      margin-bottom: 16px;
+    }
+
+    .sidebar__nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar__nav a {
+      display: block;
+      padding: 10px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sg-text-faded);
+      transition: all 0.2s;
+    }
+
+    .sidebar__nav a:hover,
+    .sidebar__nav a.active {
+      color: var(--sg-charcoal);
+      background: var(--sg-surface-light);
+    }
+
+    /* ========================================
+       Main Content Area
+       ======================================== */
+    .main {
+      margin-left: var(--sidebar-width);
+      margin-top: var(--nav-height);
+    }
+
+    /* ========================================
+       Hero
+       ======================================== */
+    .hero {
+      background: var(--sg-page);
+      padding: 72px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__decoration {
+      position: absolute;
+      pointer-events: none;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero__decoration svg {
+      position: absolute;
+      top: 50%;
+      right: -40px;
+      transform: translateY(-50%);
+      width: 70vw;
+      min-width: 800px;
+      max-width: 1100px;
+      height: auto;
+      opacity: 0.06;
+    }
+
+    .hero h1 {
+      color: var(--sg-charcoal);
+      margin-bottom: 20px;
+      max-width: 680px;
+      text-transform: none;
+      font-family: var(--font-body);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .hero p {
+      color: var(--sg-gray-text);
+      font-size: 20px;
+      max-width: 560px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .hero p a,
+    .section--gray .section-body a {
+      font-weight: 600;
+    }
+
+
+
+    /* ========================================
+       Claude Chat Input (Claude Code section)
+       ======================================== */
+    .claude-chat {
+      margin-top: 32px;
+      border: 1px solid var(--sg-border-claude-ui);
+      border-radius: 16px;
+      background: var(--sg-claude-ui);
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .claude-chat__body {
+      max-height: 340px;
+      overflow-y: auto;
+      padding: 20px 24px;
+      padding-right: 12px;
+      margin-right: 12px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--sg-text-ui);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* Custom scrollbar – inset from right edge to match Claude.ai */
+    .claude-chat__body::-webkit-scrollbar { width: 6px; }
+    .claude-chat__body::-webkit-scrollbar-track { background: transparent; }
+    .claude-chat__body::-webkit-scrollbar-thumb {
+      background: var(--sg-scrollbar-thumb);
+      border-radius: 3px;
+    }
+    .claude-chat__body::-webkit-scrollbar-thumb:hover { background: var(--sg-scrollbar-thumb-hover); }
+
+    .claude-chat__footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 10px 16px;
+      background: var(--sg-claude-ui);
+    }
+
+    .claude-chat__copy {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: var(--sg-chat-copy-bg);
+      color: var(--sg-claude-ui);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 16px;
+    }
+
+    .claude-chat__copy:hover { background: var(--sg-chat-copy-bg-hover); }
+    .claude-chat__copy.copied { background: var(--sg-semantic-copied); }
+
+    .claude-chat__header {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px 8px;
+    }
+
+    .os-toggle {
+      display: inline-flex;
+      border: 1px solid var(--sg-border-subtle);
+      border-radius: 8px;
+      background: var(--sg-surface-light);
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .os-toggle__btn {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--sg-text-muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .os-toggle__btn.active {
+      background: #fff;
+      color: var(--sg-text-ui);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .os-toggle__btn:not(.active):hover {
+      color: var(--sg-text-ui);
+    }
+
+
+    /* ========================================
+       Footer
+       ======================================== */
+    .footer {
+      background: var(--sg-surface-card);
+      padding: 40px 0;
+      text-align: center;
+      margin-left: calc(-1 * var(--sidebar-width));
+      position: relative;
+      z-index: 901;
+    }
+
+    .footer p {
+      color: var(--sg-gray-text);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .footer a {
+      color: var(--sg-charcoal);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      opacity: 0.7;
+    }
+
+    .footer__github {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer__github svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--sg-charcoal);
+    }
+
+    /* ========================================
+       Diagram Wrapper (shared across sections)
+       ======================================== */
+    .diagram-wrap {
+      background: var(--sg-surface-light);
+      border-radius: 6px;
+      border: none;
+      padding: 40px;
+      margin-top: 32px;
+    }
+
+    .diagram-svg {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .diagram-label {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--sg-charcoal);
+      margin: 0 0 20px 0;
+    }
+
+    .diagram-scenario {
+      display: none;
+    }
+
+    /* ========================================
+       Token Chips (Section 3)
+       ======================================== */
+    .token-chip {
+      display: inline;
+      padding: 3px 1px;
+      font-size: 15px;
+      font-family: var(--font-body);
+      line-height: 2.4;
+    }
+
+    /* ========================================
+       Comparison Table
+       ======================================== */
+    .compare-table {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+    }
+    .compare-table thead th {
+      text-align: center;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--sg-charcoal);
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--sg-light-border);
+    }
+    .compare-table thead th.compare-table__cap {
+      text-align: left;
+    }
+    .compare-table tbody td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--sg-divider);
+      text-align: center;
+      color: var(--sg-charcoal);
+    }
+    .compare-table tbody td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--sg-charcoal);
+    }
+    .compare-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .cmp-yes { color: var(--sg-semantic-success); font-weight: 700; }
+    .cmp-no { color: var(--sg-semantic-muted); font-weight: 500; }
+
+    /* ========================================
+       Step Navigation (shared Sections 4, 6)
+       ======================================== */
+    .step-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .step-nav-btn {
+      width: 38px;
+      height: 30px;
+      background: var(--sg-surface-muted);
+      border: 1px solid var(--sg-border-warm);
+      border-radius: 7px;
+      box-shadow: 0 1.5px 0 var(--sg-border-strong), 0 2px 4px rgba(0,0,0,0.06);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sg-charcoal);
+      transition: background 0.15s ease, transform 0.1s ease;
+      padding: 0;
+      font-size: 14px;
+    }
+    .step-nav-btn:hover { background: var(--sg-surface-hover); }
+    .step-nav-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 0.5px 0 var(--sg-border-strong), 0 1px 2px rgba(0,0,0,0.06);
+    }
+    .step-nav-btn:disabled { opacity: 0.38; cursor: default; }
+
+    .step-stage-label {
+      font-size: 0.8rem;
+      color: var(--sg-text-faded);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+
+    /* ========================================
+       Method Strip — horizontal logo-grid
+       ======================================== */
+    .method-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      padding-bottom: 8px;
+    }
+
+    .method-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--sg-surface-light);
+      border: none;
+      border-radius: 0;
+      padding: 16px 20px;
+      flex: 1 1 0;
+    }
+
+    .method-chip i {
+      color: var(--sg-charcoal);
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .method-chip__text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .method-chip__text strong {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sg-charcoal);
+    }
+
+    .method-chip__text span {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--sg-text-faded);
+      line-height: 1.35;
+    }
+
+    /* ========================================
+       Callout Box
+       ======================================== */
+    .callout {
+      background: var(--sg-page);
+      border-left: 4px solid var(--sg-charcoal);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin-top: 32px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .callout strong {
+      color: var(--sg-charcoal);
+    }
+
+    /* ========================================
+       Context Window Interactive (Section 4)
+       ======================================== */
+    #context-window {
+      padding: 64px 0 72px;
+    }
+    #context-window .section-body {
+      margin-top: 12px;
+      margin-bottom: 32px;
+    }
+
+    #cw-visual {
+      background: var(--sg-surface-light);
+      border: none;
+      border-radius: 6px;
+      padding: 32px 32px 28px;
+      margin-bottom: 40px;
+      box-shadow: none;
+    }
+    #cw-visual-title {
+      margin-bottom: 8px;
+    }
+
+    #cw-bar-wrap {
+      position: relative;
+      margin-bottom: 4px;
+    }
+    #cw-bar-labels-top {
+      display: none;
+    }
+    #cw-bar {
+      position: relative;
+      width: 100%;
+      height: 52px;
+      background: var(--sg-surface-cool);
+      border-radius: 4px;
+      border: 1px solid var(--sg-border-cool);
+      overflow: hidden;
+    }
+    .cw-chunk {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: opacity 0.35s ease;
+      opacity: 0.13;
+    }
+    .cw-chunk.active {
+      opacity: 1;
+    }
+
+    #cw-annotations {
+      position: relative;
+      height: 110px;
+      margin-top: 0;
+    }
+    .cw-ann {
+      position: absolute;
+      width: 140px;
+      background: var(--sg-page);
+      border: 1px solid var(--sg-border-cool);
+      border-radius: 8px;
+      padding: 10px 13px 10px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--sg-text-cool-secondary);
+      opacity: 0.18;
+      transition: opacity 0.35s ease, box-shadow 0.35s ease;
+      pointer-events: none;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    .cw-ann.visited {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .cw-ann.visited .cw-ann-desc {
+      display: block;
+    }
+    .cw-ann.active {
+      opacity: 1;
+      box-shadow: 0 4px 18px rgba(19,46,83,0.10);
+      pointer-events: auto;
+    }
+    .cw-ann.active .cw-ann-desc {
+      display: block;
+    }
+    .cw-ann-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      font-size: 0.75rem;
+      color: var(--sg-claude-ui);
+    }
+    .cw-ann-label {
+      font-weight: 700;
+      font-size: 0.76rem;
+      color: var(--sg-charcoal);
+      display: block;
+      margin-bottom: 3px;
+    }
+    .cw-ann-desc {
+      font-size: 0.73rem;
+      color: var(--sg-text-cool-tertiary);
+      line-height: 1.4;
+      white-space: pre-line;
+      display: none;
+    }
+
+    .cw-connector {
+      position: absolute;
+      width: 1px;
+      background: var(--sg-border-cool);
+      transform: translateX(-50%);
+      transition: opacity 0.35s ease;
+      opacity: 0.18;
+    }
+    .cw-connector.visited,
+    .cw-connector.active {
+      opacity: 1;
+    }
+
+    #cw-token-counter { display: none; }
+    #cw-bar-arrow {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-top: 2px;
+    }
+    #cw-bar-arrow svg {
+      width: 100%;
+      height: 10px;
+    }
+    #cw-bar-arrow-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--sg-charcoal);
+      opacity: 0.55;
+      margin-top: 1px;
+    }
+
+    #cw-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    #cw-step-indicator {
+      font-size: 0.72rem;
+      color: var(--sg-text-cool-tertiary);
+      min-width: 50px;
+      text-align: center;
+    }
+
+    /* ========================================
+       Agents Diagram (Section 6)
+       ======================================== */
+    #ag-diagram .ag-stage {
+      transition: opacity 0.4s ease;
+    }
+
+    /* ========================================
+       Method Strip Responsive
+       ======================================== */
+    @media (max-width: 768px) {
+      .method-strip { gap: 10px; }
+      .method-chip { padding: 12px 14px; }
+    }
+
+    .section-body { max-width: 680px; font-size: 21px; }
+    @media (min-width: 1025px) { .section-body { max-width: 1000px; } }
+
+    /* Hover-to-define tooltips */
+    .define-term {
+      position: relative;
+      cursor: help;
+      border-bottom: 1.5px dotted var(--sg-charcoal);
+    }
+    /* Invisible bridge: extends the term's hover zone toward the tooltip */
+    .define-term::after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      bottom: 100%;
+      height: 24px;
+      display: none;
+    }
+    .define-term:hover::after {
+      display: block;
+    }
+    .define-term.define-term--tip-below::after {
+      bottom: auto;
+      top: 100%;
+    }
+    .define-term .define-tip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      padding: 14px 16px;
+      background: var(--sg-page);
+      border: 1px solid var(--sg-divider);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(19, 46, 83, 0.15);
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--sg-text-faded);
+      pointer-events: none;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      z-index: 100;
+      cursor: help;
+    }
+    .define-term:hover .define-tip.tip-interactive {
+      pointer-events: auto;
+    }
+    .define-term .define-tip strong {
+      display: block;
+      font-size: 13px;
+      color: var(--sg-charcoal);
+      margin-bottom: 4px;
+    }
+    .define-term .define-tip em {
+      display: block;
+      font-size: 11px;
+      margin-top: 6px;
+      font-style: normal;
+    }
+    .define-term .define-tip em a {
+      color: var(--sg-charcoal);
+      text-decoration: none;
+    }
+    .define-term .define-tip em a:hover {
+      text-decoration: underline;
+    }
+    .define-term:hover .define-tip {
+      visibility: visible;
+      opacity: 1;
+    }
+    /* Arrow (default: points down, tooltip above) */
+    .define-term .define-tip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: var(--arrow-left, 50%);
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--sg-white);
+    }
+    /* Flipped: tooltip below the term */
+    .define-term .define-tip.define-tip--below {
+      bottom: auto;
+      top: calc(100% + 10px);
+    }
+    .define-term .define-tip.define-tip--below::after {
+      top: auto;
+      bottom: 100%;
+      border-top-color: transparent;
+      border-bottom-color: var(--sg-white);
+    }
+
+    /* ========================================
+       Responsive
+       ======================================== */
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.15); }
+      .main { margin-left: 0; }
+      .topnav__toggle { display: block; }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+      h2 { font-size: 28px; }
+      .section { padding: 56px 0; }
+      .hero { padding: 72px 0 56px; }
+      .container { padding: 0 20px; }
+      .claude-chat__body { padding: 16px 20px; max-height: 280px; }
+      .claude-chat__header { padding: 10px 12px 0; }
+      .os-toggle__btn { font-size: 13px; padding: 4px 11px; }
+    }
+
+    /* Sidebar overlay for mobile */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(19, 46, 83, 0.4);
+      z-index: 899;
+    }
+    .sidebar-overlay.open { display: block; }
+
+    /* ========================================
+       Models vs Products split card
+       ======================================== */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .split__title {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--sg-charcoal);
+      margin-bottom: 4px;
+    }
+
+    .split__items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .split__item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .split__item-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .split__item-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .split__item-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--sg-charcoal);
+    }
+
+
+    .split__item-desc {
+      font-size: 19px;
+      color: var(--sg-text-faded);
+    }
+
+    .card--with-screenshot {
+      background: var(--sg-surface-light);
+      border-radius: 6px;
+      border: none;
+      padding: 48px 40px;
+    }
+
+    .card--with-screenshot .split {
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 768px) {
+      .split {
+        grid-template-columns: 1fr;
+      }
+      .split__title {
+        text-align: center;
+      }
+      .split__item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    /* ========================================
+       Extracted Inline Styles
+       ======================================== */
+
+    /* Section body modifiers */
+    .section-body--spaced { margin-top: 12px; margin-bottom: 32px; }
+    .section-body--flush  { margin-top: 0; margin-bottom: 0; }
+
+    /* Icon sizes */
+    .icon--sm { width: 32px; height: 32px; }
+
+    /* Content row layout (training section) */
+    .content-row {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .content-row__text  { flex: 1 1 0; min-width: 240px; }
+    .content-row__visual { flex: 2 1 0; min-width: 320px; max-width: 53%; }
+
+
+    /* ── Model Selector Demo ── */
+    .model-selector-demo {
+      position: relative;
+      max-width: 420px;
+      margin: 0 auto;
+      font-family: var(--font-body);
+    }
+    .msd-prompt {
+      background: var(--sg-claude-ui);
+      border: 1px solid var(--sg-border-claude-ui);
+      border-radius: 16px;
+      padding: 20px 20px 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .msd-prompt__text {
+      font-size: 1.05rem;
+      color: var(--sg-text-muted-2);
+      margin-bottom: 18px;
+    }
+    .msd-prompt__bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .msd-prompt__plus {
+      font-size: 1.4rem;
+      color: var(--sg-gray-mid);
+      cursor: default;
+    }
+    .msd-prompt__model-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--sg-surface-muted-2);
+      border: 1px solid var(--sg-border-claude-ui);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--sg-charcoal);
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .msd-prompt__model-btn:hover {
+      background: var(--sg-surface-hover);
+    }
+    /* Hint callout */
+    .msd-hint {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      justify-content: flex-end;
+      margin-right: 40px;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+    .msd-hint--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .msd-hint__arrow {
+      color: var(--sg-gray-mid);
+      animation: msd-bounce 1.6s ease-in-out infinite;
+    }
+    @keyframes msd-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    .msd-hint__text {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--sg-gray-mid);
+      letter-spacing: 0.01em;
+    }
+    .msd-dropdown {
+      position: absolute;
+      right: 20px;
+      top: 108px;
+      width: 260px;
+      background: var(--sg-claude-ui);
+      border: 1px solid var(--sg-border-claude-ui);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+      padding: 6px 0;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .msd-dropdown--open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .msd-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-radius: 8px;
+      margin: 0 6px;
+    }
+    .msd-option:hover {
+      background: var(--sg-surface-hover);
+    }
+    .msd-option--selected {
+      background: var(--sg-surface-hover);
+    }
+    .msd-option__name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--sg-charcoal);
+    }
+    .msd-check {
+      font-size: 1rem;
+      color: var(--sg-accent-claude-blue);
+      min-width: 18px;
+      text-align: center;
+    }
+    /* Diagram wrap modifier */
+    .diagram-wrap--flush { margin-top: 0; }
+
+    /* Dot-counting demo (training section) */
+    .dot-count-scenario {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dot-count-label {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--sg-charcoal);
+    }
+    .dot-count-verdict {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      text-align: left;
+    }
+    .dot-count-label--error { color: var(--sg-charcoal); }
+    .dot-count-label--success { color: var(--sg-charcoal); }
+    .dot-count-verdict--error { color: var(--sg-semantic-error); }
+    .dot-count-verdict--success { color: var(--sg-semantic-success-vivid); }
+    .chat-mock__text--inline-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .code-syntax-kw { color: var(--sg-syntax-keyword); }
+    .code-syntax-str { color: var(--sg-syntax-string); }
+    .code-syntax-cmd { color: var(--sg-syntax-command); }
+    #cw-bar-arrow svg {
+      color: var(--sg-charcoal);
+    }
+    .cw-nav-arrow {
+      color: var(--sg-charcoal);
+    }
+    .chat-mock {
+      background: var(--sg-surface-claude-chat);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .chat-mock__user {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .chat-mock__bubble--user {
+      background: var(--sg-surface-user-bubble);
+      border-radius: 16px;
+      padding: 10px 14px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--sg-text-ui);
+      line-height: 1.45;
+      max-width: 85%;
+      word-break: break-all;
+    }
+    .chat-mock__assistant {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .chat-mock__text {
+      font-family: var(--font-serif);
+      font-size: 13.5px;
+      color: var(--sg-text-ui);
+      line-height: 1.55;
+    }
+    .chat-mock__code-block {
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      color: var(--sg-text-muted);
+      padding: 8px 0;
+    }
+    .code-block__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--sg-text-muted);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .code-block__chevron {
+      color: var(--sg-text-muted);
+      font-size: 14px;
+    }
+    .code-block__body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-left: 4px;
+    }
+    .code-block__step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--sg-text-muted);
+    }
+    .code-block__icon {
+      flex-shrink: 0;
+      color: var(--sg-text-muted);
+    }
+    .code-block__detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-left: 6px;
+    }
+    .code-block__vline {
+      width: 1.5px;
+      height: 20px;
+      background: var(--sg-border-strong);
+    }
+    .code-block__script-tag {
+      font-size: 11px;
+      color: var(--sg-text-muted);
+      background: var(--sg-surface-tag);
+      border-radius: 6px;
+      padding: 2px 8px;
+    }
+    .code-block__done {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--sg-text-muted);
+    }
+
+    .code-block__expanded {
+      margin-top: 6px;
+      margin-left: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .code-block__outer-card {
+      background: var(--sg-page);
+      border: 1px solid var(--sg-border-subtle);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .code-block__code-card {
+      background: var(--sg-surface-card);
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+    .code-card__label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--sg-text-ui);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .code-card__code {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--sg-text-ui);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .code-block__output-card {
+      background: var(--sg-surface-card);
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+    .code-card__output {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--sg-text-ui);
+      margin-top: 4px;
+    }
+
+    /* Tokenizer UI (training section) */
+    .tokenizer-box {
+      width: 100%;
+      background: var(--sg-claude-ui);
+      border: 1px solid var(--sg-border-claude-ui);
+      border-radius: 12px;
+      padding: 10px 14px 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .tokenizer-input {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--sg-text-ui);
+      line-height: 1.45;
+      min-height: 1.45em;
+      outline: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tokenizer-placeholder {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--sg-text-cool-placeholder);
+      line-height: 1.45;
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      pointer-events: none;
+      display: none;
+    }
+
+    .tokenizer-box__footer {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tokenizer-hint {
+      font-family: var(--font-body);
+      font-size: 9px;
+      color: var(--sg-text-cool-muted);
+      letter-spacing: 0.02em;
+      cursor: default;
+      transition: opacity 0.3s;
+    }
+
+    .tokenizer-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--sg-text-cool-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .tokenizer-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tokenizer-arrow__line { width: 1.5px; background: var(--sg-ui-ink-muted); }
+
+    .tokenizer-arrow__text {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--sg-ui-ink-muted);
+      margin: 2px 0;
+    }
+
+    .tokenizer-arrow__head {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid var(--sg-ui-ink-muted);
+    }
+
+    .tokenizer-chips {
+      width: 100%;
+      padding: 10px 14px;
+      min-height: 2.4em;
+      background: var(--sg-claude-ui);
+    }
+
+    .tokenizer-ids {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--sg-text-ui);
+      line-height: 1.5;
+      min-height: 1.5em;
+    }
+
+    .tokenizer-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Context window annotation regions */
+    .cw-ann-region { position: relative; height: 170px; }
+    .cw-ann-region--above { margin-bottom: 0; }
+    .cw-ann-region--below { margin-top: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ============ Top Navigation ============ -->
+  <nav class="topnav">
+    <button class="topnav__toggle" id="sidebarToggle" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="topnav__logo">.Claude<span>/</span>Starter-Guide</div>
+  </nav>
+
+  <!-- ============ Sidebar Navigation ============ -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__label">Contents</div>
+    <ul class="sidebar__nav">
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#models-vs-products">Model vs. product</a></li>
+      <li><a href="#same-model">Training and knowledge cutoff</a></li>
+      <li><a href="#context-window">The context window</a></li>
+      <li><a href="#agents-in-action">Models working together</a></li>
+      <li><a href="#capability-compare">Products comparison</a></li>
+      <li><a href="#claude-code">Try it yourself</a></li>
+    </ul>
+  </aside>
+
+  <!-- ============ Main Content ============ -->
+  <div class="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__decoration">
+        <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="fadeA" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="var(--sg-charcoal)" stop-opacity="0"/>
+              <stop offset="30%" stop-color="var(--sg-charcoal)" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="var(--sg-charcoal)" stop-opacity="1"/>
+            </linearGradient>
+          </defs>
+          <g stroke="url(#fadeA)" fill="var(--sg-charcoal)">
+            <!-- Output layer (rightmost) - 3 nodes -->
+            <circle cx="760" cy="150" r="16" fill-opacity="1"/>
+            <circle cx="760" cy="220" r="16" fill-opacity="1"/>
+            <circle cx="760" cy="290" r="16" fill-opacity="1"/>
+            <!-- Hidden layer 3 - 5 nodes -->
+            <circle cx="670" cy="100" r="9" fill-opacity="1"/>
+            <circle cx="670" cy="160" r="9" fill-opacity="1"/>
+            <circle cx="670" cy="220" r="9" fill-opacity="1"/>
+            <circle cx="670" cy="280" r="9" fill-opacity="1"/>
+            <circle cx="670" cy="340" r="9" fill-opacity="0.9"/>
+            <!-- Hidden layer 2 - 7 nodes -->
+            <circle cx="580" cy="68" r="7" fill-opacity="0.85"/>
+            <circle cx="580" cy="118" r="7" fill-opacity="0.85"/>
+            <circle cx="580" cy="168" r="7" fill-opacity="0.85"/>
+            <circle cx="580" cy="218" r="7" fill-opacity="0.85"/>
+            <circle cx="580" cy="268" r="7" fill-opacity="0.85"/>
+            <circle cx="580" cy="318" r="7" fill-opacity="0.8"/>
+            <circle cx="580" cy="368" r="7" fill-opacity="0.75"/>
+            <!-- Hidden layer 1 - 5 nodes -->
+            <circle cx="490" cy="110" r="5.5" fill-opacity="0.55"/>
+            <circle cx="490" cy="170" r="5.5" fill-opacity="0.55"/>
+            <circle cx="490" cy="230" r="5.5" fill-opacity="0.55"/>
+            <circle cx="490" cy="290" r="5.5" fill-opacity="0.5"/>
+            <circle cx="490" cy="350" r="5.5" fill-opacity="0.45"/>
+            <!-- Input layer (trailing) - 3 nodes -->
+            <circle cx="400" cy="160" r="4" fill-opacity="0.3"/>
+            <circle cx="400" cy="230" r="4" fill-opacity="0.28"/>
+            <circle cx="400" cy="300" r="4" fill-opacity="0.25"/>
+            <!-- Wisps -->
+            <circle cx="330" cy="200" r="2.5" fill-opacity="0.12"/>
+            <circle cx="340" cy="270" r="2" fill-opacity="0.08"/>
+            <circle cx="300" cy="240" r="1.5" fill-opacity="0.04"/>
+            <!-- L3 → Output (all-to-all) -->
+            <line x1="670" y1="100" x2="760" y2="150" stroke-width="1.6"/>
+            <line x1="670" y1="100" x2="760" y2="220" stroke-width="1"/>
+            <line x1="670" y1="100" x2="760" y2="290" stroke-width="0.7"/>
+            <line x1="670" y1="160" x2="760" y2="150" stroke-width="1.6"/>
+            <line x1="670" y1="160" x2="760" y2="220" stroke-width="1.4"/>
+            <line x1="670" y1="160" x2="760" y2="290" stroke-width="0.8"/>
+            <line x1="670" y1="220" x2="760" y2="150" stroke-width="1"/>
+            <line x1="670" y1="220" x2="760" y2="220" stroke-width="1.6"/>
+            <line x1="670" y1="220" x2="760" y2="290" stroke-width="1.4"/>
+            <line x1="670" y1="280" x2="760" y2="150" stroke-width="0.7"/>
+            <line x1="670" y1="280" x2="760" y2="220" stroke-width="1.2"/>
+            <line x1="670" y1="280" x2="760" y2="290" stroke-width="1.6"/>
+            <line x1="670" y1="340" x2="760" y2="220" stroke-width="0.7"/>
+            <line x1="670" y1="340" x2="760" y2="290" stroke-width="1.2"/>
+            <!-- L2 → L3 (all-to-all, thinner) -->
+            <line x1="580" y1="68" x2="670" y2="100" stroke-width="1.3"/>
+            <line x1="580" y1="68" x2="670" y2="160" stroke-width="0.8"/>
+            <line x1="580" y1="68" x2="670" y2="220" stroke-width="0.5"/>
+            <line x1="580" y1="118" x2="670" y2="100" stroke-width="1.2"/>
+            <line x1="580" y1="118" x2="670" y2="160" stroke-width="1.2"/>
+            <line x1="580" y1="118" x2="670" y2="220" stroke-width="0.6"/>
+            <line x1="580" y1="168" x2="670" y2="100" stroke-width="0.6"/>
+            <line x1="580" y1="168" x2="670" y2="160" stroke-width="1.2"/>
+            <line x1="580" y1="168" x2="670" y2="220" stroke-width="1.2"/>
+            <line x1="580" y1="168" x2="670" y2="280" stroke-width="0.6"/>
+            <line x1="580" y1="218" x2="670" y2="160" stroke-width="0.7"/>
+            <line x1="580" y1="218" x2="670" y2="220" stroke-width="1.3"/>
+            <line x1="580" y1="218" x2="670" y2="280" stroke-width="1"/>
+            <line x1="580" y1="268" x2="670" y2="220" stroke-width="0.8"/>
+            <line x1="580" y1="268" x2="670" y2="280" stroke-width="1.2"/>
+            <line x1="580" y1="268" x2="670" y2="340" stroke-width="0.9"/>
+            <line x1="580" y1="318" x2="670" y2="280" stroke-width="0.8"/>
+            <line x1="580" y1="318" x2="670" y2="340" stroke-width="1.1"/>
+            <line x1="580" y1="368" x2="670" y2="340" stroke-width="1"/>
+            <!-- L1 → L2 (sparser) -->
+            <line x1="490" y1="110" x2="580" y2="68" stroke-width="0.9"/>
+            <line x1="490" y1="110" x2="580" y2="118" stroke-width="1"/>
+            <line x1="490" y1="110" x2="580" y2="168" stroke-width="0.7"/>
+            <line x1="490" y1="170" x2="580" y2="118" stroke-width="0.8"/>
+            <line x1="490" y1="170" x2="580" y2="168" stroke-width="1"/>
+            <line x1="490" y1="170" x2="580" y2="218" stroke-width="0.8"/>
+            <line x1="490" y1="230" x2="580" y2="168" stroke-width="0.6"/>
+            <line x1="490" y1="230" x2="580" y2="218" stroke-width="1"/>
+            <line x1="490" y1="230" x2="580" y2="268" stroke-width="0.8"/>
+            <line x1="490" y1="290" x2="580" y2="268" stroke-width="0.9"/>
+            <line x1="490" y1="290" x2="580" y2="318" stroke-width="0.8"/>
+            <line x1="490" y1="350" x2="580" y2="318" stroke-width="0.7"/>
+            <line x1="490" y1="350" x2="580" y2="368" stroke-width="0.8"/>
+            <!-- Input → L1 (faint) -->
+            <line x1="400" y1="160" x2="490" y2="110" stroke-width="0.6"/>
+            <line x1="400" y1="160" x2="490" y2="170" stroke-width="0.7"/>
+            <line x1="400" y1="230" x2="490" y2="170" stroke-width="0.5"/>
+            <line x1="400" y1="230" x2="490" y2="230" stroke-width="0.7"/>
+            <line x1="400" y1="230" x2="490" y2="290" stroke-width="0.5"/>
+            <line x1="400" y1="300" x2="490" y2="290" stroke-width="0.6"/>
+            <line x1="400" y1="300" x2="490" y2="350" stroke-width="0.5"/>
+            <!-- Wisps -->
+            <line x1="330" y1="200" x2="400" y2="160" stroke-width="0.3"/>
+            <line x1="330" y1="200" x2="400" y2="230" stroke-width="0.35"/>
+            <line x1="340" y1="270" x2="400" y2="300" stroke-width="0.3"/>
+            <line x1="300" y1="240" x2="330" y2="200" stroke-width="0.2"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="container">
+        <div class="fade-up">
+          <h1>Getting Started with Claude</h1>
+          <p class="placeholder">This guide explains what Claude is, how it helps you do more of what you're good at, and how it can automate complex work. <br>To skip ahead, <a href="#claude-code">jump to the Claude Code setup prompt.</br></a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Demo Video ============ -->
+    <section id="demo" class="video-section">
+      <div class="container">
+        <h2>See what's possible, then make it yours.</h2>
+        <p class="section-body section-body--spaced">What you see in this demo is a starting point. You should never accept what AI gave you as the end.
+          <br>Your job is to refine it, poke at it with prompts, and make it better.</br></p>
+        <div class="video-card">
+          <video id="demoVideo" muted>
+            <source src="video/demo-1.mp4" type="video/mp4">
+          </video>
+          <div class="video-controls">
+            <button class="video-play-btn" id="demoPlayBtn" aria-label="Play">
+              <svg id="demoPlayIcon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+              <svg id="demoPauseIcon" viewBox="0 0 24 24" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+            </button>
+            <input type="range" class="video-scrubber" id="demoScrubber" min="0" max="100" value="0" step="0.1">
+            <button class="video-fullscreen-btn" id="demoFullscreenBtn" aria-label="Fullscreen">
+              <svg id="demoExpandIcon" viewBox="0 0 24 24"><path d="M3 3h6v2H5v4H3V3zm12 0h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4z"/></svg>
+              <svg id="demoCollapseIcon" viewBox="0 0 24 24" style="display:none"><path d="M9 3v6H3v-2h4V3h2zm6 0h2v4h4v2h-6V3zM3 15h6v6H7v-4H3v-2zm12 0h6v2h-4v4h-2v-6z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Section 1: Models vs. Products ============ -->
+    <section id="models-vs-products" class="section section--white">
+      <div class="container">
+        <h2>"Claude" is both a model and a product.</h2>
+        <p class="section-body section-body--spaced">You can think of <span class="define-term"><strong>models</strong><span class="define-tip"><strong>Large Language Model (LLM)</strong>Large Language Models are AI systems trained on broad data to understand and generate human language. Claude's models (Opus, Sonnet, Haiku) differ in capability, speed, and cost.<em><a href="https://docs.anthropic.com/en/docs/about-claude/models" target="_blank" rel="noopener">Source: Anthropic docs</a></em></span></span> as the brains and <span class="define-term"><strong>products</strong><span class="define-tip"><strong>Product</strong>A user-facing application built on top of one or more models. Each product (Claude Chat, Claude Code, Cowork) provides a different interface and toolset for interacting with the underlying AI.<em><a href="https://claude.com/product/overview" target="_blank" rel="noopener">Source: Anthropic</a></em></span></span> as the hands and feet. Models are the Artificial Intelligence itself, each with different tradeoffs between capability and speed. Products are the user interfaces that give those models different tools to work with.</p>
+        <div class="card--with-screenshot">
+          <div class="split">
+            <div>
+              <div class="split__title">Models</div>
+              <div class="split__items">
+                <div class="split__item">
+                  <div class="split__item-icon"><img src="icons/icon-opus.svg" alt="Opus" class="icon--sm"></div>
+                  <div>
+                    <div class="split__item-name">Opus</div>
+                    <div class="split__item-desc">Most capable – best multi-step reasoning, least likely to miss nuance or cut corners</div>
+                  </div>
+                </div>
+                <div class="split__item">
+                  <div class="split__item-icon"><img src="icons/icon-sonnet.svg" alt="Sonnet" class="icon--sm"></div>
+                  <div>
+                    <div class="split__item-name">Sonnet</div>
+                    <div class="split__item-desc">Faster responses – strong at coding, structured output, and research</div>
+                  </div>
+                </div>
+                <div class="split__item">
+                  <div class="split__item-icon"><img src="icons/icon-haiku.svg" alt="Haiku" class="icon--sm"></div>
+                  <div>
+                    <div class="split__item-name">Haiku</div>
+                    <div class="split__item-desc">Near-instant responses – good for summaries, short tasks, and quick questions</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="split__title">Products</div>
+              <div class="split__items">
+                <div class="split__item">
+                  <div class="split__item-icon"><img src="icons/icon-claudecode.svg" alt="Claude Code" class="icon--sm"></div>
+                  <div>
+                    <div class="split__item-name">Claude Code</div>
+                    <div class="split__item-desc">Runs on your computer – works directly in your files, the most you can do with Claude</div>
+                  </div>
+                </div>
+                <div class="split__item">
+                  <div class="split__item-icon"><img src="icons/icon-cowork.svg" alt="Claude Cowork" class="icon--sm"></div>
+                  <div>
+                    <div class="split__item-name">Claude Cowork</div>
+                    <div class="split__item-desc">Runs in desktop app – works on your files with no setup needed, but less control than Code</div>
+                  </div>
+                </div>
+                <div class="split__item">
+                  <div class="split__item-icon"><img src="icons/icon-claudeai.svg" alt="Claude Chat" class="icon--sm"></div>
+                  <div>
+                    <div class="split__item-name">Claude Chat</div>
+                    <div class="split__item-desc">Chat in your browser (or desktop app) – upload files, download outputs to your computer</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Interactive model-selector -->
+          <div class="model-selector-demo" id="modelSelectorDemo">
+            <div class="msd-prompt">
+              <div class="msd-prompt__text">How can I help you today?</div>
+              <div class="msd-prompt__bar">
+                <span class="msd-prompt__plus">+</span>
+                <div class="msd-prompt__model-btn" id="msdModelBtn">
+                  <span id="msdSelectedLabel">Opus 4.6</span>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+            <!-- Dropdown -->
+            <div class="msd-dropdown" id="msdDropdown">
+              <div class="msd-option msd-option--selected" data-model="Opus 4.6">
+                <div class="msd-option__name">Opus 4.6</div>
+                <span class="msd-check">✓</span>
+              </div>
+              <div class="msd-option" data-model="Sonnet 4.6">
+                <div class="msd-option__name">Sonnet 4.6</div>
+                <span class="msd-check"></span>
+              </div>
+              <div class="msd-option" data-model="Haiku 4.5">
+                <div class="msd-option__name">Haiku 4.5</div>
+                <span class="msd-check"></span>
+              </div>
+            </div>
+            <!-- Hint: sits below dropdown, arrow points up -->
+            <div class="msd-hint" id="msdHint">
+              <span class="msd-hint__text">Each product lets you pick a model</span>
+              <span class="msd-hint__arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Section 2: Same Model ============ -->
+
+    <section id="same-model" class="section section--gray">
+  <div class="container">
+    <h2>The model learned everything during training, and nothing after that.</h2>
+
+    <!-- ── Row 1: Model explanation + conversations diagram ─── -->
+    <div class="content-row" style="margin-top:32px;margin-bottom:40px;">
+      <div class="content-row__text">
+        <p class="section-body section-body--flush">
+          These models were
+          <span class="define-term"><strong>trained</strong><span class="define-tip"><strong>Training</strong>Training happens in two stages. In pre-training, the model reads enormous amounts of text from the internet (books, articles, websites, code) and learns patterns in language, facts, and reasoning. Then, in post-training it learns to follow instructions, answer questions helpfully, and have conversations.</span></span>
+          on text from the internet, then taught to help with tasks. They each have a
+          <span class="define-term"><strong>knowledge cutoff</strong><span class="define-tip"><strong>Knowledge cutoff</strong>The date when the model's training data ends. Unless you tell it or it searches the web, the model has no awareness of events, discoveries, or changes that happened after this date.</span></span>
+          date, meaning they have no awareness of events after training data ends. They do not learn from your conversations, or improve the more you use them. What you can change is the context you give them in each conversation. The example to the right shows this in action. The model fails simple counting when left to its own devices, but succeeds when using code to add the correct answer to its context. You might ask why something so simple needs a workaround...
+        </p>
+      </div>
+      <div class="content-row__visual">
+        <div class="diagram-wrap diagram-wrap--flush" style="padding:24px 20px;">
+          <div style="display:flex;flex-direction:column;gap:24px;">
+
+            <!-- Scenario 1: Without code – Claude gets it wrong -->
+            <div class="dot-count-scenario">
+              <div class="dot-count-label dot-count-label--error">Without code</div>
+              <div class="chat-mock">
+                <!-- User message -->
+                <div class="chat-mock__user">
+                  <div class="chat-mock__bubble chat-mock__bubble--user">how many dots are there? .................................</div>
+                </div>
+                <!-- Claude response -->
+                <div class="chat-mock__assistant">
+                  <div class="chat-mock__text chat-mock__text--inline-row">There are <strong>50</strong> dots. <span class="dot-count-verdict dot-count-verdict--error">✗ Wrong – there are 33</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 2: With code – Claude gets it right -->
+            <div class="dot-count-scenario">
+              <div class="dot-count-label dot-count-label--success">With code</div>
+              <div class="chat-mock">
+                <!-- User message -->
+                <div class="chat-mock__user">
+                  <div class="chat-mock__bubble chat-mock__bubble--user">how many dots are there? .................................<br>use code</div>
+                </div>
+                <!-- Claude response -->
+                <div class="chat-mock__assistant">
+                  <div class="chat-mock__text">I'll count the dots for you using code.</div>
+                  <div class="chat-mock__code-block">
+                    <div class="code-block__header" id="headerToggle" style="cursor:pointer;">
+                      <span>Count the dots programmatically</span>
+                      <span class="code-block__chevron">&#8744;</span>
+                    </div>
+                    <div class="code-block__body">
+                      <div class="code-block__step" id="stepToggle" style="cursor:pointer;">
+                        <svg class="code-block__icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 7l2 2 -2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><line x1="8.5" y1="16" x2="11.5" y2="16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                        <span>Count the dots programmatically</span>
+                      </div>
+                      <div class="code-block__detail">
+                        <div class="code-block__vline"></div>
+                        <span class="code-block__script-tag" id="scriptToggle" style="cursor:pointer;">Script</span>
+                      </div>
+                      <div class="code-block__expanded" id="scriptExpanded" style="display:none;">
+                        <div class="code-block__outer-card">
+                          <div class="code-block__code-card">
+                            <div class="code-card__label">bash</div>
+                            <div class="code-card__code"><span class="code-syntax-kw">echo</span> -n <span class="code-syntax-str">'.................................'</span> | <span class="code-syntax-cmd">wc</span> -c</div>
+                          </div>
+                          <div class="code-block__output-card">
+                            <div class="code-card__label">Output</div>
+                            <div class="code-card__output">33</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="code-block__done">
+                        <svg class="code-block__icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 8l2 2 3-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Done
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chat-mock__text chat-mock__text--inline-row">There are <strong>33</strong> dots. <span class="dot-count-verdict dot-count-verdict--success">✓ Correct</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Row 2: Tokens explanation + tokenizer visual ──── -->
+    <div class="content-row">
+      <div class="content-row__text">
+        <p class="section-body section-body--flush">
+          A model does not see things like we do. It breaks text, audio, video, and images into 
+          <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.</span></span>
+          – small chunks, each corresponding to an ID in its own vocabulary. Your question, any documents you attach, and every word the model writes back all count as tokens. This is why some things that seem trivial to us, like counting dots in a message, can trip it up – it can only see these tokens. Together these tokens make up the model's context. 
+        </p>
+      </div>
+      <div class="content-row__visual">
+        <div class="diagram-wrap diagram-wrap--flush" style="padding:20px 24px;">
+          <div class="tokenizer-column">
+
+            <!-- User prompt box (editable) -->
+            <div class="tokenizer-box" style="position:relative;">
+              <div id="tokenizer-input" class="tokenizer-input" contenteditable="true" spellcheck="false">Summarize this paragraph</div>
+              <div id="tokenizer-placeholder" class="tokenizer-placeholder">Type here...</div>
+              <div class="tokenizer-box__footer">
+                <div id="tokenizer-hint" class="tokenizer-hint">&#9998; click to edit</div>
+                <div class="tokenizer-label">User</div>
+              </div>
+            </div>
+
+            <!-- Arrow: "tokens" -->
+            <div class="tokenizer-arrow" style="margin:5px 0 1px;">
+              <div class="tokenizer-arrow__line" style="height:14px;"></div>
+              <div class="tokenizer-arrow__text">tokens</div>
+              <div class="tokenizer-arrow__line" style="height:10px;"></div>
+              <div class="tokenizer-arrow__head"></div>
+            </div>
+
+            <!-- Colored tokens (dynamic) -->
+            <div id="tokenizer-chips" class="tokenizer-chips">
+            </div>
+
+            <!-- Arrow: "token IDs" -->
+            <div class="tokenizer-arrow" style="margin:1px 0 5px;">
+              <div class="tokenizer-arrow__line" style="height:14px;"></div>
+              <div class="tokenizer-arrow__text">token IDs</div>
+              <div class="tokenizer-arrow__line" style="height:10px;"></div>
+              <div class="tokenizer-arrow__head"></div>
+            </div>
+
+            <!-- Token IDs box (Model, dynamic) -->
+            <div class="tokenizer-box">
+              <div id="tokenizer-ids" class="tokenizer-ids"></div>
+              <div class="tokenizer-label" style="margin-top:6px;text-align:right;">Model</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Script toggle logic -->
+  <script>
+  (function() {
+    var panel = document.getElementById('scriptExpanded');
+    function flip() { panel.style.display = panel.style.display === 'none' ? '' : 'none'; }
+    ['scriptToggle', 'headerToggle', 'stepToggle'].forEach(function(id) {
+      document.getElementById(id).addEventListener('click', flip);
+    });
+  })();
+  </script>
+
+  <!-- Interactive tokenizer logic -->
+  <!-- Demo video player -->
+  <script>
+  (function() {
+    const video = document.getElementById('demoVideo');
+    const playBtn = document.getElementById('demoPlayBtn');
+    const playIcon = document.getElementById('demoPlayIcon');
+    const pauseIcon = document.getElementById('demoPauseIcon');
+    const scrubber = document.getElementById('demoScrubber');
+
+    function showPlay() { playIcon.style.display = ''; pauseIcon.style.display = 'none'; }
+    function showPause() { playIcon.style.display = 'none'; pauseIcon.style.display = ''; }
+
+    playBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (video.paused) { video.play(); } else { video.pause(); }
+    });
+
+    video.addEventListener('click', function() {
+      if (video.paused) { video.play(); } else { video.pause(); }
+    });
+
+    video.addEventListener('play', showPause);
+    video.addEventListener('pause', showPlay);
+    video.addEventListener('ended', showPlay);
+
+    video.addEventListener('timeupdate', function() {
+      if (video.duration) {
+        scrubber.value = (video.currentTime / video.duration) * 100;
+      }
+    });
+
+    scrubber.addEventListener('input', function(e) {
+      e.stopPropagation();
+      if (video.duration) {
+        video.currentTime = (scrubber.value / 100) * video.duration;
+      }
+    });
+
+    const fullscreenBtn = document.getElementById('demoFullscreenBtn');
+    const expandIcon = document.getElementById('demoExpandIcon');
+    const collapseIcon = document.getElementById('demoCollapseIcon');
+    const videoCard = video.closest('.video-card');
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        videoCard.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    fullscreenBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleFullscreen();
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement === videoCard) {
+        expandIcon.style.display = 'none';
+        collapseIcon.style.display = '';
+      } else {
+        expandIcon.style.display = '';
+        collapseIcon.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'f' || e.key === 'F') {
+        var tag = document.activeElement.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement.isContentEditable) return;
+        var rect = videoCard.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!inView) return;
+        toggleFullscreen();
+      }
+    });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    function sgVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+    const input       = document.getElementById("tokenizer-input");
+    const placeholder = document.getElementById("tokenizer-placeholder");
+    const chipsEl     = document.getElementById("tokenizer-chips");
+    const idsEl       = document.getElementById("tokenizer-ids");
+
+    const COLORS = [
+      sgVar("--sg-token-chip-1"),
+      sgVar("--sg-token-chip-2"),
+      sgVar("--sg-token-chip-3"),
+      sgVar("--sg-token-chip-4"),
+      sgVar("--sg-token-chip-5"),
+    ];
+
+    /* Simple hash to generate a stable "token ID" per string */
+    function tokenId(s) {
+      var h = 0;
+      for (var i = 0; i < s.length; i++) {
+        h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+      }
+      return Math.abs(h) % 90000 + 100;          // range 100–90099
+    }
+
+    /* Lightweight pseudo-tokenizer: splits on spaces, then breaks words
+       into subword chunks the way a BPE tokenizer would.              */
+    function splitSubword(w) {
+      /* First try natural seams: camelCase, apostrophes, digit runs */
+      var natural = w.match(/[A-Z]?[a-z]+|[A-Z]+(?=[A-Z]|$)|\d+|['']\w+|[^A-Za-z0-9'']+/g);
+      if (natural && natural.length > 1) return natural;
+      /* No natural seams; chunk into 2-4 char pieces (BPE-like) */
+      var chunks = [];
+      var pos = 0;
+      /* Use a seeded step size based on char codes for variety */
+      while (pos < w.length) {
+        var step = 2 + (w.charCodeAt(pos) % 3);   // 2, 3, or 4
+        if (pos + step >= w.length) step = w.length - pos;  // take remainder
+        chunks.push(w.slice(pos, pos + step));
+        pos += step;
+      }
+      return chunks;
+    }
+
+    function tokenize(text) {
+      if (!text.trim()) return [];
+      var words = text.split(/(\s+)/);
+      var tokens = [];
+      for (var i = 0; i < words.length; i++) {
+        var w = words[i];
+        if (!w || /^\s+$/.test(w)) continue;
+        if (w.length <= 5) { tokens.push(w); continue; }
+        var parts = splitSubword(w);
+        for (var j = 0; j < parts.length; j++) tokens.push(parts[j]);
+      }
+      return tokens;
+    }
+
+    var lastGoodText = "";
+    var IDS_MAX_LINES = 2;
+
+    function update() {
+      var text = input.textContent || "";
+      placeholder.style.display = text ? "none" : "";
+      var toks = tokenize(text);
+      /* Build chips */
+      var chipHTML = "";
+      var ids = [];
+      for (var i = 0; i < toks.length; i++) {
+        var bg = COLORS[i % COLORS.length];
+        var t  = toks[i];
+        chipHTML += '<span class="token-chip" style="background:' + bg + ';">'
+                  + t.replace(/</g,"&lt;").replace(/>/g,"&gt;") + '</span> ';
+        ids.push(tokenId(t));
+      }
+      chipsEl.innerHTML = chipHTML;
+      idsEl.textContent = ids.join(", ");
+
+      /* Check if token IDs exceed two lines; if so, revert */
+      var lineHeight = parseFloat(getComputedStyle(idsEl).lineHeight) || 18;
+      if (idsEl.scrollHeight > lineHeight * IDS_MAX_LINES + 4) {
+        input.textContent = lastGoodText;
+        update_render(lastGoodText);
+        /* Restore cursor to end */
+        var range = document.createRange();
+        var sel = window.getSelection();
+        range.selectNodeContents(input);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        return;
+      }
+      lastGoodText = text;
+    }
+
+    /* Render without overflow check (used by revert) */
+    function update_render(text) {
+      placeholder.style.display = text ? "none" : "";
+      var toks = tokenize(text);
+      var chipHTML = "";
+      var ids = [];
+      for (var i = 0; i < toks.length; i++) {
+        var bg = COLORS[i % COLORS.length];
+        var t  = toks[i];
+        chipHTML += '<span class="token-chip" style="background:' + bg + ';">'
+                  + t.replace(/</g,"&lt;").replace(/>/g,"&gt;") + '</span> ';
+        ids.push(tokenId(t));
+      }
+      chipsEl.innerHTML = chipHTML;
+      idsEl.textContent = ids.join(", ");
+    }
+
+    var hint = document.getElementById("tokenizer-hint");
+
+    input.addEventListener("input", update);
+    /* Hide hint when user focuses the input */
+    input.addEventListener("focus", function() {
+      if (hint) hint.style.opacity = "0";
+    });
+    input.addEventListener("blur", function() {
+      if (hint && !input.textContent.trim()) hint.style.opacity = "1";
+    });
+    /* Also catch paste to strip formatting */
+    input.addEventListener("paste", function(e) {
+      e.preventDefault();
+      var text = (e.clipboardData || window.clipboardData).getData("text/plain");
+      document.execCommand("insertText", false, text);
+    });
+    /* Initialize with pre-populated text */
+    update();
+  })();
+  </script>
+
+</section>
+
+
+
+    <!-- ============ Section 4: Context Window ============ -->
+
+    <section id="context-window" class="section section--gray">
+
+  <div class="container">
+
+    <h2>Every conversation, the model starts with a fresh context window.</h2>
+
+    <p class="section-body">
+     The model's
+      <span class="define-term"><strong>context window</strong><span class="define-tip"><strong>Context Window</strong>A fixed-size container (measured in tokens) that holds everything the model can see in one conversation. When it fills up, older messages are summarized to make room (a process known as 'compaction').</span></span>
+      holds tokens from your prompts, its own thinking, file uploads, and more.
+      As the context window fills up, costs rise and performance degrades 
+      (sometimes called "context rot"). There are several ways to get information in, from simple
+      copy-paste to <span class="define-term"><strong>connectors</strong><span class="define-tip"><strong>MCP (Model Context Protocol)</strong>An open standard that lets Claude reach into external systems like SharePoint, Slack, Google Drive, Jira, and databases. Called "connectors" in the Claude Chat interface; in Claude Code, you configure them as MCP servers.</span></span>
+      that let the model interact with external apps and data sources. Each product will also preload a
+      <span class="define-term"><strong>system prompt</strong><span class="define-tip"><strong>System Prompt</strong>Hidden instructions sent to the model by the product or platform before your conversation begins. They shape Claude's tone, rules, and behavior without being visible to you. Every Claude product has one and they vary widely.</span></span>
+      and any saved instructions you've saved.
+      Claude can also load
+      <span class="define-term"><strong>skills</strong><span class="define-tip"><strong>Skill</strong>A pre-written set of instructions and resources (e.g., templates) that load into the context window on demand, giving Claude expertise for a specific task (creating slides, working with PDFs, writing docs, etc.).</span></span>
+      – pre-packaged instructions with expertise for tasks like creating documents, building websites, and writing in a specific tone or style.
+      Skills load only when needed, so Claude gets the right know-how without always taking up valuable context window space.
+    </p>
+
+    <!-- ── Interactive Visual ───────────────────────────────────────── -->
+    <div id="cw-visual" role="region" aria-label="Interactive context window diagram">
+      <div id="cw-visual-title" class="diagram-label">What fills the context window</div>
+
+      <!-- Annotations ABOVE bar -->
+      <div id="cw-ann-above" class="cw-ann-region cw-ann-region--above">
+      </div>
+
+      <!-- Bar -->
+      <div id="cw-bar-wrap">
+        <div id="cw-bar-labels-top">
+          <span>New chat</span>
+          <span id="cw-full-label">Window nearly full</span>
+          <span>200K tokens</span>
+        </div>
+        <div id="cw-bar">
+          <!-- chunks injected by JS -->
+        </div>
+        <!-- Arrow label -->
+        <div id="cw-bar-arrow">
+          <svg viewBox="0 0 200 10" fill="none" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="0" y1="5" x2="190" y2="5" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.2"/>
+            <path d="M190 5L183 1.5V8.5L190 5Z" fill="currentColor" fill-opacity="0.4"/>
+          </svg>
+          <span id="cw-bar-arrow-label">context window</span>
+        </div>
+      </div>
+
+      <!-- Annotations BELOW bar -->
+      <div id="cw-ann-below" class="cw-ann-region cw-ann-region--below">
+      </div>
+
+
+      <!-- Navigation -->
+      <div id="cw-nav">
+        <button class="step-nav-btn" id="cw-btn-back" aria-label="Previous step" disabled>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="cw-nav-arrow" aria-hidden="true">
+            <path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="cw-step-indicator">0 / 7</div>
+        <button class="step-nav-btn" id="cw-btn-next" aria-label="Next step">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="cw-nav-arrow" aria-hidden="true">
+            <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+
+  </div><!-- /.container -->
+
+  <script>
+  (function () {
+    function sgVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+    /* ── Step definitions ────────────────────────────────────────────── */
+    const STEPS = [
+      {
+        label: "System prompt\n+ instructions",
+        color: sgVar("--sg-semantic-muted"),
+        pct: 18,
+        side: "above",
+        icon: "fa-gear",
+        desc: "Hidden and user instructions\n(preloaded)"
+      },
+      {
+        label: "User prompt",
+        color: sgVar("--sg-semantic-warning"),
+        pct: 10,
+        side: "above",
+        icon: "fa-user",
+        desc: "Your first message"
+      },
+      {
+        label: "Thinking",
+        color: sgVar("--sg-semantic-ink"),
+        pct: 14,
+        side: "below",
+        icon: "fa-brain",
+        desc: "Internal reasoning to accomplish tasks"
+      },
+      {
+        label: "Tool results",
+        color: sgVar("--sg-semantic-ink"),
+        pct: 14,
+        side: "below",
+        icon: "fa-wrench",
+        desc: "Tool results injected into context"
+      },
+      {
+        label: "Skill",
+        color: sgVar("--sg-semantic-ink"),
+        pct: 14,
+        side: "below",
+        icon: "fa-bolt",
+        desc: "Relevant instructions and resources\n(loaded on demand)"
+      },
+      {
+        label: "Reply",
+        color: sgVar("--sg-semantic-ink"),
+        pct: 14,
+        side: "below",
+        icon: "fa-robot",
+        desc: "Claude's response"
+      },
+      {
+        label: "File upload",
+        color: sgVar("--sg-semantic-warning"),
+        pct: 10,
+        side: "above",
+        icon: "fa-file",
+        desc: "Large files can fill up a lot of context"
+      }
+    ];
+
+    const BAR_H = 52;         // px, bar height
+    const ANN_CARD_W = 140;   // px, annotation card width
+    const ANN_REGION_H = 170; // px, above/below region height
+    const CONNECTOR_H = 20;   // px
+
+    /* ── Build layout data (left offsets) ───────────────────────────── */
+    let cumPct = 0;
+    const layout = STEPS.map((s, i) => {
+      const left = cumPct;
+      cumPct += s.pct;
+      const midPct = left + s.pct / 2;
+      return { ...s, left, mid: midPct };
+    });
+
+    /* ── DOM refs ────────────────────────────────────────────────────── */
+    const bar          = document.getElementById("cw-bar");
+    const annAbove     = document.getElementById("cw-ann-above");
+    const annBelow     = document.getElementById("cw-ann-below");
+    const btnBack      = document.getElementById("cw-btn-back");
+    const btnNext      = document.getElementById("cw-btn-next");
+    const stepInd      = document.getElementById("cw-step-indicator");
+
+    /* ── FA icon map ─────────────────────────────────────────────────── */
+    const FA_SVG = {
+      "fa-gear": `<svg viewBox="0 0 512 512" fill="currentColor" width="12" height="12"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>`,
+      "fa-user": `<svg viewBox="0 0 448 512" fill="currentColor" width="16" height="12"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>`,
+      "fa-robot": `<svg viewBox="0 0 640 512" fill="currentColor" width="13" height="12"><path d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h224c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm-16-96a32 32 0 1 0 64 0 32 32 0 1 0 -64 0zm192 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>`,
+      "fa-magnifying-glass": `<svg viewBox="0 0 512 512" fill="currentColor" width="12" height="12"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>`,
+      "fa-file": `<svg viewBox="0 0 384 512" fill="currentColor" width="10" height="12"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>`,
+      "fa-brain": `<svg viewBox="0 0 512 512" fill="currentColor" width="12" height="12"><path d="M184 0c30.9 0 56 25.1 56 56v8h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8v16h72c26.5 0 48 21.5 48 48c0 11.5-4 22-10.8 30.2C373.1 215.2 392 241.7 392 272c0 8.7-1.5 17-4.2 24.8C413.4 308.8 432 333.8 432 364c0 17.4-6.2 33.3-16.4 45.7C437.2 420.7 452 443.3 452 468c0 35.3-28.7 64-64 64H296c0 0 0 0 0 0H248c0 0 0 0 0 0H200c-57.4 0-104-46.6-104-104v-8c-35.3 0-64-28.7-64-64c0-25.7 15.2-47.8 37.1-57.9C48.4 280.2 32 252.8 32 220c0-30.1 16.6-56.3 41.1-70C61.5 139.4 56 125.2 56 112c0-39.8 32.2-72 72-72h8V32c0-17.7 14.3-32 32-32h16zM272 224c0-17.7-14.3-32-32-32s-32 14.3-32 32v16h64v-16z"/></svg>`,
+      "fa-wrench": `<svg viewBox="0 0 512 512" fill="currentColor" width="12" height="12"><path d="M352 320c88.4 0 160-71.6 160-160c0-15.3-2.2-30.1-6.2-44.2c-3.1-10.8-16.4-13.2-24.3-5.3l-76.8 76.8c-3 3-7.1 4.7-11.3 4.7H336c-8.8 0-16-7.2-16-16v-57.4c0-4.2 1.7-8.3 4.7-11.3l76.8-76.8c7.9-7.9 5.4-21.2-5.3-24.3C382.1 2.2 367.3 0 352 0C263.6 0 192 71.6 192 160c0 19.1 3.4 37.5 9.5 54.5L19.9 396.1C7.2 408.8 0 426.1 0 444.1C0 481.6 30.4 512 67.9 512c18 0 35.3-7.2 48-19.9l181.6-181.6c17 6.2 35.4 9.5 54.5 9.5z"/></svg>`,
+      "fa-bolt": `<svg viewBox="0 0 448 512" fill="currentColor" width="10" height="12"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg>`
+    };
+
+    /* ── Build chunks ────────────────────────────────────────────────── */
+    layout.forEach((s, i) => {
+      const chunk = document.createElement("div");
+      chunk.className = "cw-chunk";
+      chunk.id = `cw-chunk-${i}`;
+      chunk.style.cssText = `
+        left:${s.left}%;
+        width:${s.pct}%;
+        background:${s.color};
+        border-radius: ${i === 0 ? "4px 0 0 4px" : "0"};
+      `;
+      bar.appendChild(chunk);
+    });
+
+    /* ── Build annotation cards + connectors ────────────────────────── */
+    layout.forEach((s, i) => {
+      const container = s.side === "above" ? annAbove : annBelow;
+      const isAbove = s.side === "above";
+
+      // Connector
+      const conn = document.createElement("div");
+      conn.className = "cw-connector";
+      conn.id = `cw-conn-${i}`;
+      if (isAbove) {
+        conn.style.cssText = `
+          left:${s.mid}%;
+          bottom:5px;
+          height:${CONNECTOR_H}px;
+          background:${s.color};
+        `;
+      } else {
+        conn.style.cssText = `
+          left:${s.mid}%;
+          top:5px;
+          height:${CONNECTOR_H}px;
+          background:${s.color};
+        `;
+      }
+      container.appendChild(conn);
+
+      // Card
+      const card = document.createElement("div");
+      card.className = "cw-ann";
+      card.id = `cw-ann-${i}`;
+
+      const iconEl = document.createElement("div");
+      iconEl.className = "cw-ann-icon";
+      iconEl.style.background = s.color;
+      iconEl.innerHTML = FA_SVG[s.icon] || "";
+
+      const labelEl = document.createElement("span");
+      labelEl.className = "cw-ann-label";
+      labelEl.innerHTML = s.label.replace(/\n/g, "<br>");
+
+      const descEl = document.createElement("span");
+      descEl.className = "cw-ann-desc";
+      descEl.textContent = s.desc;
+
+      card.appendChild(iconEl);
+      card.appendChild(labelEl);
+      card.appendChild(descEl);
+
+      // Position card
+      let leftPct = s.mid;
+      // clamp so card doesn't overflow
+      const halfCardPct = (ANN_CARD_W / 2) / (bar.offsetWidth || 800) * 100;
+      if (isAbove) {
+        card.style.cssText = `
+          left:${leftPct}%;
+          bottom:25px;
+        `;
+      } else {
+        card.style.cssText = `
+          left:${leftPct}%;
+          top:25px;
+        `;
+      }
+      container.appendChild(card);
+    });
+
+    /* ── State ───────────────────────────────────────────────────────── */
+    let currentStep = 0; // 0 = nothing active
+
+    const TOTAL = layout.length;
+
+    function render(step) {
+      // step: 0 = nothing, 1..TOTAL = steps active
+      layout.forEach((s, i) => {
+        const idx = i + 1; // 1-based
+        const visited = idx < step;
+        const active = idx === step;
+        const chunk = document.getElementById(`cw-chunk-${i}`);
+        const card  = document.getElementById(`cw-ann-${i}`);
+        const conn  = document.getElementById(`cw-conn-${i}`);
+
+        chunk.classList.toggle("active", idx <= step);
+        card.classList.toggle("visited", visited);
+        card.classList.toggle("active", active);
+        conn.classList.toggle("visited", visited);
+        conn.classList.toggle("active", active);
+      });
+
+      // Buttons
+      btnBack.disabled = step <= 0;
+      btnNext.disabled = step >= TOTAL;
+      stepInd.textContent = `${step} / ${TOTAL}`;
+    }
+
+    function advance() {
+      if (currentStep < TOTAL) {
+        currentStep++;
+        render(currentStep);
+      }
+    }
+
+    function retreat() {
+      if (currentStep > 0) {
+        currentStep--;
+        render(currentStep);
+      }
+    }
+
+    btnNext.addEventListener("click", advance);
+    btnBack.addEventListener("click", retreat);
+
+    document.addEventListener("keydown", function (e) {
+      if (!window.__isSectionVisible("context-window")) return;
+      if (e.key === "ArrowRight") { advance(); e.preventDefault(); }
+      if (e.key === "ArrowLeft")  { retreat(); e.preventDefault(); }
+    });
+
+    // Initial render
+    render(0);
+  })();
+  </script>
+
+  <!-- Method strip — tools that bring outside info into context -->
+  <div class="container">
+    <p class="section-body section-body--spaced" style="text-align: center">Tools that bring outside information into the context window</p>
+    <div class="method-strip">
+      <div class="method-chip">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="method-chip__text">
+          <strong>Web search &amp; browsing</strong>
+          <span>Search the web or interact with live pages like a human would</span>
+        </div>
+      </div>
+      <div class="method-chip">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <div class="method-chip__text">
+          <strong>File upload</strong>
+          <span>Drag PDFs, spreadsheets, images, or code into Claude Chat</span>
+        </div>
+      </div>
+      <div class="method-chip">
+        <i class="fa-solid fa-folder-open"></i>
+        <div class="method-chip__text">
+          <strong>Direct file access</strong>
+          <span>Claude Code and Cowork read and write to your local files</span>
+        </div>
+      </div>
+      <div class="method-chip">
+        <i class="fa-solid fa-plug"></i>
+        <div class="method-chip__text">
+          <strong>Connectors (MCP Servers)</strong>
+          <span>Interact with external sources and apps like M365, Notion, Figma</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+    
+
+    <!-- ============ Section 6: Agents in Action ============ -->
+
+    <section id="agents-in-action" class="section section--gray">
+  <div class="container">
+
+    <h2>With the right building blocks, AI agents can automate work.</h2>
+
+    <p class="section-body section-body--spaced">
+      In the demo video, Opus reads templates and orchestrates the team, Haiku handles high-volume file scanning, and Sonnet summarizes only the relevant files. Each
+      <span class="define-term"><strong>agent</strong><span class="define-tip"><strong>AI Agent</strong>A system that autonomously performs tasks by designing workflows with available tools. AI agents can encompass a wide range of functions beyond natural language processing including decision-making, problem-solving, interacting with external environments and performing actions.<em><a href="https://www.ibm.com/think/topics/ai-agents" target="_blank" rel="noopener">Source: IBM docs</a></em></span></span>
+      gets its own context window, so no single conversation overflows.
+      Skills play a role here too: when a task requires specialized knowledge (like how to orchestrate an AI team), each agent can load the relevant skill, giving it expert-level instructions without cluttering the other agents' windows.
+      AI excels at using all these building blocks, so you need to build really good blocks – clear instructions, good templates, and well-organized files.
+    </p>
+
+    <!-- Interactive orchestration flow diagram -->
+    <div class="diagram-wrap">
+
+      <p class="diagram-label">How Claude Code can orchestrate work</p>
+
+      <!-- SVG diagram -->
+      <div style="position:relative;">
+        <svg id="ag-diagram" viewBox="0 0 900 480" class="diagram-svg" style="max-width:900px;" aria-label="Interactive orchestration flow diagram showing Claude Code using multiple models">
+          <defs>
+            <marker id="ag-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="var(--sg-diagram-slate)"/>
+            </marker>
+          </defs>
+
+          <!-- ======================== STAGE 1: You → Claude Code → Opus ======================== -->
+          <g class="ag-stage ag-stage-1" style="opacity:0;">
+
+            <!-- User prompt card -->
+            <rect x="10" y="80" width="200" height="56" rx="10" fill="var(--sg-claude-ui)" stroke="var(--sg-border-claude-ui)" stroke-width="1.5"/>
+            <text x="24" y="100" font-family="'Source Sans 3',sans-serif" font-size="9" fill="var(--sg-diagram-slate)" font-weight="700">YOU</text>
+            <text x="24" y="116" font-family="'Source Sans 3',sans-serif" font-size="10.5" fill="var(--sg-charcoal)">Here are files from our partner. Get</text>
+            <text x="24" y="128" font-family="'Source Sans 3',sans-serif" font-size="10.5" fill="var(--sg-charcoal)">our AI team to build them a solution.</text>
+
+            <!-- Arrow from prompt to Claude Code -->
+            <line x1="110" y1="136" x2="110" y2="210" stroke="var(--sg-diagram-slate)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
+
+            <!-- Opus at intro position -->
+            <image href="icons/icon-opus.svg" x="72" y="222" width="76" height="76"/>
+            <text x="110" y="317" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)" font-weight="600">Opus</text>
+
+          </g>
+
+          <!-- ======================== STAGE 2: Opus reads skill ======================== -->
+          <g class="ag-stage ag-stage-2" style="opacity:0;">
+
+            <!-- Opus at persistent position -->
+            <image href="icons/icon-opus.svg" x="72" y="222" width="76" height="76"/>
+            <text x="110" y="317" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)" font-weight="600">Opus</text>
+
+            <!-- Arrow Opus up to SKILL.md -->
+            <line x1="110" y1="210" x2="110" y2="136" stroke="var(--sg-diagram-slate)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
+
+            <!-- SKILL.md box -->
+            <rect x="60" y="98" width="100" height="36" rx="10" fill="var(--sg-claude-ui)" stroke="var(--sg-border-strong)" stroke-width="1.5"/>
+            <text x="110" y="121" text-anchor="middle" font-family="'Source Code Pro','Source Sans 3',monospace" font-size="16" fill="var(--sg-charcoal)">SKILL.md</text>
+
+            <!-- Annotation text -->
+            <text x="60" y="70" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">Opus reads skill to</text>
+            <text x="60" y="88" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">orchestrate AI team</text>
+
+          </g>
+
+          <!-- ======================== STAGE 3: Opus spawns subagents, reads template ======================== -->
+          <g class="ag-stage ag-stage-3" style="opacity:0;">
+
+            <!-- Arrow Opus up-right to templates -->
+            <line x1="130" y1="222" x2="240" y2="134" stroke="var(--sg-diagram-slate)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
+
+            <!-- templates box -->
+            <rect x="240" y="98" width="120" height="36" rx="10" fill="var(--sg-claude-ui)" stroke="var(--sg-border-strong)" stroke-width="1.5"/>
+            <text x="300" y="121" text-anchor="middle" font-family="'Source Code Pro','Source Sans 3',monospace" font-size="16" fill="var(--sg-charcoal)">templates</text>
+
+            <!-- Dashed arrow Opus down to Haiku (subagent stream) -->
+            <line x1="135" y1="300" x2="260" y2="380" stroke="var(--sg-diagram-slate)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ag-arrow)"/>
+
+            <!-- Haiku icon -->
+            <image href="icons/icon-haiku.svg" x="260" y="382" width="60" height="60"/>
+            <text x="290" y="460" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)" font-weight="600">Haiku</text>
+
+            <!-- Annotation text -->
+            <text x="240" y="70" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">Opus spawns subagents</text>
+            <text x="240" y="88" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">while reading templates</text>
+
+          </g>
+
+          <!-- ======================== STAGE 4: Haiku scans files, creates index ======================== -->
+          <g class="ag-stage ag-stage-4" style="opacity:0;">
+
+            <!-- File boxes beside Haiku -->
+            <rect x="368" y="400" width="22" height="26" rx="2" fill="none" stroke="var(--sg-border-strong)" stroke-width="1"/>
+            <rect x="396" y="400" width="22" height="26" rx="2" fill="none" stroke="var(--sg-border-strong)" stroke-width="1"/>
+            <rect x="424" y="400" width="22" height="26" rx="2" fill="none" stroke="var(--sg-border-strong)" stroke-width="1"/>
+            <rect x="452" y="400" width="22" height="26" rx="2" fill="none" stroke="var(--sg-border-strong)" stroke-width="1"/>
+            <!-- Dashed Arrow from Haiku to index.md -->
+            <line x1="328" y1="412" x2="498" y2="412" stroke="var(--sg-diagram-slate)" stroke-width="1.5" stroke-dasharray="5,4"marker-end="url(#ag-arrow)"/>
+            <text x="423" y="442" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="var(--sg-diagram-slate)">many files</text>
+
+            <!-- index.md box -->
+            <rect x="504" y="394" width="90" height="36" rx="8" fill="var(--sg-claude-ui)" stroke="var(--sg-border-strong)" stroke-width="1.5"/>
+            <text x="549" y="417" text-anchor="middle" font-family="'Source Code Pro','Source Sans 3',monospace" font-size="16" fill="var(--sg-charcoal)">index.md</text>
+
+            <!-- Annotation text -->
+            <text x="600" y="410" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">Haiku scans all files and</text>
+            <text x="600" y="428" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">identifies relevant ones</text>
+
+          </g>
+
+          <!-- ======================== STAGE 5: Sonnet summarizes, sends to Opus ======================== -->
+          <g class="ag-stage ag-stage-5" style="opacity:0;">
+
+            <!-- Dashed Arrow from index.md up to Sonnet -->
+            <line x1="549" y1="394" x2="620" y2="300" stroke="var(--sg-diagram-slate)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ag-arrow)"/>
+
+            <!-- Sonnet label -->
+            <text x="630" y="220" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)" font-weight="600">Sonnet</text>
+
+            <!-- Sonnet icon -->
+            <image href="icons/icon-sonnet.svg" x="600" y="230" width="60" height="60"/>
+
+            <!-- Dashed Arrow from Sonnet left to summary box -->
+            <line x1="590" y1="258" x2="490" y2="258" stroke="var(--sg-diagram-slate)" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+            <!-- Summary dashed box -->
+            <rect x="340" y="238" width="148" height="40" rx="10" fill="none" stroke="var(--sg-diagram-slate)" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <text x="414" y="263" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">summary</text>
+
+            <!-- Arrow from summary to Opus -->
+            <line x1="340" y1="258" x2="157" y2="258" stroke="var(--sg-diagram-slate)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
+
+            <!-- Annotation text -->
+            <text x="670" y="250" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">Sonnet reads relevant files</text>
+            <text x="670" y="268" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">and summarizes key findings</text>
+
+          </g>
+
+          <!-- ======================== STAGE 6: Final deliverable ======================== -->
+          <g class="ag-stage ag-stage-6" style="opacity:0;">
+
+            <!-- Arrow from Opus down to briefing.html -->
+            <line x1="110" y1="320" x2="110" y2="365" stroke="var(--sg-diagram-slate)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
+
+            <!-- briefing.html box -->
+            <rect x="40" y="370" width="130" height="36" rx="10" fill="var(--sg-claude-ui)" stroke="var(--sg-border-strong)" stroke-width="1.5"/>
+            <text x="105" y="392" text-anchor="middle" font-family="'Source Code Pro','Source Sans 3',monospace" font-size="16" fill="var(--sg-charcoal)">briefing.html</text>
+
+            <!-- Annotation text -->
+            <text x="40" y="422" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">Opus uses context from</text>
+            <text x="40" y="440" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">SKILL.md, templates, and</text>
+            <text x="40" y="458" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">the Sonnet agent summary</text>
+            <text x="40" y="476" font-family="'Source Sans 3',sans-serif" font-size="16" fill="var(--sg-charcoal)">to make a client briefing</text>
+
+
+          </g>
+
+        </svg>
+      </div><!-- end svg wrapper -->
+
+      <!-- Navigation controls -->
+      <div class="step-nav">
+        <button class="step-nav-btn" id="ag-btn-prev" aria-label="Previous stage">&#8592;</button>
+        <button class="step-nav-btn" id="ag-btn-next" aria-label="Next stage">&#8594;</button>
+        <span class="step-stage-label" id="ag-stage-label">1 / 6</span>
+      </div>
+
+    </div><!-- end interactive wrapper -->
+
+  </div><!-- end container -->
+</section>
+
+    <!-- Capability comparison table -->
+    <section id="capability-compare" class="section section--white">
+      <div class="container">
+        <h2>Each product gives you different capabilities.</h2>
+        <p class="section-body section-body--spaced">
+          Most of what you create – whether it's a presentation, a website, or a document – is code that gets written. When you learn to manipulate that, you can do anything. This guide starts with Claude Code because it gives you the most influence for bringing your ideas to reality. The other products are always available if you need them.
+        </p>
+        <div class="diagram-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th class="compare-table__cap" style="vertical-align:bottom;">Capability</th>
+                <th><img src="icons/icon-claudecode.svg" alt="Code" class="icon--sm" style="display:block;margin:0 auto 4px;"><br>Code</th>
+                <th><img src="icons/icon-cowork.svg" alt="Cowork" class="icon--sm" style="display:block;margin:0 auto 4px;"><br>Cowork</th>
+                <th><img src="icons/icon-claudeai.svg" alt="Chat" class="icon--sm" style="display:block;margin:0 auto 4px;"><br>Chat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Fully orchestrate a team of agents</td><td class="cmp-yes">✓</td><td class="cmp-no">✗</td><td class="cmp-no">✗</td></tr>
+              <tr><td>Manage context window usage</td><td class="cmp-yes">✓</td><td class="cmp-no">✗</td><td class="cmp-no">✗</td></tr>
+              <tr><td>Build, test, and deploy software end-to-end</td><td class="cmp-yes">✓</td><td class="cmp-no">✗</td><td class="cmp-no">✗</td></tr>
+              <tr><td>Read and write local files</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-no">✗</td></tr>
+              <tr><td>Work in the background</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-no">✗</td></tr>
+              <tr><td>Write and run code</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td></tr>
+              <tr><td>Connect to external tools</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td></tr>
+              <tr><td>Search the web</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td></tr>
+              <tr><td>Save instructions across conversations</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+<script>
+(function() {
+  var AG_TOTAL = 6;
+  var agCurrent = 1;
+
+  function agShowStage(n) {
+    for (var i = 1; i <= AG_TOTAL; i++) {
+      var els = document.querySelectorAll('.ag-stage-' + i);
+      els.forEach(function(el) {
+        if (i === 1) {
+          /* Stage 1 only shows alone; hides when stage >= 2 */
+          el.style.opacity = (n === 1) ? '1' : '0';
+        } else {
+          /* Stages 2+ are additive: show if current stage >= this stage */
+          el.style.opacity = (n >= i) ? '1' : '0';
+        }
+      });
+    }
+
+    var label = document.getElementById('ag-stage-label');
+    if (label) label.textContent = n + ' / ' + AG_TOTAL;
+
+    var prevBtn = document.getElementById('ag-btn-prev');
+    var nextBtn = document.getElementById('ag-btn-next');
+    if (prevBtn) prevBtn.style.opacity = (n === 1) ? '0.4' : '1';
+    if (nextBtn) nextBtn.style.opacity = (n === AG_TOTAL) ? '0.4' : '1';
+  }
+
+  function agNext() {
+    if (agCurrent < AG_TOTAL) { agCurrent++; agShowStage(agCurrent); }
+  }
+  function agPrev() {
+    if (agCurrent > 1) { agCurrent--; agShowStage(agCurrent); }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    /* ── Model Selector Interactive ── */
+    (function() {
+      var btn = document.getElementById('msdModelBtn');
+      var dropdown = document.getElementById('msdDropdown');
+      var label = document.getElementById('msdSelectedLabel');
+      var hint = document.getElementById('msdHint');
+      var options = dropdown ? dropdown.querySelectorAll('.msd-option') : [];
+      if (!btn || !dropdown || !options.length) return;
+
+      function toggle() {
+        dropdown.classList.toggle('msd-dropdown--open');
+        if (hint) hint.classList.add('msd-hint--hidden');
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggle();
+      });
+
+      options.forEach(function(opt) {
+        opt.addEventListener('click', function(e) {
+          e.stopPropagation();
+          options.forEach(function(o) {
+            o.classList.remove('msd-option--selected');
+            o.querySelector('.msd-check').textContent = '';
+          });
+          opt.classList.add('msd-option--selected');
+          opt.querySelector('.msd-check').textContent = '✓';
+          label.textContent = opt.getAttribute('data-model');
+          dropdown.classList.remove('msd-dropdown--open');
+        });
+      });
+
+      document.addEventListener('click', function() {
+        dropdown.classList.remove('msd-dropdown--open');
+      });
+    })();
+
+    var btnNext = document.getElementById('ag-btn-next');
+    var btnPrev = document.getElementById('ag-btn-prev');
+    if (btnNext) btnNext.addEventListener('click', agNext);
+    if (btnPrev) btnPrev.addEventListener('click', agPrev);
+
+    document.addEventListener('keydown', function(e) {
+      if (!window.__isSectionVisible('agents-in-action')) return;
+      if (e.key === 'ArrowRight') { agNext(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { agPrev(); e.preventDefault(); }
+    });
+
+    agShowStage(1);
+  });
+})();
+</script>
+
+        <!-- ============ Section 6: Try Claude Code (Real Content) ============ -->
+    <section id="claude-code" class="section section--gray">
+      <div class="container">
+        <h2>Set up Claude Code and build something.</h2>
+        <p class="section-body section-body--spaced">To set up Claude Code, copy the prompt below and paste in <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a>. The chat will guide you, one step at a time.</p>
+
+        <div class="claude-chat">
+          <div class="claude-chat__header">
+            <div class="os-toggle">
+              <button class="os-toggle__btn active" data-os="windows">Windows</button>
+              <button class="os-toggle__btn" data-os="mac">MacOS</button>
+            </div>
+          </div>
+          <div class="claude-chat__body" id="promptText">I need your help installing and setting up Claude Code on my Windows machine and explaining concepts as we progress.
+
+Walk me through this, step by step:
+
+1. Install Git for Windows – Explain what Git is and why Claude Code needs it. Walk me through the installer screen by screen if I share screenshots. Make sure I understand what PATH means and why it matters. After installation, have me verify it worked by running a command.
+
+2. Handle the Git Bash path proactively – A common issue on Windows is that Git sometimes installs to a non-default location (like AppData\Local\Programs\Git instead of C:\Program Files\Git), which causes Claude Code's installer to silently fail. BEFORE I install Claude Code, have me run a command to find where Git Bash actually installed, and then have me set the CLAUDE_CODE_GIT_BASH_PATH environment variable as a permanent User variable pointing to the correct bash.exe location. Do not skip this step – it prevents a confusing problem later.
+
+3. Install Claude Code – Walk me through running the official Windows installer (irm https://claude.ai/install.ps1 | iex) in PowerShell. Help me verify the installation worked and that the "claude" command is recognized. If I need to add anything to my PATH, walk me through that with exact steps (System Properties > Environment Variables).
+
+4. Install VS Code and the Claude Code extension – Explain what VS Code is and why I'd want to use it. Walk me through installing VS Code, then installing the Claude Code extension from the Extensions marketplace. Explain that VS Code with the Claude Code extension is recommended because it provides a user-friendly interface: see files in the side bar, edit them in the middle, and chat with Claude Code in a panel. Users can branch out to using Claude Code directly in a terminal, but this is the easiest way to get most of the Claude Code experience.
+
+5. Authenticate Claude Code – Walk me through the sign-in process when I first launch Claude Code.
+
+6. Explain CLAUDE.md – Once everything is running, explain what a CLAUDE.md file is: a markdown file I put in a project folder that gives Claude Code background context about my work (like a briefing document it reads automatically every session). Explain what Markdown is in simple terms. Then ask me if I'd like help creating my first one. Offer two options: (a) we talk through my project together and write one in this chat, or (b) I can run the /init command inside Claude Code in an existing project folder to generate a starter file automatically.
+
+Important guidelines for this conversation:
+
+- Explain every concept as you introduce it (terminal, PATH, environment variable, extension, Markdown, etc.).
+- Go one step at a time. Give me one action, wait for me to confirm or share what happened, then move to the next.
+- Encourage me to copy and paste whatever I see on my screen with text or snips/screenshots (error messages, command output, etc.).
+- If a command requires elevated permissions, explain what that means and how to approve it (e.g., "Run as Administrator").
+- Don't install extra tools (Python, Node.js, etc.) unless I specifically need them for something. Keep the setup minimal.
+- Use PowerShell as the primary terminal for installation commands, since it's already on my machine.
+
+Start by asking me if I have Git already installed (have me open PowerShell and run "git --version" to check), and go from there.</div>
+          <div class="claude-chat__body" id="promptTextMac" style="display:none">I need your help installing and setting up Claude Code on my Mac and explaining concepts as we progress.
+
+Walk me through this, step by step:
+
+1. Check prerequisites – Have me open Terminal (explain where to find it) and check my macOS version to make sure it's 13.0 or newer. Then have me run "git --version" to check if Git is available. If macOS prompts me to install Xcode Command Line Tools, explain what that is and walk me through accepting the install. Make sure I understand that this is Apple's standard developer toolkit. Wait for it to finish before moving on.
+
+2. Install Claude Code – Walk me through running the official Mac installer command (curl -fsSL https://claude.ai/install.sh | bash) in Terminal. Explain what this command does in plain language before I run it. Help me verify the installation worked by running "claude --version". If the "claude" command is not recognized, walk me through the likely fix: the installer adds Claude to ~/.local/bin, so I may need to restart Terminal or add that directory to my PATH in ~/.zshrc. Explain what PATH and .zshrc are in simple terms, and give me the exact commands to fix it.
+
+3. Install VS Code and the Claude Code extension – Explain what VS Code is and why I'd want to use it. Walk me through installing VS Code, then installing the Claude Code extension from the Extensions marketplace. Explain that VS Code with the Claude Code extension is recommended because it provides a user-friendly interface: see files in the side bar, edit them in the middle, and chat with Claude Code in a panel. Users can branch out to using Claude Code directly in a terminal, but this is the easiest way to get most of the Claude Code experience.
+
+4. Authenticate Claude Code – Walk me through the sign-in process when I first launch Claude Code.
+
+5. Explain CLAUDE.md – Once everything is running, explain what a CLAUDE.md file is: a markdown file I put in a project folder that gives Claude Code background context about my work (like a briefing document it reads automatically every session). Explain what Markdown is in simple terms. Then ask me if I'd like help creating my first one. Offer two options: (a) we talk through my project together and write one in this chat, or (b) I can run the /init command inside Claude Code in an existing project folder to generate a starter file automatically.
+
+Important guidelines for this conversation:
+
+- Explain every concept as you introduce it (Terminal, PATH, shell profile, extension, Markdown, etc.).
+- Go one step at a time. Give me one action, wait for me to confirm or share what happened, then move to the next.
+- Encourage me to copy and paste whatever I see on my screen with text or screenshots (error messages, command output, etc.).
+- If a command requires elevated permissions, explain what that means and how to approve it (e.g., entering my password after a "sudo" command).
+- Don't install extra tools (Python, Node.js, Homebrew, etc.) unless I specifically need them for something. Keep the setup minimal.
+- Use Terminal as the primary app for installation commands, since it's already on my Mac.
+
+Start by asking me to open Terminal (show me how to find it with Spotlight: Command+Space, type "Terminal") and run "sw_vers" so we can confirm my macOS version, then go from there.</div>
+          <div class="claude-chat__footer">
+            <button class="claude-chat__copy" id="copyBtn" onclick="copyPrompt()" title="Copy prompt to clipboard">
+              <i class="fa-regular fa-clone"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Footer ============ -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Juan Ocampo · <a href="https://github.com/juanocampo400/claude-starter-guide" class="footer__github"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a> · MIT License</p>
+      </div>
+    </footer>
+
+  </div><!-- /.main -->
+
+  <!-- ============ JavaScript ============ -->
+  <script>
+    // Shared utility: check if a section is visible in the viewport
+    // Used by interactive diagrams to scope keyboard navigation
+    window.__isSectionVisible = function(sectionId) {
+      var el = document.getElementById(sectionId);
+      if (!el) return false;
+      var rect = el.getBoundingClientRect();
+      var vh = window.innerHeight;
+      return rect.top < vh * 0.7 && rect.bottom > vh * 0.3;
+    };
+
+    // Sidebar toggle
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('open');
+    }
+
+    sidebarToggle.addEventListener('click', toggleSidebar);
+    sidebarOverlay.addEventListener('click', toggleSidebar);
+
+    // Close sidebar on nav link click (mobile)
+    sidebar.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) toggleSidebar();
+      });
+    });
+
+    // Active sidebar link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const sidebarLinks = document.querySelectorAll('.sidebar__nav a');
+
+    function updateActiveLink() {
+      const scrollPos = window.scrollY + 120;
+      let current = '';
+      sections.forEach(section => {
+        if (section.offsetTop <= scrollPos) {
+          current = section.getAttribute('id');
+        }
+      });
+      sidebarLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    updateActiveLink();
+
+
+
+    // Reposition define-tips so they stay within the visible content area
+    document.querySelectorAll('.define-term').forEach(term => {
+      const tip = term.querySelector('.define-tip');
+      if (!tip) return;
+      let leaveTimer = null;
+      let positioned = false;
+
+      let interactiveTimer = null;
+
+      function resetTip() {
+        positioned = false;
+        if (interactiveTimer) { clearTimeout(interactiveTimer); interactiveTimer = null; }
+        tip.classList.remove('define-tip--below', 'tip-interactive');
+        term.classList.remove('define-term--tip-below');
+        tip.style.left = '';
+        tip.style.top = '';
+        tip.style.bottom = '';
+        tip.style.transform = '';
+        tip.style.removeProperty('--arrow-left');
+      }
+
+      term.addEventListener('mouseenter', () => {
+        if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
+        if (positioned) return;
+        positioned = true;
+
+        const navH = 44;
+        const sidebarW = window.innerWidth > 1024 ? 260 : 0;
+        const tipW = 320;
+        const gap = 10;
+        const termRect = term.getBoundingClientRect();
+        const termCenterX = termRect.left + termRect.width / 2;
+
+        // Measure tooltip height (CSS :hover makes it visible, but we need the height)
+        const tipH = tip.offsetHeight || 135;
+
+        // Vertical: prefer above, flip below if not enough room
+        const spaceAbove = termRect.top - navH;
+        if (spaceAbove < tipH + gap) {
+          tip.classList.add('define-tip--below');
+          term.classList.add('define-term--tip-below');
+        }
+
+        // Horizontal: center by default, shift if it would overflow
+        let idealLeft = termRect.width / 2;
+        const tipLeftEdge = termCenterX - tipW / 2;
+        const tipRightEdge = termCenterX + tipW / 2;
+
+        let shiftX = 0;
+        if (tipLeftEdge < sidebarW + 8) {
+          shiftX = (sidebarW + 8) - tipLeftEdge;
+        } else if (tipRightEdge > window.innerWidth - 8) {
+          shiftX = (window.innerWidth - 8) - tipRightEdge;
+        }
+
+        if (shiftX !== 0) {
+          tip.style.left = (idealLeft + shiftX) + 'px';
+          tip.style.transform = 'translateX(-50%)';
+        }
+
+        // Move arrow to stay pointing at the term center
+        const arrowLeft = Math.max(12, Math.min(tipW - 12, tipW / 2 - shiftX));
+        tip.style.setProperty('--arrow-left', arrowLeft + 'px');
+
+        // Enable pointer-events after tooltip settles (for links inside tips)
+        interactiveTimer = setTimeout(() => tip.classList.add('tip-interactive'), 250);
+      });
+
+      term.addEventListener('mouseleave', () => {
+        leaveTimer = setTimeout(resetTip, 100);
+      });
+    });
+
+    // OS toggle
+    (function() {
+      var btns = document.querySelectorAll('.os-toggle__btn');
+      var winPrompt = document.getElementById('promptText');
+      var macPrompt = document.getElementById('promptTextMac');
+      btns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          btns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          var isMac = btn.getAttribute('data-os') === 'mac';
+          winPrompt.style.display = isMac ? 'none' : '';
+          macPrompt.style.display = isMac ? '' : 'none';
+        });
+      });
+    })();
+
+    // Copy prompt
+    function copyPrompt() {
+      var winPrompt = document.getElementById('promptText');
+      var macPrompt = document.getElementById('promptTextMac');
+      const text = (winPrompt.style.display === 'none' ? macPrompt : winPrompt).textContent;
+      const btn = document.getElementById('copyBtn');
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<i class="fa-regular fa-clone"></i>';
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="220" height="220" viewBox="31 31 158 158" xmlns="http://www.w3.org/2000/svg">
+  <defs/>
+  <!-- Connections layer0->layer1 -->
+  <line x1="40" y1="86.667" x2="86.667" y2="40" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="40" y1="86.667" x2="86.667" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="40" y1="86.667" x2="86.667" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="40" y1="86.667" x2="86.667" y2="180" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+
+  <line x1="40" y1="133.333" x2="86.667" y2="40" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="40" y1="133.333" x2="86.667" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="40" y1="133.333" x2="86.667" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="40" y1="133.333" x2="86.667" y2="180" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Connections layer1->layer2 (full bipartite between 4 and 4) -->
+  <line x1="86.667" y1="40" x2="133.333" y2="40" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="40" x2="133.333" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="40" x2="133.333" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="40" x2="133.333" y2="180" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+
+  <line x1="86.667" y1="86.667" x2="133.333" y2="40" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="86.667" x2="133.333" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="86.667" x2="133.333" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="86.667" x2="133.333" y2="180" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+
+  <line x1="86.667" y1="133.333" x2="133.333" y2="40" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="133.333" x2="133.333" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="133.333" x2="133.333" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="133.333" x2="133.333" y2="180" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+
+  <line x1="86.667" y1="180" x2="133.333" y2="40" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="180" x2="133.333" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="180" x2="133.333" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="86.667" y1="180" x2="133.333" y2="180" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Connections layer2->layer3 -->
+  <line x1="133.333" y1="40" x2="180" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="133.333" y1="86.667" x2="180" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="133.333" y1="133.333" x2="180" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="133.333" y1="180" x2="180" y2="86.667" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+
+  <line x1="133.333" y1="40" x2="180" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="133.333" y1="86.667" x2="180" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="133.333" y1="133.333" x2="180" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+  <line x1="133.333" y1="180" x2="180" y2="133.333" stroke="#d97757" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Neurons -->
+  <!-- Layer 0 (x=40) two neurons aligned to inner four's middle two -->
+  <circle cx="40" cy="86.667" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+  <circle cx="40" cy="133.333" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+
+  <!-- Layer1 (x=86.667) four neurons at y=40,86.667,133,180 -->
+  <circle cx="86.667" cy="40" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+  <circle cx="86.667" cy="86.667" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+  <circle cx="86.667" cy="133.333" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+  <circle cx="86.667" cy="180" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+
+  <!-- Layer2 (x=133.333) four neurons -->
+  <circle cx="133.333" cy="40" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+  <circle cx="133.333" cy="86.667" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+  <circle cx="133.333" cy="133.333" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+  <circle cx="133.333" cy="180" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+
+  <!-- Layer3 (x=180) outer layer two neurons placed at y=86.667 and 133 -->
+  <circle cx="180" cy="86.667" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+  <circle cx="180" cy="133.333" r="8" fill="#d97757" stroke="#d97757" stroke-width="2"/>
+</svg>
