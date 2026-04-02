@@ -17,9 +17,9 @@
       --sg-page: var(--sg-white);
       --sg-claude-ui: #fff;
       --sg-gray-text: rgba(42,37,32,0.8);
-      --sg-gray-mid: rgba(42,37,32,0.55);
+      --sg-gray-mid: rgba(42,37,32,0.6);
       --sg-surface-light: #f2f1ed;
-      --sg-text-faded: rgba(42,37,32,0.5);
+      --sg-text-faded: rgba(42,37,32,0.65);
       --sg-divider: rgba(42,37,32,0.1);
       --sg-light-border: rgba(42,37,32,0.15);
 
@@ -44,9 +44,8 @@
       --sg-border-claude-ui: var(--sg-border-cool-strong);
 
       --sg-text-ui: #1a1a1a;
-      --sg-text-muted: #8c8178;
-      --sg-text-muted-2: #9a958e;
-      --sg-text-cool-muted: #9ca3af;
+      --sg-text-muted: #7a7068;
+      --sg-text-cool-muted: #6b7280;
       --sg-text-cool-placeholder: #b0b5be;
       --sg-ui-ink-muted: #555;
 
@@ -55,17 +54,17 @@
       --sg-semantic-success-vivid: #27864f;
       --sg-semantic-error: #c0392b;
       --sg-semantic-warning: #c4a87a;
-      --sg-semantic-muted: #b5ada3;
+      --sg-semantic-muted: #9a938a;
       --sg-semantic-ink: #6b6158;
       --sg-semantic-copied: #2e7d32;
 
       /* Cool UI text (annotation cards, muted steps) */
       --sg-text-cool-secondary: #44536a;
-      --sg-text-cool-tertiary: #728197;
+      --sg-text-cool-tertiary: #5a6b80;
 
       /* Accents */
       --sg-accent-claude-blue: #2c84db;
-      --sg-diagram-slate: #8a7e72;
+      --sg-diagram-slate: #6b6158;
       /* Code syntax (training bash demo) */
       --sg-syntax-keyword: #8b6914;
       --sg-syntax-string: var(--sg-semantic-success-vivid);
@@ -919,7 +918,7 @@
       margin-bottom: 3px;
     }
     .cw-ann-desc {
-      font-size: 0.73rem;
+      font-size: 0.78rem;
       color: var(--sg-text-cool-tertiary);
       line-height: 1.4;
       white-space: pre-line;
@@ -971,7 +970,7 @@
       margin-top: 4px;
     }
     #cw-step-indicator {
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       color: var(--sg-text-cool-tertiary);
       min-width: 50px;
       text-align: center;
@@ -1238,7 +1237,7 @@
     }
     .msd-prompt__text {
       font-size: 1.05rem;
-      color: var(--sg-text-muted-2);
+      color: var(--sg-text-muted);
       margin-bottom: 18px;
     }
     .msd-prompt__bar {
@@ -1571,7 +1570,7 @@
 
     .tokenizer-hint {
       font-family: var(--font-body);
-      font-size: 9px;
+      font-size: 11px;
       color: var(--sg-text-cool-muted);
       letter-spacing: 0.02em;
       cursor: default;
@@ -1580,7 +1579,7 @@
 
     .tokenizer-label {
       font-family: var(--font-body);
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--sg-text-cool-muted);
       letter-spacing: 0.05em;
@@ -2675,9 +2674,9 @@
 
             <!-- User prompt card -->
             <rect x="10" y="80" width="200" height="56" rx="10" fill="var(--sg-claude-ui)" stroke="var(--sg-border-claude-ui)" stroke-width="1.5"/>
-            <text x="24" y="100" font-family="'Source Sans 3',sans-serif" font-size="9" fill="var(--sg-diagram-slate)" font-weight="700">YOU</text>
-            <text x="24" y="116" font-family="'Source Sans 3',sans-serif" font-size="10.5" fill="var(--sg-charcoal)">Here are files from our partner. Get</text>
-            <text x="24" y="128" font-family="'Source Sans 3',sans-serif" font-size="10.5" fill="var(--sg-charcoal)">our AI team to build them a solution.</text>
+            <text x="24" y="100" font-family="'Source Sans 3',sans-serif" font-size="11" fill="var(--sg-diagram-slate)" font-weight="700">YOU</text>
+            <text x="24" y="116" font-family="'Source Sans 3',sans-serif" font-size="12" fill="var(--sg-charcoal)">Here are files from our partner. Get</text>
+            <text x="24" y="128" font-family="'Source Sans 3',sans-serif" font-size="12" fill="var(--sg-charcoal)">our AI team to build them a solution.</text>
 
             <!-- Arrow from prompt to Claude Code -->
             <line x1="110" y1="136" x2="110" y2="210" stroke="var(--sg-diagram-slate)" stroke-width="1.5" marker-end="url(#ag-arrow)"/>
@@ -2741,7 +2740,7 @@
             <rect x="452" y="400" width="22" height="26" rx="2" fill="none" stroke="var(--sg-border-strong)" stroke-width="1"/>
             <!-- Dashed Arrow from Haiku to index.md -->
             <line x1="328" y1="412" x2="498" y2="412" stroke="var(--sg-diagram-slate)" stroke-width="1.5" stroke-dasharray="5,4"marker-end="url(#ag-arrow)"/>
-            <text x="423" y="442" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="var(--sg-diagram-slate)">many files</text>
+            <text x="423" y="442" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="var(--sg-diagram-slate)">many files</text>
 
             <!-- index.md box -->
             <rect x="504" y="394" width="90" height="36" rx="8" fill="var(--sg-claude-ui)" stroke="var(--sg-border-strong)" stroke-width="1.5"/>
