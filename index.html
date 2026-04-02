@@ -1654,7 +1654,7 @@
     <ul class="sidebar__nav">
       <li><a href="#demo">Demo</a></li>
       <li><a href="#models-vs-products">Model vs. product</a></li>
-      <li><a href="#same-model">Training and knowledge cutoff</a></li>
+      <li><a href="#same-model">What the model sees</a></li>
       <li><a href="#context-window">The context window</a></li>
       <li><a href="#agents-in-action">Models working together</a></li>
       <li><a href="#capability-compare">Products comparison</a></li>
@@ -1911,7 +1911,7 @@
 
     <section id="same-model" class="section section--gray">
   <div class="container">
-    <h2>The model learned everything during training, and nothing after that.</h2>
+    <h2>The model sees the world differently than you do.</h2>
 
     <!-- ── Row 1: Model explanation + conversations diagram ─── -->
     <div class="content-row" style="margin-top:32px;margin-bottom:40px;">
@@ -1920,8 +1920,12 @@
           These models were
           <span class="define-term"><strong>trained</strong><span class="define-tip"><strong>Training</strong>Training happens in two stages. In pre-training, the model reads enormous amounts of text from the internet (books, articles, websites, code) and learns patterns in language, facts, and reasoning. Then, in post-training it learns to follow instructions, answer questions helpfully, and have conversations.</span></span>
           on text from the internet, then taught to help with tasks. They each have a
-          <span class="define-term"><strong>knowledge cutoff</strong><span class="define-tip"><strong>Knowledge cutoff</strong>The date when the model's training data ends. Unless you tell it or it searches the web, the model has no awareness of events, discoveries, or changes that happened after this date.</span></span>
-          date, meaning they have no awareness of events after training data ends. They do not learn from your conversations, or improve the more you use them. What you can change is the context you give them in each conversation. The example to the right shows this in action. The model fails simple counting when left to its own devices, but succeeds when using code to add the correct answer to its context. You might ask why something so simple needs a workaround...
+          <span class="define-term"><strong>knowledge cutoff</strong><span class="define-tip"><strong>
+          Knowledge cutoff</strong>The date when the model's training data ends. Unless you tell it or it searches the web, the model has no awareness of events, discoveries, or changes that happened after this date.</span></span>
+          date, meaning they have no awareness of events after training data ends. They do not learn from
+          your conversations, or improve the more you use them. But training also shapes how the model "sees"
+          the world. The example here shows this in action: the model fails simple counting when left to its
+          own devices, but succeeds when using code to find the answer. The reason comes down to how it sees your inputs.
         </p>
       </div>
       <div class="content-row__visual">
@@ -2002,7 +2006,10 @@
         <p class="section-body section-body--flush">
           A model does not see things like we do. It breaks text, audio, video, and images into 
           <span class="define-term"><strong>tokens</strong><span class="define-tip"><strong>Token</strong>A small chunk of text, roughly one word or word-fragment. The model reads and generates text one token at a time. Everything (text, code, images) gets converted to tokens.</span></span>
-          – small chunks, each corresponding to an ID in its own vocabulary. Your question, any documents you attach, and every word the model writes back all count as tokens. This is why some things that seem trivial to us, like counting dots in a message, can trip it up – it can only see these tokens. Together these tokens make up the model's context. 
+          – small chunks, each corresponding to an ID in its own vocabulary. Your question, any
+          documents you attach, and every word the model writes back are all seen as tokens.
+          This is why some things that seem trivial to us, like counting dots in a message,
+          can trip it up – it can only see these tokens. Together these tokens make up the model's context. 
         </p>
       </div>
       <div class="content-row__visual">
