@@ -1094,6 +1094,7 @@
       .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.15); }
       .main { margin-left: 0; }
       .topnav__toggle { display: block; }
+      .footer { margin-left: 0; }
     }
 
     @media (max-width: 768px) {
@@ -1105,6 +1106,7 @@
       .claude-chat__body { padding: 16px 20px; max-height: 280px; }
       .claude-chat__header { padding: 10px 12px 0; }
       .os-toggle__btn { font-size: 13px; padding: 4px 11px; }
+      .diagram-wrap { padding: 20px; overflow-x: auto; }
     }
 
     /* Sidebar overlay for mobile */
@@ -1219,6 +1221,9 @@
 
     .content-row__text  { flex: 1 1 0; min-width: 240px; }
     .content-row__visual { flex: 2 1 0; min-width: 320px; max-width: 53%; }
+    @media (max-width: 768px) {
+      .content-row__visual { max-width: 100%; }
+    }
 
 
     /* ── Model Selector Demo ── */
