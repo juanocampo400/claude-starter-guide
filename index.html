@@ -120,7 +120,7 @@
     /* ========================================
        Typography
        ======================================== */
-    h1, .display-heading {
+    h1 {
       font-family: var(--font-display);
       text-transform: uppercase;
       font-weight: 800;
@@ -148,35 +148,6 @@
     /* ========================================
        Buttons
        ======================================== */
-    .btn-ghost {
-      display: inline-block;
-      background: transparent;
-      border: 2px solid var(--sg-charcoal);
-      color: var(--sg-charcoal);
-      padding: 12px 28px;
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 15px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      text-transform: none;
-    }
-    .btn-ghost:hover { background: var(--sg-charcoal); color: var(--sg-white); }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--sg-charcoal);
-      border: none;
-      color: var(--sg-white);
-      padding: 12px 28px;
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 15px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-primary:hover { background: var(--sg-charcoal-dark); }
-
     /* ========================================
        Video Player
        ======================================== */
@@ -307,7 +278,7 @@
 
     .section--white { background: var(--sg-page); }
     .section--gray { background: var(--sg-page); }
-    .section--dark { background: var(--sg-charcoal); color: var(--sg-white); }
+
 
 
 
@@ -324,29 +295,188 @@
       z-index: 1000;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       padding: 0 24px;
     }
 
     .topnav__logo {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: 20px;
       font-weight: 800;
       color: var(--sg-charcoal);
-      text-transform: uppercase;
+      text-transform: lowercase;
       letter-spacing: 0.04em;
       white-space: nowrap;
-      padding: 0 8px;
+      padding: 0 8px 0 0;
     }
 
     .topnav__logo span {
       color: var(--sg-charcoal);
     }
 
-    .topnav__toggle {
+    .topnav__search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--sg-surface-muted-2);
+      border: 1px solid var(--sg-border-subtle);
+      border-radius: 8px;
+      padding: 6px 12px;
+      width: 320px;
+    }
+
+    .topnav__search-icon {
+      color: var(--sg-text-muted);
+      font-size: 14px;
+    }
+
+    .topnav__search-input {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--sg-charcoal);
+      background: none;
+      border: none;
+      outline: none;
+      flex: 1;
+      width: 100%;
+    }
+
+    .topnav__search-input::placeholder {
+      color: var(--sg-text-muted);
+    }
+
+    .topnav__results {
       display: none;
       position: absolute;
-      left: 24px;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: var(--sg-page);
+      border: 1px solid var(--sg-border-subtle);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 1001;
+    }
+
+    .topnav__results.open {
+      display: block;
+    }
+
+    .topnav__result-item {
+      display: block;
+      padding: 10px 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .topnav__result-title {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sg-text-faded);
+    }
+
+    .topnav__result-preview {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--sg-text-muted);
+      margin-top: 2px;
+    }
+
+    .topnav__result-item:hover .topnav__result-title,
+    .topnav__result-item.active .topnav__result-title {
+      color: var(--sg-charcoal);
+    }
+
+    .topnav__result-item:hover,
+    .topnav__result-item.active {
+      background: var(--sg-surface-light);
+    }
+
+    .topnav__result-empty {
+      padding: 10px 14px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--sg-text-muted);
+    }
+
+    /* Collapsed search icon button for narrow viewports */
+    .topnav__search-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--sg-text-muted);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* Full-screen search overlay for narrow viewports */
+    .search-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--sg-page);
+      z-index: 1100;
+      flex-direction: column;
+    }
+
+    .search-overlay.open {
+      display: flex;
+    }
+
+    .search-overlay__bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--sg-border-subtle);
+    }
+
+    .search-overlay__bar .topnav__search-icon {
+      font-size: 16px;
+    }
+
+    .search-overlay__input {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--sg-charcoal);
+      background: none;
+      border: none;
+      outline: none;
+      flex: 1;
+    }
+
+    .search-overlay__input::placeholder {
+      color: var(--sg-text-muted);
+    }
+
+    .search-overlay__close {
+      background: none;
+      border: none;
+      color: var(--sg-text-muted);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .search-overlay__results {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+
+    .topnav__toggle {
+      display: none;
+      margin-left: auto;
       background: none;
       border: none;
       color: var(--sg-charcoal);
@@ -367,20 +497,12 @@
       background: var(--sg-page);
       border-right: none;
       overflow-y: auto;
-      padding: 32px 24px;
+      padding: 16px 24px;
       z-index: 900;
       transition: transform 0.3s ease;
     }
 
-    .sidebar__label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--sg-gray-mid);
-      margin-bottom: 16px;
-    }
+
 
     .sidebar__nav {
       list-style: none;
@@ -1081,8 +1203,14 @@
       .sidebar { transform: translateX(-100%); }
       .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.15); }
       .main { margin-left: 0; }
-      .topnav__toggle { display: block; }
+      .topnav__toggle { display: block; margin-left: 0; }
+      .topnav__search { position: static; transform: none; width: auto; flex: 1; margin: 0 16px; }
       .footer { margin-left: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .topnav__search { display: none; }
+      .topnav__search-btn { display: block; margin-left: auto; }
     }
 
     @media (max-width: 768px) {
@@ -1633,16 +1761,35 @@
 
   <!-- ============ Top Navigation ============ -->
   <nav class="topnav">
+    <div class="topnav__logo">.claude<span>/</span>starter-guide</div>
+    <div class="topnav__search" id="searchContainer">
+      <i class="fa-solid fa-magnifying-glass topnav__search-icon"></i>
+      <input type="text" class="topnav__search-input" id="searchInput" placeholder="Search docs..." autocomplete="off">
+      <div class="topnav__results" id="searchResults"></div>
+    </div>
+    <button class="topnav__search-btn" id="searchBtn" aria-label="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
     <button class="topnav__toggle" id="sidebarToggle" aria-label="Toggle navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
-    <div class="topnav__logo">.Claude<span>/</span>Starter-Guide</div>
   </nav>
+
+  <!-- ============ Search Overlay (narrow viewports) ============ -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__bar">
+      <i class="fa-solid fa-magnifying-glass topnav__search-icon"></i>
+      <input type="text" class="search-overlay__input" id="searchOverlayInput" placeholder="Search docs..." autocomplete="off">
+      <button class="search-overlay__close" id="searchOverlayClose" aria-label="Close search">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="search-overlay__results" id="searchOverlayResults"></div>
+  </div>
 
   <!-- ============ Sidebar Navigation ============ -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar__label">Contents</div>
     <ul class="sidebar__nav">
       <li><a href="#demo">Demo</a></li>
       <li><a href="#models-vs-products">Model vs. product</a></li>
@@ -3155,6 +3302,132 @@ Start by asking me to open Terminal (show me how to find it with Spotlight: Comm
     })();
 
     // Copy prompt
+    // Search functionality
+    (function() {
+      const searchSections = document.querySelectorAll('section[id]');
+
+      // Build search index with preview text from first <p>
+      const entries = [];
+      searchSections.forEach(section => {
+        const heading = section.querySelector('h1, h2, h3');
+        if (!heading) return;
+        const firstP = section.querySelector('p');
+        const preview = firstP ? firstP.textContent.trim().slice(0, 80) : '';
+        entries.push({
+          id: section.id,
+          title: heading.textContent.trim(),
+          preview: preview + (firstP && firstP.textContent.trim().length > 80 ? '...' : ''),
+          text: section.textContent.toLowerCase()
+        });
+      });
+
+      function buildResultHTML(matches) {
+        if (matches.length === 0) {
+          return '<div class="topnav__result-empty">No results found</div>';
+        }
+        return matches.map((m, i) =>
+          '<a class="topnav__result-item" data-index="' + i + '" href="#' + m.id + '">' +
+            '<div class="topnav__result-title">' + m.title + '</div>' +
+            (m.preview ? '<div class="topnav__result-preview">' + m.preview + '</div>' : '') +
+          '</a>'
+        ).join('');
+      }
+
+      function filterEntries(query) {
+        const q = query.toLowerCase();
+        return entries.filter(e => e.title.toLowerCase().includes(q) || e.text.includes(q));
+      }
+
+      // Desktop search (centered bar)
+      const input = document.getElementById('searchInput');
+      const resultsEl = document.getElementById('searchResults');
+      let activeIndex = -1;
+
+      function renderResults(query) {
+        if (!query) { resultsEl.classList.remove('open'); return; }
+        activeIndex = -1;
+        resultsEl.innerHTML = buildResultHTML(filterEntries(query));
+        resultsEl.classList.add('open');
+      }
+
+      input.addEventListener('input', () => renderResults(input.value.trim()));
+
+      input.addEventListener('keydown', (e) => {
+        const items = resultsEl.querySelectorAll('.topnav__result-item');
+        if (!items.length) return;
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          activeIndex = Math.min(activeIndex + 1, items.length - 1);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          activeIndex = Math.max(activeIndex - 1, 0);
+        } else if (e.key === 'Enter' && activeIndex >= 0) {
+          e.preventDefault();
+          items[activeIndex].click();
+          return;
+        } else if (e.key === 'Escape') {
+          resultsEl.classList.remove('open');
+          input.blur();
+          return;
+        } else { return; }
+        items.forEach(el => el.classList.remove('active'));
+        items[activeIndex].classList.add('active');
+      });
+
+      resultsEl.addEventListener('click', (e) => {
+        if (e.target.closest('.topnav__result-item')) {
+          input.value = '';
+          resultsEl.classList.remove('open');
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#searchContainer')) {
+          resultsEl.classList.remove('open');
+        }
+      });
+
+      // Mobile/narrow search overlay
+      const searchBtn = document.getElementById('searchBtn');
+      const overlay = document.getElementById('searchOverlay');
+      const overlayInput = document.getElementById('searchOverlayInput');
+      const overlayResults = document.getElementById('searchOverlayResults');
+      const overlayClose = document.getElementById('searchOverlayClose');
+
+      searchBtn.addEventListener('click', () => {
+        overlay.classList.add('open');
+        overlayInput.focus();
+      });
+
+      overlayClose.addEventListener('click', () => {
+        overlay.classList.remove('open');
+        overlayInput.value = '';
+        overlayResults.innerHTML = '';
+      });
+
+      overlayInput.addEventListener('input', () => {
+        const q = overlayInput.value.trim();
+        if (!q) { overlayResults.innerHTML = ''; return; }
+        overlayResults.innerHTML = buildResultHTML(filterEntries(q));
+      });
+
+      overlayResults.addEventListener('click', (e) => {
+        if (e.target.closest('.topnav__result-item')) {
+          overlay.classList.remove('open');
+          overlayInput.value = '';
+          overlayResults.innerHTML = '';
+        }
+      });
+
+      overlayInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          overlay.classList.remove('open');
+          overlayInput.value = '';
+          overlayResults.innerHTML = '';
+        }
+      });
+    })();
+
     function copyPrompt() {
       var winPrompt = document.getElementById('promptText');
       var macPrompt = document.getElementById('promptTextMac');
