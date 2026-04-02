@@ -1934,7 +1934,7 @@
               <div class="chat-mock">
                 <!-- User message -->
                 <div class="chat-mock__user">
-                  <div class="chat-mock__bubble chat-mock__bubble--user">how many dots are there? .................................</div>
+                  <div class="chat-mock__bubble chat-mock__bubble--user">how many dots? .................................</div>
                 </div>
                 <!-- Claude response -->
                 <div class="chat-mock__assistant">
@@ -1949,7 +1949,7 @@
               <div class="chat-mock">
                 <!-- User message -->
                 <div class="chat-mock__user">
-                  <div class="chat-mock__bubble chat-mock__bubble--user">how many dots are there? .................................<br>use code</div>
+                  <div class="chat-mock__bubble chat-mock__bubble--user">how many dots? .................................<br>use code</div>
                 </div>
                 <!-- Claude response -->
                 <div class="chat-mock__assistant">
@@ -2011,7 +2011,7 @@
 
             <!-- User prompt box (editable) -->
             <div class="tokenizer-box" style="position:relative;">
-              <div id="tokenizer-input" class="tokenizer-input" contenteditable="true" spellcheck="false">Summarize this paragraph</div>
+              <div id="tokenizer-input" class="tokenizer-input" contenteditable="true" spellcheck="false">how many dots? .................................</div>
               <div id="tokenizer-placeholder" class="tokenizer-placeholder">Type here...</div>
               <div class="tokenizer-box__footer">
                 <div id="tokenizer-hint" class="tokenizer-hint">&#9998; click to edit</div>
@@ -2181,7 +2181,7 @@
       var pos = 0;
       /* Use a seeded step size based on char codes for variety */
       while (pos < w.length) {
-        var step = 2 + (w.charCodeAt(pos) % 3);   // 2, 3, or 4
+        var step = 4 + ((w.charCodeAt(pos) ^ (pos * 3 + 7)) % 7);   // 4–10
         if (pos + step >= w.length) step = w.length - pos;  // take remainder
         chunks.push(w.slice(pos, pos + step));
         pos += step;
@@ -2204,7 +2204,7 @@
     }
 
     var lastGoodText = "";
-    var IDS_MAX_LINES = 2;
+    var IDS_MAX_LINES = 3;
 
     function update() {
       var text = input.textContent || "";
