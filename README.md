@@ -1,8 +1,12 @@
 # Claude Starter Guide
 
- A beginner's guide for non-technical users that explains how AI models think and demonstrates what's possible when you orchestrate them. This guide was created with the belief that code sits beneath most of the things we create, and that AI is a bridge that let's anyone start working with it.
+ A beginner's guide for non-technical users that explains how LLMs "see" inputs and demonstrates what's possible when you orchestrate AI agents (specifically Claude models). This guide was created with the belief that code sits beneath most of the things we create, and that AI is a bridge that let's anyone start working with it.
 
 ## Usage
+
+The site is available for anyone to view at: https://juanocampo400.github.io/claude-starter-guide/
+
+Everything below is for those who want to create or build from this repo. 
 
 Open `index.html` in any browser.
 
