@@ -757,7 +757,7 @@
       font-size: 1.125rem;
       font-weight: 700;
       color: var(--sg-charcoal);
-      margin: 0 0 20px 0;
+      margin: 0 0 .5rem 0;
     }
 
     .diagram-scenario {
@@ -1092,6 +1092,9 @@
     #ag-diagram .ag-stage {
       transition: opacity 0.4s ease;
     }
+    #ag-diagram-title {
+      margin-bottom: 0;
+    }
 
     /* ========================================
        Method Strip Responsive
@@ -1241,30 +1244,43 @@
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      gap: 2.5rem;
       align-items: start;
     }
 
     .split__title {
       font-weight: 700;
-      font-size: 1.125rem;
+      font-size: 1.25rem;
       color: var(--sg-charcoal);
-      margin-bottom: 4px;
+      margin-bottom: 1.5rem;
     }
 
-    .split__items {
+    .split__list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 1.25rem;
     }
 
     .split__item {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 1rem;
     }
 
-    .split__item-icon {
+
+    .split__list-item-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--sg-charcoal);
+    }
+
+
+    .split__list-item-desc {
+      font-size: 1rem;
+      color: var(--sg-text-faded);
+    }
+
+    .split__list-item-icon {
       width: 44px;
       height: 44px;
       flex-shrink: 0;
@@ -1273,33 +1289,23 @@
       justify-content: center;
     }
 
-    .split__item-icon img {
+
+    .split__list-item-icon img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
 
-    .split__item-name {
-      font-weight: 700;
-      font-size: 0.9375rem;
-      color: var(--sg-charcoal);
-    }
 
-
-    .split__item-desc {
-      font-size: 1.1875rem;
-      color: var(--sg-text-faded);
-    }
-
-    .card--with-screenshot {
+    .comparison-card {
       background: var(--sg-surface-light);
-      border-radius: 6px;
+      border-radius: 16px;
       border: none;
-      padding: 48px 40px;
+      padding: 2rem;
     }
 
-    .card--with-screenshot .split {
-      margin-bottom: 36px;
+    .comparison-card .split {
+      margin-bottom: 3rem;
     }
 
     @media (max-width: 48rem) {
@@ -1352,9 +1358,8 @@
     .msd-prompt {
       background: var(--sg-claude-ui);
       border: 1px solid var(--sg-border-claude-ui);
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 20px 20px 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
     .msd-prompt__text {
       font-size: 1.05rem;
@@ -1473,13 +1478,6 @@
     .dot-count-scenario {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-    }
-    .dot-count-label {
-      font-family: var(--font-body);
-      font-size: 1.125rem;
-      font-weight: 700;
-      color: var(--sg-charcoal);
     }
     .dot-count-verdict {
       font-family: var(--font-body);
@@ -1487,8 +1485,6 @@
       font-weight: 600;
       text-align: left;
     }
-    .dot-count-label--error { color: var(--sg-charcoal); }
-    .dot-count-label--success { color: var(--sg-charcoal); }
     .dot-count-verdict--error { color: var(--sg-semantic-error); }
     .dot-count-verdict--success { color: var(--sg-semantic-success-vivid); }
     .chat-mock__text--inline-row {
@@ -1512,7 +1508,7 @@
       padding: 16px 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: .5rem;
     }
     .chat-mock__user {
       display: flex;
@@ -1523,7 +1519,7 @@
       border-radius: 16px;
       padding: 12px 16px;
       font-family: var(--font-body);
-      font-size: 0.8125rem;
+      font-size: 1rem;
       color: var(--sg-text-ui);
       line-height: 1.45;
       max-width: 85%;
@@ -1532,11 +1528,11 @@
     .chat-mock__assistant {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: .5rem;
     }
     .chat-mock__text {
       font-family: var(--font-serif);
-      font-size: 0.875rem;
+      font-size: 1rem;
       color: var(--sg-text-ui);
       line-height: 1.55;
     }
@@ -1551,7 +1547,7 @@
       align-items: center;
       justify-content: space-between;
       color: var(--sg-text-muted);
-      font-size: 0.75rem;
+      font-size: 1rem;
       margin-bottom: 10px;
     }
     .code-block__chevron {
@@ -1568,7 +1564,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       color: var(--sg-text-muted);
     }
     .code-block__icon {
@@ -1587,7 +1583,7 @@
       background: var(--sg-border-strong);
     }
     .code-block__script-tag {
-      font-size: 0.6875rem;
+      font-size: 0.625rem;
       color: var(--sg-text-muted);
       background: var(--sg-surface-tag);
       border-radius: 6px;
@@ -1597,7 +1593,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       color: var(--sg-text-muted);
     }
 
@@ -1661,7 +1657,7 @@
 
     .tokenizer-input {
       font-family: var(--font-body);
-      font-size: 0.8125rem;
+      font-size: 1rem;
       color: var(--sg-text-ui);
       line-height: 1.45;
       min-height: 1.45em;
@@ -1691,7 +1687,7 @@
 
     .tokenizer-hint {
       font-family: var(--font-body);
-      font-size: 0.6875rem;
+      font-size: .75rem;
       color: var(--sg-text-cool-muted);
       letter-spacing: 0.02em;
       cursor: default;
@@ -1700,7 +1696,7 @@
 
     .tokenizer-label {
       font-family: var(--font-body);
-      font-size: 0.6875rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: var(--sg-text-cool-muted);
       letter-spacing: 0.05em;
@@ -1717,7 +1713,7 @@
 
     .tokenizer-arrow__text {
       font-family: var(--font-body);
-      font-size: 0.6875rem;
+      font-size: 0.625rem;
       color: var(--sg-ui-ink-muted);
       margin: 2px 0;
     }
@@ -1953,56 +1949,56 @@
       <div class="container">
         <h2>"Claude" is both a model and a product.</h2>
         <p class="section-body section-body--spaced">You can think of <span class="define-term"><strong>models</strong><span class="define-tip"><strong>Large Language Model (LLM)</strong>Large Language Models are AI systems trained on broad data to understand and generate human language. Claude's models (Opus, Sonnet, Haiku) differ in capability, speed, and cost.<em><a href="https://docs.anthropic.com/en/docs/about-claude/models" target="_blank" rel="noopener">Source: Anthropic docs</a></em></span></span> as the brains and <span class="define-term"><strong>products</strong><span class="define-tip"><strong>Product</strong>A user-facing application built on top of one or more models. Each product (Claude Chat, Claude Code, Cowork) provides a different interface and toolset for interacting with the underlying AI.<em><a href="https://claude.com/product/overview" target="_blank" rel="noopener">Source: Anthropic</a></em></span></span> as the hands and feet. Models are the Artificial Intelligence itself, each with different tradeoffs between capability and speed. Products are the user interfaces that give those models different tools to work with.</p>
-        <div class="card--with-screenshot">
+        <div class="comparison-card">
           <div class="split">
             <div>
               <div class="split__title">Models</div>
-              <div class="split__items">
+              <div class="split__list">
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icons/icon-opus.svg" alt="Opus" class="icon--sm"></div>
+                  <div class="split__list-item-icon"><img src="icons/icon-opus.svg" alt="Opus" class="icon--sm"></div>
                   <div>
-                    <div class="split__item-name">Opus</div>
-                    <div class="split__item-desc">Most capable – best multi-step reasoning, least likely to miss nuance or cut corners</div>
+                    <div class="split__list-item-name">Opus</div>
+                    <div class="split__list-item-desc">Most capable – best multi-step reasoning and least likely to miss nuance or cut corners</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icons/icon-sonnet.svg" alt="Sonnet" class="icon--sm"></div>
+                  <div class="split__list-item-icon"><img src="icons/icon-sonnet.svg" alt="Sonnet" class="icon--sm"></div>
                   <div>
-                    <div class="split__item-name">Sonnet</div>
-                    <div class="split__item-desc">Faster responses – strong at coding, structured output, and research</div>
+                    <div class="split__list-item-name">Sonnet</div>
+                    <div class="split__list-item-desc">Faster responses – strong at coding, structured output, and research</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icons/icon-haiku.svg" alt="Haiku" class="icon--sm"></div>
+                  <div class="split__list-item-icon"><img src="icons/icon-haiku.svg" alt="Haiku" class="icon--sm"></div>
                   <div>
-                    <div class="split__item-name">Haiku</div>
-                    <div class="split__item-desc">Near-instant responses – good for summaries, short tasks, and quick questions</div>
+                    <div class="split__list-item-name">Haiku</div>
+                    <div class="split__list-item-desc">Near-instant responses – good for summaries, short tasks, and quick questions</div>
                   </div>
                 </div>
               </div>
             </div>
             <div>
               <div class="split__title">Products</div>
-              <div class="split__items">
+              <div class="split__list">
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icons/icon-claudecode.svg" alt="Claude Code" class="icon--sm"></div>
+                  <div class="split__list-item-icon"><img src="icons/icon-claudecode.svg" alt="Claude Code" class="icon--sm"></div>
                   <div>
-                    <div class="split__item-name">Claude Code</div>
-                    <div class="split__item-desc">Runs on your computer – works directly in your files, the most you can do with Claude</div>
+                    <div class="split__list-item-name">Claude Code</div>
+                    <div class="split__list-item-desc">Runs on your computer – works directly in your files, the most you can do with Claude</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icons/icon-cowork.svg" alt="Claude Cowork" class="icon--sm"></div>
+                  <div class="split__list-item-icon"><img src="icons/icon-cowork.svg" alt="Claude Cowork" class="icon--sm"></div>
                   <div>
-                    <div class="split__item-name">Claude Cowork</div>
-                    <div class="split__item-desc">Runs in desktop app – works on your files with no setup needed, but less control than Code</div>
+                    <div class="split__list-item-name">Claude Cowork</div>
+                    <div class="split__list-item-desc">Runs in desktop app – works on your files with no setup needed, but less control than Code</div>
                   </div>
                 </div>
                 <div class="split__item">
-                  <div class="split__item-icon"><img src="icons/icon-claudeai.svg" alt="Claude Chat" class="icon--sm"></div>
+                  <div class="split__list-item-icon"><img src="icons/icon-claudeai.svg" alt="Claude Chat" class="icon--sm"></div>
                   <div>
-                    <div class="split__item-name">Claude Chat</div>
-                    <div class="split__item-desc">Chat in your browser (or desktop app) – upload files, download outputs to your computer</div>
+                    <div class="split__list-item-name">Claude Chat</div>
+                    <div class="split__list-item-desc">Chat in your browser (or desktop app) – upload files, download outputs to your computer</div>
                   </div>
                 </div>
               </div>
@@ -2054,7 +2050,7 @@
     <h2>The model sees the world differently than you do.</h2>
 
     <!-- ── Row 1: Model explanation + conversations diagram ─── -->
-    <div class="content-row" style="margin-top:32px;margin-bottom:40px;">
+    <div class="content-row" style="margin-top:1rem;margin-bottom:2rem;">
       <div class="content-row__text">
         <p class="section-body section-body--flush">
           These models were
@@ -2069,12 +2065,12 @@
         </p>
       </div>
       <div class="content-row__visual">
-        <div class="diagram-wrap diagram-wrap--flush" style="padding:24px 20px;">
+        <div class="diagram-wrap diagram-wrap--flush" style="padding:2rem;">
           <div style="display:flex;flex-direction:column;gap:24px;">
 
             <!-- Scenario 1: Without code – Claude gets it wrong -->
             <div class="dot-count-scenario">
-              <div class="dot-count-label dot-count-label--error">Without code</div>
+              <div class="diagram-label">Without code</div>
               <div class="chat-mock">
                 <!-- User message -->
                 <div class="chat-mock__user">
@@ -2089,7 +2085,7 @@
 
             <!-- Scenario 2: With code – Claude gets it right -->
             <div class="dot-count-scenario">
-              <div class="dot-count-label dot-count-label--success">With code</div>
+              <div class="diagram-label">With code</div>
               <div class="chat-mock">
                 <!-- User message -->
                 <div class="chat-mock__user">
@@ -2153,7 +2149,7 @@
         </p>
       </div>
       <div class="content-row__visual">
-        <div class="diagram-wrap diagram-wrap--flush" style="padding:20px 24px;">
+        <div class="diagram-wrap diagram-wrap--flush" style="padding:2rem;">
           <div class="tokenizer-column">
 
             <!-- User prompt box (editable) -->
@@ -2798,7 +2794,7 @@
     <!-- Interactive orchestration flow diagram -->
     <div class="diagram-wrap">
 
-      <p class="diagram-label">How Claude Code can orchestrate work</p>
+      <p id="ag-diagram-title" class="diagram-label">How Claude Code can orchestrate work</p>
 
       <!-- SVG diagram -->
       <div style="position:relative;">
@@ -2966,9 +2962,9 @@
             <thead>
               <tr>
                 <th class="compare-table__cap" style="vertical-align:bottom;">Capability</th>
-                <th><img src="icons/icon-claudecode.svg" alt="Code" class="icon--sm" style="display:block;margin:0 auto 4px;"><br>Code</th>
-                <th><img src="icons/icon-cowork.svg" alt="Cowork" class="icon--sm" style="display:block;margin:0 auto 4px;"><br>Cowork</th>
-                <th><img src="icons/icon-claudeai.svg" alt="Chat" class="icon--sm" style="display:block;margin:0 auto 4px;"><br>Chat</th>
+                <th><img src="icons/icon-claudecode.svg" alt="Code" class="icon--sm" style="display:block;margin:0 auto 0.25rem;">Code</th>
+                <th><img src="icons/icon-cowork.svg" alt="Cowork" class="icon--sm" style="display:block;margin:0 auto 0.25rem;">Cowork</th>
+                <th><img src="icons/icon-claudeai.svg" alt="Chat" class="icon--sm" style="display:block;margin:0 auto 0.25rem;">Chat</th>
               </tr>
             </thead>
             <tbody>
